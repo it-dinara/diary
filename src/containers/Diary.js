@@ -1,16 +1,13 @@
-import {
-  Box,
-  Card,
-  Image,
-  Heading,
-  Text
-} from 'rebass'
+import s from './style.module.css'
 
 function Diary() {
 	return (
-		<Box textAlign='center' mt='100px'>
-			<Text fontWeight='800' >Привет!</Text>
-		</Box>
+		<div className={s.wrapper}>
+			<div className={s.plus}>
+				<div className={s.vertical}></div>
+				<div className={s.gorizontal}></div>
+			</div>
+		</div>
 	)
 }
 
