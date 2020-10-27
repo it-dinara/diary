@@ -1,0 +1,14 @@
+.Logo {
+    background-color: white;
+    padding: 8px;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.LogoText {
+	font-size: 18px;
+	font-family: cursive;
+	transform: rotate(-6deg);
+	text-decoration: underline;
+}
