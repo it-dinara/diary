@@ -9,8 +9,8 @@ import {
 } from 'react-router-dom';
 import {connect} from 'react-redux'
 import Diary from './containers/Diary'
-import Auth from './containers/Auth/Auth';
 import Start from './containers/Start/Start';
+import Auth from './containers/Auth/AuthSecond';
 import Logout from './containers/Auth/Logout/LogoutSecond';
 import * as actions from './store/actions/index'
 import React, { Component } from 'react';
