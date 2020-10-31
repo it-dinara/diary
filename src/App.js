@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'emotion-theming'
 import theme from '@rebass/preset'
+import './App.css'
 
 import {
 	Route,
@@ -8,7 +9,7 @@ import {
 	Redirect
 } from 'react-router-dom';
 import {connect} from 'react-redux'
-import Diary from './containers/Diary'
+import Diary from './containers/Diary/Diary'
 import Start from './containers/Start/Start';
 import Auth from './containers/Auth/AuthSecond';
 import Logout from './containers/Auth/Logout/LogoutSecond';
