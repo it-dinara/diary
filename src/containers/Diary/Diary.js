@@ -15,11 +15,10 @@ function Diary() {
 	
 	return (
 		<div className={s.wrap}>
-			<label htmlFor=""></label>
 			<TextareaAutosize 
 				name='textValue'
 				onChange={() => {}}
-				minRows={10}
+				minRows={15}
 				onHeightChange={() => {}}
 				className={s.textarea}
 				/>
