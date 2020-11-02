@@ -1,21 +1,18 @@
 .titleMenu {
 	display: flex;
-	flex-wrap: wrap;
+ 
+    flex-direction: row;
+    flex-wrap: wrap;
 	margin: 0 auto;
-	padding: 93px 0px 64px 0px;
-	flex-direction: column;
-	height: 100%;
+
 }
 
 .container {
-    position: absolute;
-    top: 0;
-    left: -1px;
-    height: 100%;
+    
 }
 
 .title {
-    padding: 20px 10px 20px 29px;
+    padding: 19px 6px 18px 19px;
     cursor: pointer;
     font-family: cursive;
     border-radius: 5px;
@@ -24,7 +21,7 @@
 .titleLink {
     font-weight: 500;
     color: #262e33;
-    font-size: 13px;
+    font-size: 11px;
     transform: rotate(-3deg);
     text-align: left;
     display: inline-block;
@@ -39,3 +36,19 @@
 	color: #fff;
 
 }
+
+@media (min-width: 600px) {
+    .titleMenu {
+        padding: 9px 85px 64px 0px;
+        flex-direction: column;
+        flex-wrap: wrap;
+    	height: 100%;
+    }
+    .title {
+        padding: 20px 10px 20px 29px;
+    }
+    .titleLink {
+        font-size: 13px;
+    }
+}
+

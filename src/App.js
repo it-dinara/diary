@@ -9,7 +9,7 @@ import {
 	Redirect
 } from 'react-router-dom';
 import {connect} from 'react-redux'
-import Diary from './containers/Diary/Diary'
+import DiaryBuilder from './containers/DiaryBuilder/DiaryBuilder'
 import Start from './containers/Start/Start';
 import Auth from './containers/Auth/AuthSecond';
 import Logout from './containers/Auth/Logout/LogoutSecond';
@@ -31,13 +31,13 @@ class App extends Component {
 		let router = <Switch> 
 						<Route path="/start" exact component={Start} />
 						<Route path="/auth"  component={Auth} />
-						<Route path="/"  component={Diary} />
+						<Route path="/"  component={DiaryBuilder} />
 					</Switch>
 		if(this.props.isAuthenticated) {
 			router = <Switch>
 						<Route path="/start" exact component={Start} />
 						<Route path="/logout"  component={Logout}/>
-						<Route path="/" component={Diary} />
+						<Route path="/" component={DiaryBuilder} />
 					</Switch>
 		}
 

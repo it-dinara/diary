@@ -1,31 +1,25 @@
 import React, {useState} from 'react'
 import TextareaAutosize from 'react-textarea-autosize';
-import s from './Diary.module.css'
 import TitleMenu from '../TitleMenu/TitleMenu'
+import Diary from '../Diary/Diary'
+import s from './DiaryBuilder.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import * as actions from '../../store/actions/index'
 
 
 
 
-function Diary() {
+function DiaryBuilder() {
 	const title = useSelector(state => state.fills.title)
 	// const [value, setValue] = useState('')
 
 	
 	return (
-		<div className={s.wrap}>
-			<label htmlFor=""></label>
-			<TextareaAutosize 
-				name='textValue'
-				onChange={() => {}}
-				minRows={10}
-				onHeightChange={() => {}}
-				className={s.textarea}
-				/>
-
+		<div className={s.container}>
+			<TitleMenu/>
+			<Diary/>
 		</div>
 	)
 }
 
-export default Diary
+export default DiaryBuilder
