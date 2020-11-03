@@ -29,12 +29,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import authReducer from './store/reducers/auth';
 import fillsReducer from './store/reducers/fills';
+import diaryReducer from './store/reducers/diary';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
 	auth: authReducer,
-	fills: fillsReducer
+	fills: fillsReducer,
+	diary: diaryReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

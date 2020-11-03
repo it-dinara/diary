@@ -3,6 +3,7 @@ import { updateObject } from '../utility';
 
 const initialState = {
 	title: '',
+	note: '',
 	titleArray: [
 		{link: 'context',name: 'Ситуация'},
 		{link: 'fills',name: 'Чувства'},
@@ -17,15 +18,22 @@ const initialState = {
 }
 
 const setTitle = (state, action) => {
-	console.log('action.title', state)
 	return updateObject(state, {
 		title: action.title
+	})
+}
+
+const saveNote = (state, action) => {
+	return updateObject(state, {
+		title: action.title,
+		note: action.note,
 	})
 }
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.SET_TITLE: return setTitle(state, action);
+		case actionTypes.SAVE_NOTE: return saveNote(state, action);
 		default:
 			return state;
 	}

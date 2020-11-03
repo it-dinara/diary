@@ -6,5 +6,10 @@ export {
 } from './auth.js'
 
 export {
-	setTitle
+	setTitle,
+	saveNote
 } from './fills.js'
+
+export {
+	setValue
+} from './diary.js'

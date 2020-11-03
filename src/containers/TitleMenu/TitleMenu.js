@@ -1,32 +1,39 @@
-import React, {useState} from 'react'
+import React from 'react'
 import TextareaAutosize from 'react-textarea-autosize';
 import s from './TitleMenu.module.css'
-import Button from '../../components/UI/Button/Button'
 import {useSelector, useDispatch} from 'react-redux'
 import * as actions from '../../store/actions/index'
+import Button from '../../components/UI/Button/Button'
 
 
 
 
 function TitleMenu() {
 	const titleArray = useSelector(state => state.fills.titleArray)
-
 	const dispatch = useDispatch();
-	const setTitleHandler = (event, title) => {
-		dispatch(actions.setTitle(event.target.textContent))
-}
+	const setTitleHandler = (title) => {
+		return dispatch(actions.setTitle(title))
+	}
+
 	return (
-			<ul className={s.titleMenu}>
-				{titleArray.map((title, i) => (
-					<li
-						key={i}
-						className={s.title}
-						onClick={(event, title) => setTitleHandler(event, title)}
-						>
-						<span className={s.titleLink}>{title.name}</span>
-					</li>
-				))}
-			</ul>
+			<nav>
+				<ul className={s.titleMenu}>
+					{titleArray.map((title, i) => (
+						<li
+							key={i}
+							className={s.title}
+							onClick={() => setTitleHandler(title.link)}
+							>
+							<a 
+		            activeClassName={s.active}
+		            >
+								{title.link}
+							</a>
+							
+						</li>
+					))}
+				</ul>
+			</nav>
 		)
 	}
 

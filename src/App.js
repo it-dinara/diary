@@ -9,6 +9,7 @@ import {
 	Redirect
 } from 'react-router-dom';
 import {connect} from 'react-redux'
+import TitleMenu from './containers/TitleMenu/TitleMenu'
 import DiaryBuilder from './containers/DiaryBuilder/DiaryBuilder'
 import Start from './containers/Start/Start';
 import Auth from './containers/Auth/AuthSecond';
@@ -29,15 +30,16 @@ class App extends Component {
 	render () {
 
 		let router = <Switch> 
-						<Route path="/start" exact component={Start} />
+						<Route path="/context" component={Start} />
+						<Route path="/fills" component={Start} />
 						<Route path="/auth"  component={Auth} />
-						<Route path="/"  component={DiaryBuilder} />
+						<Route path="/" exact component={DiaryBuilder} />
 					</Switch>
 		if(this.props.isAuthenticated) {
 			router = <Switch>
-						<Route path="/start" exact component={Start} />
+						<Route path="/context" component={Start} />
 						<Route path="/logout"  component={Logout}/>
-						<Route path="/" component={DiaryBuilder} />
+						<Route path="/" exact component={DiaryBuilder} />
 					</Switch>
 		}
 

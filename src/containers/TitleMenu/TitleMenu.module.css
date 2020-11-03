@@ -10,43 +10,49 @@
 }
 
 .title {
-	padding: 15px;
-	cursor: pointer;
-	font-family: cursive;
 	border-radius: 5px;
+	transform: rotate(-3deg);
 }
 
-.titleLink {
+.title a {
 	font-weight: 500;
 	color: #262e33;
 	font-size: 11px;
-	transform: rotate(-3deg);
 	text-align: left;
+	display: inline-block;
+	text-decoration: none;
+	padding: 15px;
+	cursor: pointer;
+	font-family: cursive;
 	display: inline-block;
 }
 
-.title:hover {
+.title:hover,
+.title.active,
+.title:active {
 	background: #40A4C8;
 
 }
 
-.title:hover .titleLink {
+.title:hover a,
+.title:active a {
 	color: #fff;
 
 }
 
 @media (min-width: 600px) {
 	.titleMenu {
-		margin-top: 40px;
+		margin-top: 64px;
+		margin-left: 2vw;
 		flex-direction: column;
 		flex-wrap: wrap;
 		height: 100%;
 	}
 	.title {
-		padding: 20px 10px 20px 29px;
 	}
-	.titleLink {
+	.title a {
 		font-size: 13px;
+		padding: 20px 10px 20px 29px;
 	}
 }
 
