@@ -16,6 +16,7 @@ function DiaryBuilder() {
 
 	const dispatch = useDispatch();
 	const submitHandler = () => {
+		console.log('title submit', title)
 		dispatch(actions.saveNote(title, value))
 	}
 	
