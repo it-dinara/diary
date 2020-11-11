@@ -28,14 +28,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import authReducer from './store/reducers/auth';
-import fillsReducer from './store/reducers/fills';
+import feelingsReducer from './store/reducers/feelings';
 import diaryReducer from './store/reducers/diary';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
 	auth: authReducer,
-	fills: fillsReducer,
+	feelings: feelingsReducer,
 	diary: diaryReducer
 });
 

@@ -1,5 +1,4 @@
-import React, {useState} from 'react'
-import TextareaAutosize from 'react-textarea-autosize';
+import React from 'react'
 import TitleMenu from '../TitleMenu/TitleMenu'
 import Diary from '../../components/Diary/Diary'
 import s from './DiaryBuilder.module.css'
@@ -12,27 +11,26 @@ import * as actions from '../../store/actions/index'
 
 function DiaryBuilder() {
 	const value = useSelector(state => state.diary.value);
-	const title = useSelector(state => state.fills.title);
+	const title = useSelector(state => state.feelings.title);
 
 	const dispatch = useDispatch();
-	const submitHandler = () => {
+	const submitHandler = (event) => {
+		event.preventDefault()
 		console.log('title submit', title)
 		dispatch(actions.saveNote(title, value))
 	}
-	
+	console.log('title', title)
+	console.log('value', value)
 	return (
-		<div>
+
+			<form action="" onSubmit={(event) => submitHandler(event)}>
+				<div className={s.container}>
+					<TitleMenu/>
+					<Diary/>
+				</div>
 				
-			<div>
-				<form action="" onSubmit={() => submitHandler()}>
-					<div className={s.container}>
-						<TitleMenu/>
-						<Diary/>
-					</div>
-					
-				</form>
-			</div>
-		</div>
+			</form>
+
 	)
 }
 

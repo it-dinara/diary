@@ -1,15 +1,15 @@
-import { ThemeProvider } from 'emotion-theming'
-import theme from '@rebass/preset'
+// import { ThemeProvider } from 'emotion-theming'
+// import theme from '@rebass/preset'
 import './App.css'
 
 import {
 	Route,
 	Switch,
 	withRouter,
-	Redirect
+	// Redirect
 } from 'react-router-dom';
 import {connect} from 'react-redux'
-import TitleMenu from './containers/TitleMenu/TitleMenu'
+// import TitleMenu from './containers/TitleMenu/TitleMenu'
 import DiaryBuilder from './containers/DiaryBuilder/DiaryBuilder'
 import Start from './containers/Start/Start';
 import Auth from './containers/Auth/AuthSecond';
@@ -31,7 +31,7 @@ class App extends Component {
 
 		let router = <Switch> 
 						<Route path="/context" component={Start} />
-						<Route path="/fills" component={Start} />
+						<Route path="/feelings" component={Start} />
 						<Route path="/auth"  component={Auth} />
 						<Route path="/" exact component={DiaryBuilder} />
 					</Switch>

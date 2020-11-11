@@ -1,0 +1,41 @@
+.title {
+	border-radius: 5px;
+	transform: rotate(-3deg);
+}
+
+.title button {
+	font-weight: 500;
+	color: #262e33;
+	font-size: 11px;
+	text-align: left;
+	display: inline-block;
+	text-decoration: none;
+	padding: 15px;
+	cursor: pointer;
+	font-family: cursive;
+	display: inline-block;
+}
+
+.title.active,
+.title:active {
+	background: #40A4C8;
+}
+
+.title.active button,
+.title:active button {
+	color: #fff;
+
+}
+
+@media (min-width: 600px) {
+	.title button {
+		font-size: 13px;
+		padding: 20px 10px 20px 29px;
+	}
+	.title.active,
+	.title:active {
+		background: #40A4C8;
+	}
+
+}
+

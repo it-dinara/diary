@@ -7,8 +7,8 @@ export const setTitle = (title) => {
 	}
 }
 
-export const saveNote = (title, note) => {
-	localStorage.setItem(title, note)
+export const saveNote = (title, value) => {
+	localStorage.setItem(title, value)
 	return {
 		type: actionTypes.SAVE_NOTE
 	}

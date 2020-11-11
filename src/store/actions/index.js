@@ -8,7 +8,7 @@ export {
 export {
 	setTitle,
 	saveNote
-} from './fills.js'
+} from './feelings.js'
 
 export {
 	setValue

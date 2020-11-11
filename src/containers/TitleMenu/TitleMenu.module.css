@@ -5,54 +5,14 @@
 	margin: 0 auto;
 }
 
-.container {
-	
-}
-
-.title {
-	border-radius: 5px;
-	transform: rotate(-3deg);
-}
-
-.title a {
-	font-weight: 500;
-	color: #262e33;
-	font-size: 11px;
-	text-align: left;
-	display: inline-block;
-	text-decoration: none;
-	padding: 15px;
-	cursor: pointer;
-	font-family: cursive;
-	display: inline-block;
-}
-
-.title:hover,
-.title.active,
-.title:active {
-	background: #40A4C8;
-
-}
-
-.title:hover a,
-.title:active a {
-	color: #fff;
-
-}
-
 @media (min-width: 600px) {
 	.titleMenu {
-		margin-top: 64px;
+		margin-top: 47px;
 		margin-left: 2vw;
 		flex-direction: column;
 		flex-wrap: wrap;
 		height: 100%;
 	}
-	.title {
-	}
-	.title a {
-		font-size: 13px;
-		padding: 20px 10px 20px 29px;
-	}
+
 }
 

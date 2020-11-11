@@ -1,40 +1,33 @@
-import React from 'react'
-import TextareaAutosize from 'react-textarea-autosize';
+import React, {useState} from 'react'
 import s from './TitleMenu.module.css'
+import Title from './Title/Title'
 import {useSelector, useDispatch} from 'react-redux'
 import * as actions from '../../store/actions/index'
 
 
 
 function TitleMenu() {
-	const titleArray = useSelector(state => state.fills.titleArray)
+	const titleArray = useSelector(state => state.feelings.titleArray)
+	const [active, setActive] = useState(false)
 	const dispatch = useDispatch();
-	const setTitleHandler = (title) => {
-		console.log('title', title)
+
+	const setTitleHandler = (event, title, id) => {
+		event.preventDefault()
+		setActive(active => { return {[id]: !active[id]} })
 		return dispatch(actions.setTitle(title))
 	}
 
 	return (
-			<nav>
-				<ul className={s.titleMenu}>
-					{titleArray.map((title, i) => (
-						<li
-							key={i}
-							className={s.title}
-							onClick={() => setTitleHandler(title.link)}
-							>
-							<button>
-								<a 
-			            activeClassName={s.active}
-			            >
-									{title.link}
-								</a>
-							</button>
-							
-						</li>
-					))}
-				</ul>
-			</nav>
+			<ul className={s.titleMenu}>
+				{titleArray.map((title, i) => (
+					<Title
+						key={title.id}
+						name={title.name}
+						clicked={(event) => setTitleHandler(event, title.name, title.id)}
+						active={active[title.id]}
+						/>
+				))}
+			</ul>
 		)
 	}
 

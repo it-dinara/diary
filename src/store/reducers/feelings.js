@@ -5,13 +5,13 @@ const initialState = {
 	title: '',
 	note: '',
 	titleArray: [
-		{link: 'context',name: 'Ситуация'},
-		{link: 'fills',name: 'Чувства'},
-		{link: 'body',name: 'Тело'},
-		{link: 'thought',name: 'Мысли'},
-		{link: 'isItFamiliar',name: 'Знакомо ли'},
-		{link: 'desicion',name: 'Решение'},
-		{link: 'conclusion',name: 'Вывод'},
+		{id: 10, name: 'context',value: 'Ситуация'},
+		{id: 11, name: 'feelings',value: 'Чувства'},
+		{id: 12, name: 'body',value: 'Тело'},
+		{id: 13, name: 'thought',value: 'Мысли'},
+		{id: 14, name: 'isItFamiliar',value: 'Знакомо ли'},
+		{id: 15, name: 'desicion',value: 'Решение'},
+		{id: 16, name: 'conclusion',value: 'Вывод'},
 
 	],
 
@@ -26,7 +26,7 @@ const setTitle = (state, action) => {
 const saveNote = (state, action) => {
 	return updateObject(state, {
 		title: action.title,
-		note: action.note,
+		value: action.value,
 	})
 }
 
