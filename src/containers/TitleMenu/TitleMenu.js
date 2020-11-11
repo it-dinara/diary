@@ -21,11 +21,11 @@ function TitleMenu() {
 			<ul className={s.titleMenu}>
 				{titleArray.map((title, i) => (
 					<Title
-						key={title.id}
-						name={title.name}
-						clicked={(event) => setTitleHandler(event, title.name, title.id)}
-						active={active[title.id]}
-						/>
+					key={title.id}
+					name={title.name}
+					clicked={(event) => setTitleHandler(event, title.name, title.id)}
+					active={active[title.id]}
+					/>
 				))}
 			</ul>
 		)

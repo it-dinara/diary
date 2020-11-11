@@ -7,6 +7,20 @@ export const setTitle = (title) => {
 	}
 }
 
+export const setValue = (value) => {
+	return {
+		type: actionTypes.SET_VALUE,
+		value: value
+	}
+}
+
+export const setActive = (active) => {
+	return {
+		type: actionTypes.SET_ACTIVE,
+		active: active
+	}
+}
+
 export const saveNote = (title, value) => {
 	localStorage.setItem(title, value)
 	return {

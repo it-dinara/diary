@@ -17,7 +17,7 @@ function Diary() {
 	return (
 		<div className={s.wrap}>
 				<h2>{title}</h2>
-				<TextareaAutosize 
+					<TextareaAutosize 
 					name='textValue'
 					onChange={(event) => textareaChangedHandler(event)}
 					minRows={15}

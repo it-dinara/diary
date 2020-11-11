@@ -7,9 +7,11 @@ export {
 
 export {
 	setTitle,
-	saveNote
+	saveNote,
+	setValue,
+	setActive
 } from './feelings.js'
 
-export {
-	setValue
-} from './diary.js'
+// export {
+// 	setValue
+// } from './diary.js'
