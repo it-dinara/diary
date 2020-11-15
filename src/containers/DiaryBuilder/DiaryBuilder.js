@@ -10,28 +10,26 @@ import * as actions from '../../store/actions/index'
 
 
 function DiaryBuilder() {
-	// const value = useSelector(state => state.diary.value);
 	const title = useSelector(state => state.feelings.title);
-
-	const dispatch = useDispatch();
-	// const submitHandler = (event) => {
-	// 	event.preventDefault()
-	// 	console.log('title submit', title)
-	// 	dispatch(actions.saveNote(title, value))
-	// }
-	console.log('title', title)
-	// console.log('value', value)
 	const diaryArray = useSelector(state => state.feelings.titleArray)
+	const value = useSelector(state => state.feelings.value)
+	const stateFeelings = useSelector(state => state.feelings)
+	const dispatch = useDispatch();
 	let diary = null
+	// let	value = localStorage.getItem(title)
 	for (let item of diaryArray) {
 		if (title === item.name) {
-			diary = <Diary/>
-		}
+	// console.log(title, value)
+			diary = <Diary 
+				key={item.name} 
+				value={stateFeelings[item.name]}
+				// changed={(event) => {dispatch(actions.setValue(event.target.value))}}
+				/>
+		} 
 	}
 	return (
 
 			<form action="" 
-			// onSubmit={(event) => submitHandler(event)}
 				>
 				<div className={s.container}>
 					<TitleMenu/>

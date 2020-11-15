@@ -1,5 +1,12 @@
 import * as actionTypes from './actionTypes';
 
+export const setActive = (active) => {
+	return {
+		type: actionTypes.SET_ACTIVE,
+		active: active
+	}
+}
+
 export const setTitle = (title) => {
 	return {
 		type: actionTypes.SET_TITLE,
@@ -14,16 +21,13 @@ export const setValue = (value) => {
 	}
 }
 
-export const setActive = (active) => {
+export const saveNote = (title, value) => {
 	return {
-		type: actionTypes.SET_ACTIVE,
-		active: active
+		type: actionTypes.SAVE_NOTE,
+		title: title,
+		value: value,
 	}
 }
 
-export const saveNote = (title, value) => {
-	localStorage.setItem(title, value)
-	return {
-		type: actionTypes.SAVE_NOTE
-	}
-}
+
+
