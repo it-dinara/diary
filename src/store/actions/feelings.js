@@ -21,9 +21,9 @@ export const setValue = (value) => {
 	}
 }
 
-export const saveNote = (title, value) => {
+export const saveNoteInState = (title, value) => {
 	return {
-		type: actionTypes.SAVE_NOTE,
+		type: actionTypes.SAVE_NOTE_IN_STATE,
 		title: title,
 		value: value,
 	}

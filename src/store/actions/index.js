@@ -9,7 +9,7 @@ export {
 	setTitle,
 	setValue,
 	setActive,
-	saveNote,
+	saveNoteInState,
 } from './feelings.js'
 
 // export {

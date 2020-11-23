@@ -30,11 +30,35 @@
     align-items: center;
 }
 
+.name {
+	text-transform: capitalize;
+	margin: -40px 0 15px 0;
+	font-family: cursive;
+	color: #40A4C8;
+}
+
+.saveBtn {
+	color: #5C9210;
+	border: solid 2px #5C9210;
+	border-radius: 5px;
+	text-transform: uppercase;
+	padding: 5px 20px;
+    margin: 20px;
+    border-radius: 5px;
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 12px;
+}
+
 @media(min-width: 600px) {
 	.textarea {
 		width: 90%;
 	}
 	.wrap {
 		width: 80%;
+	}
+	.saveBtn {
+		font-size: 16px;
+		padding: 10px 30px;
 	}
 }

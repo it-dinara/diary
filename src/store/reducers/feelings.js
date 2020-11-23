@@ -43,7 +43,7 @@ const setValue = (state, action) => {
 	})
 }
 
-const saveNote = (state, action) => {
+const saveNoteInState = (state, action) => {
 	console.log('REDUX', action.title, action.value)
 	const updateValue = {
 		[action.title]: action.value
@@ -59,7 +59,7 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.SET_ACTIVE: return setActive(state, action);
 		case actionTypes.SET_TITLE: return setTitle(state, action);
 		case actionTypes.SET_VALUE: return setValue(state, action);
-		case actionTypes.SAVE_NOTE: return saveNote(state, action);
+		case actionTypes.SAVE_NOTE_IN_STATE: return saveNoteInState(state, action);
 		default:
 			return state;
 	}
