@@ -1,7 +1,6 @@
 import axios from '../../axios-diary.js';
 import * as actionTypes from './actionTypes';
 
-
 export const saveDiaryStart = () => {
     return {
         type: actionTypes.SAVE_DIARY_START
@@ -19,15 +18,17 @@ export const saveDiarySuccess = (id, diary) => {
     return {
         type: actionTypes.SAVE_DIARY_SUCCESS,
         diaryId: id,
-        diary
+        diary,
     }
 }
+
 
 export const saveDiary = (diaryData, token) => {
     return dispatch => {
         dispatch(saveDiaryStart());
         axios.post('/diary.json?auth=' + token, diaryData)
             .then(response => {
+                console.log('response.data.name', response.data.name)
                 dispatch(saveDiarySuccess(response.data.name, diaryData))
             })
             .catch(error => {

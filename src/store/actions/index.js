@@ -13,5 +13,5 @@ export {
 } from './feelings.js'
 
 export {
-	saveDiary
+	saveDiary,
 } from './diary.js'
