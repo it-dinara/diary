@@ -30,14 +30,13 @@ class App extends Component {
 	render () {
 
 		let router = <Switch> 
-						<Route path="/context" component={Start} />
-						<Route path="/feelings" component={Start} />
+						<Route path="/start" component={Start} />
 						<Route path="/auth"  component={Auth} />
 						<Route path="/" exact component={DiaryBuilder} />
 					</Switch>
 		if(this.props.isAuthenticated) {
 			router = <Switch>
-						<Route path="/context" component={Start} />
+						<Route path="/start" component={Start} />
 						<Route path="/logout"  component={Logout}/>
 						<Route path="/" exact component={DiaryBuilder} />
 					</Switch>
