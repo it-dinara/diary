@@ -3,14 +3,13 @@ import TextareaAutosize from 'react-textarea-autosize';
 import s from './Diary.module.css'
 import * as actions from '../../store/actions/index'
 import {useDispatch, useSelector} from 'react-redux'
-import Button from '../../components/UI/Button/Button'
 
 
 
 function Diary(props) {
 
 	const title = useSelector(state => state.feelings.title)
-	const stateFeelings = useSelector(state => state.feelings)
+	const stateFeelings = useSelector(state => state.feelings.diaryObj)
 	let titleVal = ''
 	if (stateFeelings[title]) {
 		titleVal = stateFeelings[title]
@@ -20,6 +19,14 @@ function Diary(props) {
 	useEffect(() => {
 	   dispatch(actions.saveNoteInState(title, value))
 	}, [value])
+
+	const token = useSelector(state => state.auth.token)
+	let redirect = null
+	const saveDiaryHandler = (event) => {
+		event.preventDefault()
+		let diaryData = stateFeelings
+		dispatch(actions.saveDiary(diaryData, token))
+	}
 
 
 	return ( 
@@ -36,7 +43,9 @@ function Diary(props) {
 			className={s.textarea}
 			value={value}
 			/>
-			<button className={s.saveBtn}>SAVE</button>
+			<button className={s.saveBtn}
+			onClick={(event) => saveDiaryHandler(event)}
+			>SAVE</button>
 		</div>
 	)
 }

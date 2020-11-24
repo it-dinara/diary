@@ -12,6 +12,6 @@ export {
 	saveNoteInState,
 } from './feelings.js'
 
-// export {
-// 	setValue
-// } from './diary.js'
+export {
+	saveDiary
+} from './diary.js'

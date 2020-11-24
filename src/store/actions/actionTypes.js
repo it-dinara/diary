@@ -8,3 +8,7 @@ export const SET_ACTIVE = 'SET_ACTIVE';
 export const SET_TITLE = 'SET_TITLE';
 export const SET_VALUE = 'SET_VALUE';
 export const SAVE_NOTE_IN_STATE = 'SAVE_NOTE_IN_STATE';
+
+export const SAVE_DIARY_SUCCESS = 'SAVE_DIARY_SUCCESS';
+export const SAVE_DIARY_FAIL = 'SAVE_DIARY_FAIL';
+export const SAVE_DIARY_START = 'SAVE_DIARY_START';

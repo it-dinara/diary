@@ -5,6 +5,7 @@ const initialState = {
 	title: '',
 	note: '',
 	active: false,
+	diaryObj: {},
 	titleArray: [
 		{id: 10, name: 'context' },
 		{id: 11, name: 'feelings' },
@@ -45,11 +46,13 @@ const setValue = (state, action) => {
 
 const saveNoteInState = (state, action) => {
 	console.log('REDUX', action.title, action.value)
-	const updateValue = {
-		[action.title]: action.value
+	return {
+		...state,
+		diaryObj: {
+			...state.diaryObj,
+			[action.title]: action.value,
+		}
 	}
-	// const updateValues = updateObject(state.titleArray, updateValue) 
-	return updateObject(state, updateValue)
 }
 
 
