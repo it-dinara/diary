@@ -55,7 +55,9 @@ const saveNoteInState = (state, action) => {
 	}
 }
 
-
+const noteInit = (state, action) => {
+	return updateObject(state, {diaryObj: {}})
+}
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -63,6 +65,7 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.SET_TITLE: return setTitle(state, action);
 		case actionTypes.SET_VALUE: return setValue(state, action);
 		case actionTypes.SAVE_NOTE_IN_STATE: return saveNoteInState(state, action);
+		case actionTypes.NOTE_INIT: return noteInit(state, action);
 		default:
 			return state;
 	}

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect, useHistory} from 'react-router-dom'
 
 import Button from '../../components/UI/Button/Button'
 import Input from '../../components/UI/Input/Input'
@@ -46,10 +46,13 @@ const Auth = () => {
 	const [isSignup, setIsSignup] = useState(false)
 	const loading = useSelector(state => state.auth.loading)
 	const error = useSelector(state => state.auth.error)
-	const isAuthenticated = useSelector(state => state.auth.token !== null)
+	const isAuthenticated = useSelector(state => state.auth.token)
 	const authRedirectPath = useSelector(state => state.auth.authRedirectPath)
-
 	const dispatch = useDispatch()
+	// useEffect(()=>{
+	// 	console.log('setAuthRedirectPath')
+	// 	dispatch(actions.setAuthRedirectPath('/start'))
+	// }, [])
 
 	const checkValidity = (value, rules) => {
 		let isValid = true;
@@ -95,7 +98,7 @@ const Auth = () => {
 
 		setControls(updatedControls)
 	}
-
+	const history = useHistory();
 	const submitHandler = (event) => {
 		event.preventDefault();
 		dispatch(actions.auth(
@@ -103,6 +106,7 @@ const Auth = () => {
 			controls.password.value,
 			isSignup
 		))
+		history.replace('/start')
 	}
 
 	const switchAuthModeHandler = () => {
@@ -137,6 +141,7 @@ const Auth = () => {
 
 	let redirect = null;
 	if(isAuthenticated) {
+		console.log('isAuthenticated', isAuthenticated)
 		redirect = <Redirect to={authRedirectPath}/>
 	}
 

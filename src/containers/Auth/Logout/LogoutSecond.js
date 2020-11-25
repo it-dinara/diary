@@ -12,7 +12,7 @@ const Logout = () => {
 	}, [dispatch])
 
 	return (
-		<Redirect to='/'/>
+		<Redirect to='/auth'/>
 	)
 }
 

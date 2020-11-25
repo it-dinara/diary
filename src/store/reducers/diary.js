@@ -4,8 +4,8 @@ import { updateObject } from '../utility';
 const initialState = {
     loading: false,
     diaryId: [],
-    redirect: false
 }
+
 
 const saveDiaryStart = (state, action) => {
 	return updateObject(state, { loading: true })
@@ -22,7 +22,6 @@ const saveDiarySuccess = (state, action) => {
     return updateObject(state, {
         loading: false,
         diaryId: state.diaryId.concat(newDiaryId),
-        redirect: true
     })
 }
 

@@ -6,7 +6,7 @@ import {
 	Route,
 	Switch,
 	withRouter,
-	// Redirect
+	Redirect
 } from 'react-router-dom';
 import {connect} from 'react-redux'
 // import TitleMenu from './containers/TitleMenu/TitleMenu'
@@ -30,9 +30,7 @@ class App extends Component {
 	render () {
 
 		let router = <Switch> 
-						<Route path="/start" component={Start} />
 						<Route path="/auth"  component={Auth} />
-						<Route path="/" exact component={DiaryBuilder} />
 					</Switch>
 		if(this.props.isAuthenticated) {
 			router = <Switch>

@@ -29,5 +29,9 @@ export const saveNoteInState = (title, value) => {
 	}
 }
 
-
+export const noteInit = () => {
+	return {
+		type: actionTypes.NOTE_INIT
+	}
+}
 
