@@ -46,11 +46,15 @@ const setValue = (state, action) => {
 
 const saveNoteInState = (state, action) => {
 	console.log('REDUX', action.title, action.value)
+	let value = null
+	if(action.value !== '') {
+		value = action.value
+	}
 	return {
 		...state,
 		diaryObj: {
 			...state.diaryObj,
-			[action.title]: action.value,
+			[action.title]: value,
 		}
 	}
 }

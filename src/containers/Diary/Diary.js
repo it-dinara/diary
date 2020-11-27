@@ -61,7 +61,7 @@ function Diary(props) {
 
 	return (
 		<div className={s.wrap}>
-			<h2 className={s.name}>{title}</h2>
+			{/*<h2 className={s.name}>{title}</h2>*/}
 			{console.log('stateFeelings[title]', stateFeelings[title])}
 			{console.log('STATE', stateFeelings)}
 			

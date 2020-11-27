@@ -1,6 +1,7 @@
 .title {
 	border-radius: 5px;
-	transform: rotate(-3deg);
+	/*transform: rotate(-3deg);*/
+	margin: 0 5px;
 }
 
 .title button {
@@ -30,7 +31,8 @@
 @media (min-width: 600px) {
 	.title button {
 		font-size: 13px;
-		padding: 20px 10px 20px 29px;
+		padding: 20px;
+		margin: 0 10px;
 	}
 	.title.active,
 	.title:active {
