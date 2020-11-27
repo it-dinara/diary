@@ -23,10 +23,38 @@ function Diary(props) {
 
 	const token = useSelector(state => state.auth.token)
 	const history = useHistory();
+	const userId = useSelector(state => state.auth.userId)
+
 	const saveDiaryHandler = (event) => {
 		event.preventDefault()
-		let diaryData = stateFeelings
-		dispatch(actions.saveDiary(diaryData, token))
+
+		const data = new Date();
+	    const year = data.getFullYear();
+	    const month = data.getMonth();
+	    const day = data.getDate();
+	    const hour = data.getHours();
+	    const minutes = data.getMinutes();
+	    
+	    const formatDate = (num) => {
+	        const newNum = num + 1;
+	        let res = '';
+	        if(newNum.toString().length < 2) {
+	            res = '0' + newNum
+	        } else {
+	            res = newNum
+	        }
+	        return res
+	    }
+	    const fullDate = day + '.' + formatDate(month) + '.' + year + ' ' + hour + ':' + formatDate(minutes);
+	    const millsec =  Date.parse(data);
+		const diaryData = {
+			note: stateFeelings,
+			userId: userId,
+			fullDate: fullDate,
+			millsec: millsec,
+		}
+		dispatch(actions.saveDiary(diaryData, token, data))
+
 		history.replace('/start')
 	}
 	const redirect = useSelector(state => state.diary.redirect)

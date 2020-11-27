@@ -15,4 +15,10 @@ export {
 
 export {
 	saveDiary,
+	fetchPosts,
+	setDate
 } from './diary.js'
+
+// export {
+// 	setDate
+// } from './date.js'

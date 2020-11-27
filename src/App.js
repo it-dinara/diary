@@ -12,6 +12,7 @@ import {connect} from 'react-redux'
 // import TitleMenu from './containers/TitleMenu/TitleMenu'
 import DiaryBuilder from './containers/DiaryBuilder/DiaryBuilder'
 import Start from './containers/Start/Start';
+import Posts from './containers/Posts/Posts';
 import Auth from './containers/Auth/AuthSecond';
 import Logout from './containers/Auth/Logout/LogoutSecond';
 import * as actions from './store/actions/index'
@@ -30,13 +31,16 @@ class App extends Component {
 	render () {
 
 		let router = <Switch> 
-						<Route path="/auth"  component={Auth} />
+						<Route path="/auth" exact component={Auth} />
+						<Redirect to='/auth'/>
 					</Switch>
 		if(this.props.isAuthenticated) {
 			router = <Switch>
 						<Route path="/start" component={Start} />
 						<Route path="/logout"  component={Logout}/>
+						<Route path="/posts"  component={Posts}/>
 						<Route path="/" exact component={DiaryBuilder} />
+						<Redirect to='/start'/>
 					</Switch>
 		}
 

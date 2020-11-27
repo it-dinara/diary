@@ -4,7 +4,7 @@ import NavigationItem from './NavigationItem/NavigationItem';
 
 const navigationItems = (props) => (
     <ul className={classes.NavigationItems}>      
-        {props.isAuthentication ? <NavigationItem link="/orders">Log</NavigationItem>: null}
+        {props.isAuthentication ? <NavigationItem link="/posts">Posts</NavigationItem>: null}
         {props.isAuthentication ? <NavigationItem link="/" exact>Note</NavigationItem>: null}
         {!props.isAuthentication ? 
         <NavigationItem link="/auth">Authenticate</NavigationItem>
