@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 
+
 export const setActive = (active) => {
 	return {
 		type: actionTypes.SET_ACTIVE,
@@ -34,4 +35,6 @@ export const noteInit = () => {
 		type: actionTypes.NOTE_INIT
 	}
 }
+
+
 

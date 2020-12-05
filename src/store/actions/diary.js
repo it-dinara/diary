@@ -1,5 +1,6 @@
-import axios from '../../axios-diary.js';
+import axiosInstance from '../../axios-diary.js';
 import * as actionTypes from './actionTypes';
+import axios from 'axios';
 
 
 export const saveDiaryStart = () => {
@@ -32,7 +33,7 @@ export const setDate = () => {
 export const saveDiary = (diaryData, token) => {
     return dispatch => {
         dispatch(saveDiaryStart());
-        axios.post('/journal.json?auth=' + token, diaryData)
+        axiosInstance.post('/journal.json?auth=' + token, diaryData)
             .then(response => {
                 console.log('response save', response)
                 dispatch(saveDiarySuccess(response.data.name, diaryData))
@@ -47,6 +48,13 @@ export const fetchPostsSuccess = (fetchedPosts) => {
     return {
         type: actionTypes.FETCH_POSTS_SUCCESS,
         fetchedPosts
+    }
+}
+
+export const removePostSuccess = (postId) => {
+    return {
+        type: actionTypes.REMOVE_POSTS_SUCCESS,
+        postId
     }
 }
 
@@ -68,10 +76,9 @@ export const fetchPosts = (token, userId) => {
         dispatch(fetchPostsStart());
 
         const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
-        axios.get('/journal.json' + queryParams)
+        axiosInstance.get('/journal.json' + queryParams)
         .then(res => {
         console.log('res', res)
-        // console.log('url','/journal.json' + queryParams )
             dispatch(fetchPostsSuccess(res.data))
         })
         .catch(error => {
@@ -80,14 +87,16 @@ export const fetchPosts = (token, userId) => {
     }
 }
 
-export const removePost = (postId) => {
+export const removePost = (token, userId, postId) => {
     return dispatch => {
-        axios.delete('/journal.json' + postId)
+        const queryParams = '?auth=' + token;
+        axios.delete('https://diary-a95bf.firebaseio.com/journal/' + postId + '.json' + queryParams)
         .then(res => {
-            console.log('delete')
+            console.log('postId', postId)
+            dispatch(removePostSuccess(postId))
         })
         .catch(error => {
-            console.log(error)
+            console.log('error', error)
         })
     }
 }

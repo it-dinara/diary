@@ -17,22 +17,22 @@ const Posts = () => {
 		dispatch(actions.fetchPosts(token, userId))
 		dispatch(actions.noteInit())
 	}, [])
-	console.log('fetchedPosts', fetchedPosts, typeof fetchedPosts)
+	// console.log('fetchedPosts', fetchedPosts, typeof fetchedPosts)
 	let res = []
 	for(let key in fetchedPosts) {
 		if(fetchedPosts[key].millsec) {
 			res.push(fetchedPosts[key])
 		}
 	}
-	res.sort((a, b) => a.millsec - b.millsec) 
-	console.log('res', res)
+	// res.sort((a, b) => a.millsec - b.millsec) 
 	let posts = <Spinner/>;
 	if (!loading) {
-		posts = res.map(post => (
+		posts = fetchedPosts.map(post => (
 			<Post
 			key={post.id}
 			note={post.note}
 			fullDate={post.fullDate}
+			postId={post.id}
 			/>
 		)) 
 	}

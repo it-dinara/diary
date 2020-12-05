@@ -63,18 +63,37 @@ const fetchPostsFail = (state, action) => {
 
 const fetchPostsSuccess = (state, action) => {
     const fetchedPostsRes = []
-    console.log('action.fetchedPosts', action.fetchedPosts)
+    // console.log('action.fetchedPosts', action.fetchedPosts)
     for(let key in action.fetchedPosts) {
         fetchedPostsRes.push({
             ...action.fetchedPosts[key],
             id: key,
         })
     }
+    console.log('state.fetchedPostsRes FETCH', state.fetchedPostsRes)
     return {
         ...state,
         loading: false,
         fetchedPostsRes: fetchedPostsRes
     }
+}
+
+const removePostSuccess = (state, action) => {
+    const updatedPosts = [];
+    const posts = [...state.fetchedPostsRes]
+    console.log('action.postId', action.postId)
+    
+    for(let key in posts) {
+        if (posts[key].id !== action.postId) {
+            updatedPosts.push(posts[key])
+        }
+    }
+    console.log('state.fetchedPostsRes REMOVE', state.fetchedPostsRes)
+    return {
+        ...state,
+        fetchedPostsRes: updatedPosts
+    }
+
 }
 
 
@@ -86,6 +105,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_POSTS_START: return fetchPostsStart(state, action);
         case actionTypes.FETCH_POSTS_FAIL: return fetchPostsFail(state, action);
         case actionTypes.FETCH_POSTS_SUCCESS: return fetchPostsSuccess(state, action);
+        case actionTypes.REMOVE_POSTS_SUCCESS: return removePostSuccess(state, action);
         case actionTypes.SET_DATE: return setDate(state, action);
 
         default: return state
