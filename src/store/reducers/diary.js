@@ -3,7 +3,7 @@ import { updateObject } from '../utility';
 
 const initialState = {
     loading: false,
-    diaryId: [],
+    diaryId: '',
     fetchedPostsRes: [],
     date: '',
     newDate: ''
@@ -47,12 +47,9 @@ const setDate = (state, action) => {
 }
 
 const saveDiarySuccess = (state, action) => {
-    const newDiaryId = {
-        id: action.diaryId
-    }
     return updateObject(state, {
         loading: false,
-        diaryId: state.diaryId.concat(newDiaryId),
+        diaryId: action.diaryId,
     })
 }
 

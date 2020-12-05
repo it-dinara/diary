@@ -20,9 +20,19 @@ const Post = (props) => {
     ))
 
     return (
-        <div className={s.post} >
-            <p className={s.date}>{props.fullDate}</p>
-            {postItem}
+        <div className={s.wrapper}>
+            <div className={s.post} >
+                <p className={s.date}>{props.fullDate}</p>
+                {postItem}
+            </div>
+            <div className={s.cover}>
+                <button className={[s.button, s.removePost].join(' ')}>
+                	delete
+                </button>
+                <button className={[s.button, s.editPost].join(' ')}>
+                	edit
+                </button>
+            </div>
         </div>
     )
 };

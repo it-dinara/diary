@@ -63,22 +63,6 @@ export const fetchPostsStart = () => {
     }
 }
 
-// export const fetchPosts = (token, userId) => {
-//     return dispatch => {
-//         dispatch(fetchPostsStart());
-
-//         axios.get('/diary.json')
-//         .then(res => {
-//         console.log('res.data', res.data)
-//         console.log('res', res)
-//             dispatch(fetchPostsSuccess(res.data))
-//         })
-//         .catch(error => {
-//             dispatch(fetchPostsFail(error))
-//         })
-//     }
-// }
-
 export const fetchPosts = (token, userId) => {
     return dispatch => {
         dispatch(fetchPostsStart());
@@ -86,13 +70,24 @@ export const fetchPosts = (token, userId) => {
         const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
         axios.get('/journal.json' + queryParams)
         .then(res => {
-        console.log('res.data', res.data)
         console.log('res', res)
         // console.log('url','/journal.json' + queryParams )
             dispatch(fetchPostsSuccess(res.data))
         })
         .catch(error => {
             dispatch(fetchPostsFail(error))
+        })
+    }
+}
+
+export const removePost = (postId) => {
+    return dispatch => {
+        axios.delete('/journal.json' + postId)
+        .then(res => {
+            console.log('delete')
+        })
+        .catch(error => {
+            console.log(error)
         })
     }
 }
