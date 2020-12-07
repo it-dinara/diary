@@ -15,6 +15,7 @@ const input = ( props ) => {
             inputElement = <input
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
+                id={props.id}
                 value={props.value}
                 onChange={props.changed} />;
             break;
@@ -49,7 +50,7 @@ const input = ( props ) => {
 
     return (
         <div className={classes.Input}>
-            <label className={classes.Label}>{props.label}</label>
+            <label className={classes.Label} for={props.id}>{props.label}</label>
             {inputElement}
         </div>
     );

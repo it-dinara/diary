@@ -25,7 +25,8 @@ const Auth = () => {
 				isEmail: true
 			},
 			valid: false,
-			touched: false
+			touched: false,
+			id: 'email',
 		},
 		password: {
 			elementType: 'input',
@@ -39,7 +40,8 @@ const Auth = () => {
 				minLength: 6,
 			},
 			valid: false,
-			touched: false
+			touched: false,
+			id: 'password',
 		},
 	})
 
@@ -117,21 +119,23 @@ const Auth = () => {
 	const formElementsArray = [];
 	for (let key in controls) {
 		formElementsArray.push({
-			id: key,
+			key: key,
 			config: controls[key]
 		})
 	}
 	
 	let form = formElementsArray.map((formElement, i) => (
 		<Input
-			key={formElement.id}
+			key={formElement.key}
 			elementType={formElement.config.elementType}
 			elementConfig={formElement.config.elementConfig}
 			value={formElement.config.value}
 			invalid={!formElement.config.valid}
 			shouldValidate={formElement.config.validation}
 			touched={formElement.config.touched}
-			changed={(event) => inputChangedHandler(event, formElement.id)}
+			changed={(event) => inputChangedHandler(event, formElement.key)}
+			id={formElement.config.id}
+			for={formElement.config.id}
 			/>
 			))
 	
