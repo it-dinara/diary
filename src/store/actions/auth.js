@@ -33,11 +33,12 @@ export const logout = () => {
 }
 
 export const checkAuthTimeout = (expirationTime) => {
+	console.log('checkAuthTimeout', expirationTime)
 	return dispatch => {
 		setTimeout(() => {
 			return dispatch(logout())
 		}
-		, expirationTime * 50)
+		, expirationTime)
 	}
 }
 
@@ -59,14 +60,14 @@ export const auth = (email, password, isSignup) => {
                 console.log('userId', response.data.localId);
 				console.log('response.data.expiresIn', response.data.expiresIn);
 				
-				const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 50); 
+				const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 5000); 
 				console.log('expirationDate auth', expirationDate)
 				localStorage.setItem('token', response.data.idToken);
 				localStorage.setItem('expirationDate', expirationDate);
 				localStorage.setItem('userId', response.data.localId);
 
 				dispatch(authSuccess(response.data.idToken, response.data.localId));
-				dispatch(checkAuthTimeout(response.data.expiresIn));
+				dispatch(checkAuthTimeout(response.data.expiresIn * 5000));
             })
             .catch(err => {
                 console.log('err', err.response);
@@ -91,7 +92,7 @@ export const authCheckState = () => {
 			const expirationDate = new Date(localStorage.getItem('expirationDate'));
 			if (expirationDate > new Date()) {
 				const userId = localStorage.getItem('userId');
-				console.log( 'expirationDate', expirationDate.getTime() - new Date().getTime() )
+				console.log( 'expirationDate authCheckState', expirationDate.getTime() - new Date().getTime() )
 				
 				dispatch(authSuccess(token, userId));
 				dispatch(checkAuthTimeout(expirationDate.getTime() - new Date().getTime()))
