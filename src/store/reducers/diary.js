@@ -63,7 +63,6 @@ const fetchPostsFail = (state, action) => {
 
 const fetchPostsSuccess = (state, action) => {
     const fetchedPostsRes = []
-    // console.log('action.fetchedPosts', action.fetchedPosts)
     for(let key in action.fetchedPosts) {
         fetchedPostsRes.push({
             ...action.fetchedPosts[key],
@@ -93,7 +92,6 @@ const removePostSuccess = (state, action) => {
         ...state,
         fetchedPostsRes: updatedPosts
     }
-
 }
 
 
@@ -106,8 +104,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_POSTS_FAIL: return fetchPostsFail(state, action);
         case actionTypes.FETCH_POSTS_SUCCESS: return fetchPostsSuccess(state, action);
         case actionTypes.REMOVE_POSTS_SUCCESS: return removePostSuccess(state, action);
+        case actionTypes.REMOVE_POSTS_FAIL: return removePostSuccess(state, action);
         case actionTypes.SET_DATE: return setDate(state, action);
-
         default: return state
     }
 }

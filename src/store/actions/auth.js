@@ -59,8 +59,8 @@ export const auth = (email, password, isSignup) => {
                 console.log('userId', response.data.localId);
 				console.log('response.data.expiresIn', response.data.expiresIn);
 				
-				const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 500); 
-
+				const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 50); 
+				console.log('expirationDate auth', expirationDate)
 				localStorage.setItem('token', response.data.idToken);
 				localStorage.setItem('expirationDate', expirationDate);
 				localStorage.setItem('userId', response.data.localId);

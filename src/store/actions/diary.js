@@ -58,6 +58,13 @@ export const removePostSuccess = (postId) => {
     }
 }
 
+export const removePostFail = (error) => {
+    return {
+        type: actionTypes.REMOVE_POSTS_FAIL,
+        error
+    }
+}
+
 export const fetchPostsFail = (error) => {
     return {
         type: actionTypes.FETCH_POSTS_FAIL,
