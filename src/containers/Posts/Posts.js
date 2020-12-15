@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Post from '../../components/Post/Post';
-import axios from '../../axios-diary';
+import Post from './Post/Post';
 // import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index'
 import Spinner from '../../components/UI/Spinner/Spinner'
@@ -24,7 +23,7 @@ const Posts = () => {
 			res.push(fetchedPosts[key])
 		}
 	}
-	// res.sort((a, b) => a.millsec - b.millsec) 
+	res.sort((a, b) => a.millsec - b.millsec) 
 	let posts = <Spinner/>;
 	if (!loading) {
 		posts = fetchedPosts.map(post => (

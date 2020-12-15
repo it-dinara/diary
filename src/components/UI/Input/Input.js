@@ -50,7 +50,7 @@ const input = ( props ) => {
 
     return (
         <div className={classes.Input}>
-            <label className={classes.Label} for={props.id}>{props.label}</label>
+            <label className={classes.Label} htmlFor={props.id}>{props.label}</label>
             {inputElement}
         </div>
     );

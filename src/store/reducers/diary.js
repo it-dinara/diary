@@ -6,7 +6,8 @@ const initialState = {
     diaryId: '',
     fetchedPostsRes: [],
     date: '',
-    newDate: ''
+    newDate: '',
+    removing: false
 }
 
 
@@ -69,7 +70,6 @@ const fetchPostsSuccess = (state, action) => {
             id: key,
         })
     }
-    console.log('state.fetchedPostsRes FETCH', state.fetchedPostsRes)
     return {
         ...state,
         loading: false,
@@ -77,22 +77,33 @@ const fetchPostsSuccess = (state, action) => {
     }
 }
 
+const removePostStart = (state, action) => {
+    return {
+        ...state,
+        loading: true,
+    }
+}
+
 const removePostSuccess = (state, action) => {
     const updatedPosts = [];
     const posts = [...state.fetchedPostsRes]
-    console.log('action.postId', action.postId)
     
     for(let key in posts) {
         if (posts[key].id !== action.postId) {
             updatedPosts.push(posts[key])
-            console.log('!==', posts[key])
         }
     }
-    console.log('state.fetchedPostsRes REMOVE', state.fetchedPostsRes)
-    console.log('state.updatedPosts REMOVE', updatedPosts)
     return {
         ...state,
-        fetchedPostsRes: updatedPosts
+        fetchedPostsRes: updatedPosts,
+        loading: false
+    }
+}
+
+const removePostFail = (state, action) => {
+    return {
+        ...state,
+        loading: false
     }
 }
 
@@ -106,6 +117,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_POSTS_FAIL: return fetchPostsFail(state, action);
         case actionTypes.FETCH_POSTS_SUCCESS: return fetchPostsSuccess(state, action);
         case actionTypes.REMOVE_POST_SUCCESS: return removePostSuccess(state, action);
+        case actionTypes.REMOVE_POST_START: return removePostStart(state, action);
+        case actionTypes.REMOVE_POST_FAIL: return removePostFail(state, action);
         case actionTypes.SET_DATE: return setDate(state, action);
         default: return state
     }

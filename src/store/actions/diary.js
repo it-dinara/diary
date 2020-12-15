@@ -80,6 +80,12 @@ export const fetchPosts = (token, userId) => {
     }
 }
 
+export const removePostStart = () => {
+    return {
+        type: actionTypes.REMOVE_POST_START,
+    }
+}
+
 export const removePostSuccess = (postId) => {
     return {
         type: actionTypes.REMOVE_POST_SUCCESS,
@@ -94,8 +100,9 @@ export const removePostFail = (error) => {
     }
 }
 
-export const removePost = (token, userId, postId) => {
+export const removePost = (token, postId) => {
     return dispatch => {
+        dispatch(removePostStart())
         const queryParams = '?auth=' + token;
         axios.delete('https://diary-a95bf.firebaseio.com/journal/' + postId + '.json' + queryParams)
         .then(res => {
