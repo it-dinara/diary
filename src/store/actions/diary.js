@@ -51,20 +51,6 @@ export const fetchPostsSuccess = (fetchedPosts) => {
     }
 }
 
-export const removePostSuccess = (postId) => {
-    return {
-        type: actionTypes.REMOVE_POSTS_SUCCESS,
-        postId
-    }
-}
-
-export const removePostFail = (error) => {
-    return {
-        type: actionTypes.REMOVE_POSTS_FAIL,
-        error
-    }
-}
-
 export const fetchPostsFail = (error) => {
     return {
         type: actionTypes.FETCH_POSTS_FAIL,
@@ -94,6 +80,20 @@ export const fetchPosts = (token, userId) => {
     }
 }
 
+export const removePostSuccess = (postId) => {
+    return {
+        type: actionTypes.REMOVE_POST_SUCCESS,
+        postId
+    }
+}
+
+export const removePostFail = (error) => {
+    return {
+        type: actionTypes.REMOVE_POST_FAIL,
+        error
+    }
+}
+
 export const removePost = (token, userId, postId) => {
     return dispatch => {
         const queryParams = '?auth=' + token;
@@ -103,7 +103,7 @@ export const removePost = (token, userId, postId) => {
             dispatch(removePostSuccess(postId))
         })
         .catch(error => {
-            console.log('error', error)
+            dispatch(removePostFail(error))
         })
     }
 }

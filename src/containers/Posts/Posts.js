@@ -17,7 +17,7 @@ const Posts = () => {
 		dispatch(actions.fetchPosts(token, userId))
 		dispatch(actions.noteInit())
 	}, [])
-	// console.log('fetchedPosts', fetchedPosts, typeof fetchedPosts)
+	console.log('fetchedPosts', fetchedPosts, typeof fetchedPosts)
 	let res = []
 	for(let key in fetchedPosts) {
 		if(fetchedPosts[key].millsec) {
