@@ -16,14 +16,6 @@ const initialState = {
 		{id: 16, name: 'conclusion' },
 
 	],
-	// context: ''
-	// feelings: ''
-	// body: ''
-	// thought: ''
-	// isItFamiliar: ''
-	// desicion: ''
-	// conclusion: ''
-
 }
 
 const setActive = (state, action) => {

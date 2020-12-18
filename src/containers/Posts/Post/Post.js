@@ -2,7 +2,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useState} from 'react';
 import s from './Post.module.css';
 import * as actions from '../../../store/actions/index'
-import Modal from '../../../components/UI/Modal/Modal'
 
 
 const Post = (props) => {
@@ -15,30 +14,10 @@ const Post = (props) => {
     }
 	const token = useSelector(state => state.auth.token);
 
-	const [removing, setRemoving] = useState(false)
 
     const dispatch= useDispatch();
 
-    let modalAlert = (
-            <Modal show={removing} modalClosed={() => {setRemoving(false)}}>
-
-                <p style={{textAlign: 'center'}}>Are you sure you want to delete the post?</p>
-
-                <div className={s.modal}>
-                    <button className={[s.buttonModal, s.cancel].join(' ')}
-                        onClick={() => {setRemoving(false)}}
-                        >
-                        cancel
-                    </button>
-                    <button className={[s.buttonModal, s.removePost].join(' ')}
-                        onClick={() => dispatch(actions.removePost(token, props.postId))}
-                        >
-                        delete
-                    </button>
-                </div>
-
-            </Modal>
-        );
+	
 
     const postItem = notes.map((item, i) => (
         <div className={s.container} key={i}>
@@ -55,8 +34,10 @@ const Post = (props) => {
                     {postItem}
                 </div>
                 <div className={s.cover}>
-                    <button className={[s.button, s.removePost].join(' ')}
-                        onClick={() => {setRemoving(true)}}
+                    <button 
+                        className={[s.button, s.removePost].join(' ')}
+                        // onClick={() => {setRemoving(true)}}
+                        onClick={() => props.removingHandler(props.postId)}
                         >
                         delete
                     </button>
@@ -64,9 +45,8 @@ const Post = (props) => {
                         edit
                     </button>
                 </div>
-                {console.log('removing', removing)}
+                {/* {console.log('removing', removing)} */}
             </div>
-            {modalAlert}
         </>
     )
 };
