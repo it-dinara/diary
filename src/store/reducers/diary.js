@@ -7,16 +7,17 @@ const initialState = {
     fetchedPostsRes: [],
     date: '',
     newDate: '',
-    removing: false
+    removing: false,
+    saved: false,
 }
 
 
 const saveDiaryStart = (state, action) => {
-	return updateObject(state, { loading: true })
+	return updateObject(state, { loading: true, saved: false })
 }
 
 const saveDiaryFail = (state, action) => {
-    return updateObject(state, { loading: false })
+    return updateObject(state, { loading: false, saved: false })
 }
 
 const setDate = (state, action) => {
@@ -51,6 +52,7 @@ const saveDiarySuccess = (state, action) => {
     return updateObject(state, {
         loading: false,
         diaryId: action.diaryId,
+        saved: true
     })
 }
 

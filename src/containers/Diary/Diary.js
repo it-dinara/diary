@@ -3,10 +3,8 @@ import TextareaAutosize from 'react-textarea-autosize';
 import s from './Diary.module.css'
 import * as actions from '../../store/actions/index'
 import {useDispatch, useSelector} from 'react-redux'
-import { Redirect, useHistory} from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { getDate } from '../../helpers/getDate.js'
-
-
 
 function Diary(props) {
 
@@ -24,6 +22,8 @@ function Diary(props) {
 
 	const token = useSelector(state => state.auth.token)
 	const userId = useSelector(state => state.auth.userId)
+	const saved = useSelector(state => state.diary.saved)
+	console.log('saved', saved)
 	const history = useHistory();
 
     const saveDiaryHandler = (event) => {
@@ -37,9 +37,10 @@ function Diary(props) {
 			millsec: millsec,
 		}
 		dispatch(actions.saveDiary(diaryData, token))
-		history.replace('/start')
+		if(saved) {
+			history.replace('/start')
+		}
 	}
-	const redirect = useSelector(state => state.diary.redirect)
 
 	return (
 		<div className={s.wrap}>

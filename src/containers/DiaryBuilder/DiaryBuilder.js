@@ -4,6 +4,8 @@ import Diary from '../Diary/Diary'
 import s from './DiaryBuilder.module.css'
 import {useSelector} from 'react-redux'
 import * as actions from '../../store/actions/index'
+import axios from '../../axios-diary.js'
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
 
 
@@ -32,4 +34,4 @@ function DiaryBuilder() {
 	)
 }
 
-export default DiaryBuilder
+export default  withErrorHandler(DiaryBuilder, axios)

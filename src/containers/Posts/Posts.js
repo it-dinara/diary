@@ -7,6 +7,8 @@ import Post from './Post/Post';
 import * as actions from '../../store/actions/index'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import Modal from '../../components/UI/Modal/Modal'
+import axios from '../../axios-diary.js'
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
 
 const Posts = (props) => {
@@ -73,4 +75,4 @@ const Posts = (props) => {
 
 
 
-export default Posts;
+export default withErrorHandler(Posts, axios);
