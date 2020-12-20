@@ -13,13 +13,13 @@ function DiaryBuilder() {
 	const title = useSelector(state => state.feelings.title);
 	const diaryArray = useSelector(state => state.feelings.titleArray)
 	const value = useSelector(state => state.feelings.value)
-	const stateFeelings = useSelector(state => state.feelings)
+	// const stateFeelings = useSelector(state => state.feelings)
 	let diary = null
 	for (let item of diaryArray) {
 		if (title === item.name) {
 			diary = <Diary 
 				key={item.name} 
-				value={stateFeelings[item.name]}
+				// value={stateFeelings[item.name]}
 				/>
 		} 
 	}

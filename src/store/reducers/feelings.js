@@ -5,7 +5,6 @@ const initialState = {
 	title: '',
 	note: '',
 	active: false,
-	diaryObj: {},
 	titleArray: [
 		{id: 10, name: 'context' },
 		{id: 11, name: 'feelings' },
@@ -39,7 +38,7 @@ const setValue = (state, action) => {
 const saveNoteInState = (state, action) => {
 	console.log('REDUX', action.title, action.value)
 	let value = null
-	if(action.value !== '') {
+	if(action.value) {
 		value = action.value
 	}
 	return {
@@ -52,7 +51,7 @@ const saveNoteInState = (state, action) => {
 }
 
 const noteInit = (state, action) => {
-	return updateObject(state, {diaryObj: {}})
+	return updateObject(state, {title: '',diaryObj: {}})
 }
 
 const reducer = (state = initialState, action) => {

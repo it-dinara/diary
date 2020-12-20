@@ -23,22 +23,22 @@ const Posts = (props) => {
 	}, [])
 	console.log('fetchedPosts', fetchedPosts, typeof fetchedPosts)
 
-	const [removing, setRemoving] = useState('')
+	const [startRemoving, setStartRemoving] = useState('')
     let modalAlert = (
-            <Modal show={removing} modalClosed={() => {setRemoving(false)}}>
-				{console.log('removing', removing)}
+            <Modal show={startRemoving} modalClosed={() => {setStartRemoving(false)}}>
+				{console.log('removing', startRemoving)}
                 <p style={{textAlign: 'center'}}>Are you sure you want to delete the post?</p>
 
                 <div className={s.modal}>
                     <button className={[s.buttonModal, s.cancel].join(' ')}
-                        onClick={() => {setRemoving(false)}}
+                        onClick={() => {setStartRemoving(false)}}
                         >
                         cancel
                     </button>
                     <button className={[s.buttonModal, s.removePost].join(' ')}
                         onClick={() => {
-                        		dispatch(actions.removePost(token, removing));
-								setRemoving(false)
+                        		dispatch(actions.removePost(token, startRemoving));
+								setStartRemoving(false)
                         	}}
                         >
                         delete
@@ -63,7 +63,7 @@ const Posts = (props) => {
 			note={post.note}
 			fullDate={post.fullDate}
 			postId={post.id}
-			removingHandler={(id) => {setRemoving(id)}}
+			startRemovingHandler={(id) => {setStartRemoving(id)}}
 			/>
 		)) 
 	}

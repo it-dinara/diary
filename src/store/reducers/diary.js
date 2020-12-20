@@ -52,7 +52,7 @@ const saveDiarySuccess = (state, action) => {
     return updateObject(state, {
         loading: false,
         diaryId: action.diaryId,
-        saved: true
+        saved: true,
     })
 }
 

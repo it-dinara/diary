@@ -10,33 +10,49 @@ function Diary(props) {
 
 	const title = useSelector(state => state.feelings.title)
 	const stateFeelings = useSelector(state => state.feelings.diaryObj)
-	let titleVal = ''
+	let diaryVal = '';
 	if (stateFeelings[title]) {
-		titleVal = stateFeelings[title]
+		diaryVal = stateFeelings[title]
 	}
-	const [value, setValue] = useState(titleVal)
+	const [value, setValue] = useState(diaryVal)
+
 	const dispatch = useDispatch();
 	useEffect(() => {
-	   dispatch(actions.saveNoteInState(title, value))
+		dispatch(actions.saveNoteInState(title, value))
 	}, [value])
 
 	const token = useSelector(state => state.auth.token)
 	const userId = useSelector(state => state.auth.userId)
 	const saved = useSelector(state => state.diary.saved)
-	console.log('saved', saved)
+	console.log('saved 1', saved)
 	const history = useHistory();
+console.log('stateFeelings', stateFeelings)
+console.log('stateFeelings length', Object.keys(stateFeelings).length)
 
     const saveDiaryHandler = (event) => {
 		event.preventDefault()
+
+		let note = {};
+		for (let key in stateFeelings) {
+			if(stateFeelings[key]) {
+				note[key] = stateFeelings[key]
+				console.log('note', note)
+			}
+		}
+
 		const fullDate = getDate.fullDate;
 		const millsec =  getDate.millsec;
 		const diaryData = {
-			note: stateFeelings,
+			note: note,
 			userId: userId,
 			fullDate: fullDate,
 			millsec: millsec,
 		}
-		dispatch(actions.saveDiary(diaryData, token))
+
+		if(Object.keys(note).length > 0) {
+			dispatch(actions.saveDiary(diaryData, token))
+		}
+		console.log('saved 2', saved)
 		if(saved) {
 			history.replace('/start')
 		}

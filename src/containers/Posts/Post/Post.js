@@ -37,7 +37,7 @@ const Post = (props) => {
                     <button 
                         className={[s.button, s.removePost].join(' ')}
                         // onClick={() => {setRemoving(true)}}
-                        onClick={() => props.removingHandler(props.postId)}
+                        onClick={() => props.startRemovingHandler(props.postId)}
                         >
                         delete
                     </button>

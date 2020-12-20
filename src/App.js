@@ -9,7 +9,6 @@ import {
 	Redirect
 } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
-// import TitleMenu from './containers/TitleMenu/TitleMenu'
 import DiaryBuilder from './containers/DiaryBuilder/DiaryBuilder'
 import Start from './containers/Start/Start';
 import Posts from './containers/Posts/Posts';

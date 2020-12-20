@@ -2,9 +2,11 @@ import s from './start.module.css'
 import { useHistory } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux'
 import * as actions from '../../store/actions/index'
+import axios from '../../axios-diary.js'
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
 
-function Diary() {
+function Start() {
 	let history = useHistory();
 	let dispatch = useDispatch();
 	const redirect = useSelector(state => state.diary.redirect)
@@ -23,4 +25,4 @@ function Diary() {
 	)
 }
 
-export default Diary
+export default withErrorHandler(Start, axios)
