@@ -20,7 +20,7 @@ const Posts = (props) => {
 	useEffect(() => {
 		dispatch(actions.fetchPosts(token, userId))
 		dispatch(actions.noteInit())
-	}, [])
+	}, [token, userId, dispatch])
 	console.log('fetchedPosts', fetchedPosts, typeof fetchedPosts)
 
 	const [startRemoving, setStartRemoving] = useState('')
@@ -54,16 +54,16 @@ const Posts = (props) => {
 			res.push(fetchedPosts[key])
 		}
 	}
-	res.sort((a, b) => a.millsec - b.millsec) 
+	res.sort((a, b) => b.millsec - a.millsec) 
 	let posts = <Spinner/>;
 	if (!loading) {
-		posts = fetchedPosts.map(post => (
+		posts = res.map(post => (
 			<Post
 			key={post.id}
 			note={post.note}
 			fullDate={post.fullDate}
 			postId={post.id}
-			startRemovingHandler={(id) => {setStartRemoving(id)}}
+			startRemovingHandler={setStartRemoving}
 			/>
 		)) 
 	}

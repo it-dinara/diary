@@ -1,10 +1,11 @@
 
-const data = new Date();
-const year = data.getFullYear();
-const month = data.getMonth();
-const day = data.getDate();
-const hour = data.getHours();
-const minutes = data.getMinutes();
+const date = new Date();
+console.log('date', date)
+const year = date.getFullYear();
+const month = date.getMonth();
+const day = date.getDate();
+const hour = date.getHours();
+const minutes = date.getMinutes();
 
 const formatDate = (num) => {
     const newNum = num + 1;
@@ -17,8 +18,8 @@ const formatDate = (num) => {
     return res
 }
 
-const fullDate = day + '.' + formatDate(month) + '.' + year + ' ' + hour + ':' + formatDate(minutes);
-const millsec =  Date.parse(data);
+let fullDate = day + '.' + formatDate(month) + '.' + year + ' ' + hour + ':' + formatDate(minutes);
+let millsec =  Date.parse(date);
 export const getDate = {
     fullDate: fullDate,
     millsec: millsec,

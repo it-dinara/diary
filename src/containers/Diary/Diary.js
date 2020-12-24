@@ -26,8 +26,8 @@ function Diary(props) {
 	const saved = useSelector(state => state.diary.saved)
 	console.log('saved 1', saved)
 	const history = useHistory();
-console.log('stateFeelings', stateFeelings)
-console.log('stateFeelings length', Object.keys(stateFeelings).length)
+	console.log('stateFeelings', stateFeelings)
+	console.log('stateFeelings length', Object.keys(stateFeelings).length)
 
     const saveDiaryHandler = (event) => {
 		event.preventDefault()
@@ -65,11 +65,11 @@ console.log('stateFeelings length', Object.keys(stateFeelings).length)
 			{/* {console.log('STATE', stateFeelings)} */}
 			<TextareaAutosize 
 			name='textValue'
-			onChange={ (event) => { setValue(event.target.value) } }
 			minRows={15}
 			onHeightChange={() => {}}
 			className={s.textarea}
 			value={value}
+			onChange={ (event) => { setValue(event.target.value) } }
 			/>
 			<button 
 			className={s.saveBtn}

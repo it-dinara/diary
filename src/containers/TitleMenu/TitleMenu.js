@@ -6,7 +6,7 @@ import * as actions from '../../store/actions/index'
 
 
 
-function TitleMenu() {
+const TitleMenu = React.memo(props => {
 	const titleArray = useSelector(state => state.feelings.titleArray)
 	const [active, setActive] = useState(false)
 	const dispatch = useDispatch();
@@ -33,5 +33,6 @@ function TitleMenu() {
 			</ul>
 		)
 	}
+)	
 
 export default TitleMenu
