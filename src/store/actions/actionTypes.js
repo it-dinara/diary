@@ -25,4 +25,3 @@ export const REMOVE_POST_SUCCESS = 'REMOVE_POST_SUCCESS';
 export const REMOVE_POST_FAIL = 'REMOVE_POST_FAIL';
 
 
-export const SET_DATE = 'SET_DATE';

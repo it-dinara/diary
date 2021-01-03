@@ -13,39 +13,15 @@ const initialState = {
 
 
 const saveDiaryStart = (state, action) => {
-	return updateObject(state, { loading: true, saved: false })
+	return updateObject(state, { 
+        loading: true, 
+        saved: false,
+        }
+    )
 }
 
 const saveDiaryFail = (state, action) => {
     return updateObject(state, { loading: false, saved: false })
-}
-
-const setDate = (state, action) => {
-    const data = new Date();
-    const year = data.getFullYear();
-    const month = data.getMonth();
-    const day = data.getDate();
-    const hour = data.getHours();
-    const minutes = data.getMinutes();
-    
-    const dateBeauty = (num) => {
-        const newNum = num + 1;
-        let res = '';
-        if(newNum.toString().length < 2) {
-            res = '0' + newNum
-        } else {
-            res = newNum
-        }
-        return res
-    }
-    const d =  Date.parse(data)
-    const fullDate = day + '.' + dateBeauty(month) + '.' + year + ' ' + hour + ':' + dateBeauty(minutes)
-
-    return {
-        ...state,
-        date: fullDate,
-        newDate: d
-    }
 }
 
 const saveDiarySuccess = (state, action) => {
@@ -121,7 +97,6 @@ const reducer = (state = initialState, action) => {
         case actionTypes.REMOVE_POST_SUCCESS: return removePostSuccess(state, action);
         case actionTypes.REMOVE_POST_START: return removePostStart(state, action);
         case actionTypes.REMOVE_POST_FAIL: return removePostFail(state, action);
-        case actionTypes.SET_DATE: return setDate(state, action);
         default: return state
     }
 }

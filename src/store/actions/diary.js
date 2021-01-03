@@ -24,12 +24,6 @@ export const saveDiarySuccess = (id, diary) => {
     }
 }
 
-export const setDate = () => {
-    return {
-        type: actionTypes.SET_DATE,
-    }
-}
-
 export const saveDiary = (diaryData, token) => {
     return dispatch => {
         dispatch(saveDiaryStart());

@@ -13,9 +13,10 @@ const Post = (props) => {
         })
     }
 	const token = useSelector(state => state.auth.token);
-
-
     const dispatch= useDispatch();
+    const editHandler = () => {
+        
+    }
 
 	
 
@@ -41,7 +42,9 @@ const Post = (props) => {
                         >
                         delete
                     </button>
-                    <button className={[s.button, s.editPost].join(' ')}>
+                    <button className={[s.button, s.editPost].join(' ')}
+                        onClick={() => editHandler(props.postId)}
+                        >
                         edit
                     </button>
                 </div>

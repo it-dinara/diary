@@ -28,6 +28,8 @@ function Diary(props) {
 	const history = useHistory();
 	console.log('stateFeelings', stateFeelings)
 	console.log('stateFeelings length', Object.keys(stateFeelings).length)
+	const fullDate = useSelector(state => state.feelings.fullDate);
+	const millsec =  useSelector(state => state.feelings.millsec);
 
     const saveDiaryHandler = (event) => {
 		event.preventDefault()
@@ -40,8 +42,7 @@ function Diary(props) {
 			}
 		}
 
-		const fullDate = getDate.fullDate;
-		const millsec =  getDate.millsec;
+		
 		const diaryData = {
 			note: note,
 			userId: userId,

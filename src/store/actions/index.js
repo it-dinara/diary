@@ -16,7 +16,6 @@ export {
 export {
 	saveDiary,
 	fetchPosts,
-	setDate,
 	removePost
 } from './diary.js'
 
