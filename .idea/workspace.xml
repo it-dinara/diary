@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Button/Botton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Button/Button.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/Read/Read.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/Read/Read.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Diary/Diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Diary/Diary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Posts/Post/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Posts/Post/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/actionTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/diary.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1mbzDByroVjIx6jZd5mEuk6UFz7" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/containers" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\TheBoringDeveloper\git\diary\src\containers" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="" />
+      <created>1609776959812</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609776959812</updated>
+      <workItem from="1609776962327" duration="563000" />
+      <workItem from="1609777548797" duration="176000" />
+      <workItem from="1609777742666" duration="4000" />
+      <workItem from="1609777828226" duration="2444000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

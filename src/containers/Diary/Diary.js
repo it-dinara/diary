@@ -4,7 +4,7 @@ import s from './Diary.module.css'
 import * as actions from '../../store/actions/index'
 import {useDispatch, useSelector} from 'react-redux'
 import { useHistory} from 'react-router-dom';
-import { getDate } from '../../helpers/getDate.js'
+
 
 function Diary(props) {
 

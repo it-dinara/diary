@@ -24,4 +24,6 @@ export const REMOVE_POST_START = 'REMOVE_POST_START';
 export const REMOVE_POST_SUCCESS = 'REMOVE_POST_SUCCESS';
 export const REMOVE_POST_FAIL = 'REMOVE_POST_FAIL';
 
+export const SET_POST_ID = 'SET_POST_ID';
+
 

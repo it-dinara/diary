@@ -1,5 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import s from './Post.module.css';
+import * as actions from '../../../store/actions/index';
+import {useHistory} from 'react-router-dom'
 
 
 const Post = (props) => {
@@ -12,8 +14,13 @@ const Post = (props) => {
     }
 	const token = useSelector(state => state.auth.token);
     const dispatch= useDispatch();
-    const editHandler = () => {
-        
+    const history = useHistory();
+    const id = useSelector(state => state.read.id)
+    const toReadHandler = (postId) => {
+        dispatch(actions.setPostId(postId));
+        if(postId) {
+            history.replace('/read')
+        }
     }
 
 	
@@ -27,26 +34,11 @@ const Post = (props) => {
 
     return (
         <>
-            <div className={s.wrapper}>
+            <div className={s.wrapper} onClick={() => toReadHandler(props.postId)}>
                 <div className={s.post} >
                     <p className={s.date}>{props.fullDate}</p>
                     {postItem}
                 </div>
-                <div className={s.cover}>
-                    <button 
-                        className={[s.button, s.removePost].join(' ')}
-                        // onClick={() => {setRemoving(true)}}
-                        onClick={() => props.startRemovingHandler(props.postId)}
-                        >
-                        delete
-                    </button>
-                    <button className={[s.button, s.editPost].join(' ')}
-                        onClick={() => editHandler(props.postId)}
-                        >
-                        edit
-                    </button>
-                </div>
-                {/* {console.log('removing', removing)} */}
             </div>
         </>
     )

@@ -11,7 +11,8 @@ import {
 import {useDispatch, useSelector} from 'react-redux'
 import DiaryBuilder from './containers/DiaryBuilder/DiaryBuilder'
 import Start from './containers/Start/Start';
-import Posts from './containers/Posts/Posts';
+import Read from './containers/Read/Read';
+import Posts from './containers/PostsSecond/Posts';
 import Auth from './containers/Auth/AuthSecond';
 import Logout from './containers/Auth/Logout/LogoutSecond';
 import * as actions from './store/actions/index'
@@ -31,15 +32,16 @@ const App = (props) => {
 
 	let router = <Switch> 
 					<Route path="/auth" exact component={Auth} />
-					<Redirect to='/auth'/>
+					{/* <Redirect to='/auth'/> */}
 				</Switch>
 	if(isAuthenticated) {
 		router = <Switch>
 					<Route path="/start" component={Start} />
-					<Route path="/logout"  component={Logout}/>
-					<Route path="/posts"  component={Posts}/>
+					<Route path="/logout" component={Logout}/>
+					<Route path="/posts" component={Posts}/>
 					<Route path="/" exact component={DiaryBuilder} />
-					<Redirect to='/start'/>
+					<Route path="/read" component={Read} />
+					{/* <Redirect to='/start'/> */}
 				</Switch>
 	}
 

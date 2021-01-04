@@ -30,7 +30,7 @@ import reportWebVitals from './reportWebVitals';
 import authReducer from './store/reducers/auth';
 import feelingsReducer from './store/reducers/feelings';
 import diaryReducer from './store/reducers/diary';
-// import dateReducer from './store/reducers/date';
+import readReducer from './store/reducers/read';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -38,7 +38,7 @@ const rootReducer = combineReducers({
 	auth: authReducer,
 	feelings: feelingsReducer,
 	diary: diaryReducer,
-	// date: dateReducer
+	read: readReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

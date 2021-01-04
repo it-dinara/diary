@@ -3,12 +3,12 @@ import { updateObject } from '../utility';
 
 const initialState = {
     loading: false,
-    diaryId: '',
-    fetchedPostsRes: [],
-    date: '',
-    newDate: '',
     removing: false,
     saved: false,
+    // fetchedPostsRes: [],
+    // diaryId: '',
+    // date: '',
+    // newDate: '',
 }
 
 

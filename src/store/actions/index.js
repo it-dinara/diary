@@ -19,6 +19,6 @@ export {
 	removePost
 } from './diary.js'
 
-// export {
-// 	setDate
-// } from './date.js'
+export {
+	setPostId
+} from './read.js'
