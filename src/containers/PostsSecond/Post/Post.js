@@ -12,15 +12,11 @@ const Post = (props) => {
             content: props.note[postName]
         })
     }
-	const token = useSelector(state => state.auth.token);
     const dispatch= useDispatch();
     const history = useHistory();
-    const id = useSelector(state => state.read.id)
-    const toReadHandler = (postId) => {
-        dispatch(actions.setPostId(postId));
-        if(postId) {
-            history.replace('/read')
-        }
+    const toReadHandler = (postNote, postDate, millsec) => {
+        dispatch(actions.setPostDataToRead(postNote, postDate, millsec));
+        history.replace('/read')
     }
 
 	
@@ -34,7 +30,7 @@ const Post = (props) => {
 
     return (
         <>
-            <div className={s.wrapper} onClick={() => toReadHandler(props.postId)}>
+            <div className={s.wrapper} onClick={() => toReadHandler(props.note, props.fullDate, props.millsec)}>
                 <div className={s.post} >
                     <p className={s.date}>{props.fullDate}</p>
                     {postItem}

@@ -1,8 +1,10 @@
 import * as actionTypes from './actionTypes';
 
-export const setPostId = (postId) => {
+export const setPostDataToRead = (postNote, postDate, postMillsec) => {
 	return {
-		type: actionTypes.SET_POST_ID,
-		postId: postId
+		type: actionTypes.SET_POST_DATA_TO_READ,
+		postNote: postNote,
+		postDate: postDate,
+		postMillsec: postMillsec,
 	}
 }

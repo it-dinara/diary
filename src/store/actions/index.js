@@ -20,5 +20,5 @@ export {
 } from './diary.js'
 
 export {
-	setPostId
+	setPostDataToRead
 } from './read.js'

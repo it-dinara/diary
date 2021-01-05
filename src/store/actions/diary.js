@@ -65,7 +65,8 @@ export const fetchPosts = (token, userId) => {
         const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
         axiosInstance.get('/journal.json' + queryParams)
         .then(res => {
-        console.log('res', res)
+        // console.log('res', res)
+            console.log('res.data', res.data)
             dispatch(fetchPostsSuccess(res.data))
         })
         .catch(error => {

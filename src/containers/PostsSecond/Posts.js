@@ -21,7 +21,6 @@ const Posts = (props) => {
 		dispatch(actions.fetchPosts(token, userId))
 		dispatch(actions.noteInit())
 	}, [token, userId, dispatch])
-	console.log('fetchedPosts', fetchedPosts, typeof fetchedPosts)
 
 
 
@@ -40,6 +39,7 @@ const Posts = (props) => {
 			note={post.note}
 			fullDate={post.fullDate}
 			postId={post.id}
+			millsec={post.millsec}
 			/>
 		)) 
 	}
