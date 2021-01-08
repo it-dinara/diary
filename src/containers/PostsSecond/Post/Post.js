@@ -5,13 +5,25 @@ import {useHistory} from 'react-router-dom'
 
 
 const Post = (props) => {
+    const template = {
+        context: '',
+        feelings: '',
+        body: '',
+        thought: '',
+        isItFamiliar: '',
+        decision: '',
+        conclusion: '',
+    };
     const notes = [];
-    for(let postName in props.note) {
-        notes.push({
-            name: postName,
-            content: props.note[postName]
-        })
+    for(let postName in template ) {
+        if (props.note[postName]) {
+            notes.push({
+                name: postName,
+                content: props.note[postName]
+            })
+        }
     }
+
     const dispatch= useDispatch();
     const history = useHistory();
     const toReadHandler = (postNote, postDate, millsec) => {
@@ -19,7 +31,7 @@ const Post = (props) => {
         history.replace('/read')
     }
 
-	
+
 
     const postItem = notes.map((item, i) => (
         <div className={s.container} key={i}>

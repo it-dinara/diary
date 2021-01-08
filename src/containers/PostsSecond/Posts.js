@@ -12,9 +12,8 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
 
 const Posts = (props) => {
-	const token = useSelector(state => state.auth.token) 
-	const userId = useSelector(state => state.auth.userId) 
-	const loading = useSelector(state => state.diary.loading) 
+	const {token, userId } = useSelector(state => state.auth)
+	const loading = useSelector(state => state.diary.loading)
 	const dispatch = useDispatch();
 	const fetchedPosts = useSelector(state => state.diary.fetchedPostsRes) 
 	useEffect(() => {

@@ -18,13 +18,23 @@ const Read = () => {
 	  'Пятница',
 	  'Суббота'
 	];
+    const template = {
+        context: '',
+        feelings: '',
+        body: '',
+        thought: '',
+        isItFamiliar: '',
+        decision: '',
+        conclusion: '',
+    };
 	const notes = [];
-	// console.log("JSON.parse", JSON.parse('postNote'))
-    for(let postName in postNote) {
-        notes.push({
-            name: postName,
-            content: postNote[postName]
-        })
+    for(let postName in template) {
+        if(postNote[postName]) {
+            notes.push({
+                name: postName,
+                content: postNote[postName]
+            })
+        }
     }
     console.log('notes', notes)
     const postItem = notes.map((item, i) => (

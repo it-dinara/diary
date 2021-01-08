@@ -5,10 +5,10 @@ const initialState = {
     loading: false,
     removing: false,
     saved: false,
-    // fetchedPostsRes: [],
-    // diaryId: '',
-    // date: '',
-    // newDate: '',
+    fetchedPostsRes: [],
+    diaryId: '',
+    date: '',
+    newDate: '',
 }
 
 

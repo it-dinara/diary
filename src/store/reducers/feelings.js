@@ -6,15 +6,15 @@ const initialState = {
 	note: '',
 	active: false,
 	titleArray: [
-		{id: 10, name: 'context' },
-		{id: 11, name: 'feelings' },
-		{id: 12, name: 'body' },
-		{id: 13, name: 'thought' },
-		{id: 14, name: 'isItFamiliar' },
-		{id: 15, name: 'desicion' },
-		{id: 16, name: 'conclusion' },
-
+		{id: 0, name: 'context' },
+		{id: 1, name: 'feelings' },
+		{id: 2, name: 'body' },
+		{id: 3, name: 'thought' },
+		{id: 4, name: 'isItFamiliar' },
+		{id: 5, name: 'decision' },
+		{id: 6, name: 'conclusion' },
 	],
+	diaryObj: {},
 }
 
 const setActive = (state, action) => {
@@ -61,7 +61,7 @@ const noteInit = (state, action) => {
 
 	const formatDate = (num) => {
 	    const newNum = num + 1;
-	    let res = '';
+	    let res;
 	    if(newNum.toString().length < 2) {
 	        res = '0' + newNum
 	    } else {
