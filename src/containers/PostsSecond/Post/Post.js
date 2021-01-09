@@ -42,7 +42,7 @@ const Post = (props) => {
 
     return (
         <>
-            <div className={s.wrapper} onClick={() => toReadHandler(props.note, props.fullDate, props.millsec)}>
+            <div className={s.wrapper} onClick={() => toReadHandler(props.note, props.fullDate, props.millsec, props.postId)}>
                 <div className={s.post} >
                     <p className={s.date}>{props.fullDate}</p>
                     {postItem}

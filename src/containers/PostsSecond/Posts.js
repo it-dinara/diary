@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import s from './Posts.module.css';
 
 import Post from './Post/Post';
-// import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index'
 import Spinner from '../../components/UI/Spinner/Spinner'
-import Modal from '../../components/UI/Modal/Modal'
 import axios from '../../axios-diary.js'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 

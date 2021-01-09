@@ -5,6 +5,7 @@ const initialState = {
 	postNote: '',
 	postDate: '',
 	postMillsec: '',
+	postId: '',
 }
 
 const setPostDataToRead = (state, action) => {
@@ -12,6 +13,7 @@ const setPostDataToRead = (state, action) => {
 		postNote: action.postNote,
 		postDate: action.postDate,
 		postMillsec: action.postMillsec,
+		postId: action.postId,
 	})
 }
 

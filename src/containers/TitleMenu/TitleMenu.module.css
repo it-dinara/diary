@@ -6,13 +6,14 @@
 }
 
 @media (min-width: 600px) {
-/*	.titleMenu {
-		margin-top: 47px;
-		margin-left: 2vw;
-		flex-direction: column;
-		flex-wrap: wrap;
-		height: 100%;
-	}*/
+	.titleMenu {
+		/*margin-top: 47px;*/
+		/*margin-left: 2vw;*/
+		/*flex-direction: column;*/
+		/*flex-wrap: wrap;*/
+		/*height: 100%;*/
+		margin: 25px -5px 0;
+	}
 
 }
 

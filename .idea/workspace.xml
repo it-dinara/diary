@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Button/Botton.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Button/Button.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/Read/Read.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/Read/Read.module.css" afterDir="false" />
+    <list default="true" id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="corrected the orders of Titles in Posts">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Diary/Diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Diary/Diary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Diary/Diary.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Diary/Diary.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Posts/Post/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Posts/Post/Post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/actionTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/diary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Posts/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Posts/Posts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Read/Read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Read/Read.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Read/Read.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Read/Read.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/TitleMenu/Title/Title.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/TitleMenu/Title/Title.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/TitleMenu/TitleMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/TitleMenu/TitleMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/TitleMenu/TitleMenu.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/TitleMenu/TitleMenu.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/read.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/feelings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/feelings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/read.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +49,7 @@
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -62,7 +69,16 @@
       <workItem from="1609777548797" duration="176000" />
       <workItem from="1609777742666" duration="4000" />
       <workItem from="1609777828226" duration="2444000" />
+      <workItem from="1610025957153" duration="27197000" />
     </task>
+    <task id="LOCAL-00001" summary="corrected the orders of Titles in Posts">
+      <created>1610115320771</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610115320771</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -78,5 +94,10 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="corrected the orders of Titles in Posts" />
+    <option name="LAST_COMMIT_MESSAGE" value="corrected the orders of Titles in Posts" />
   </component>
 </project>

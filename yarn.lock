@@ -9155,6 +9155,14 @@ react-app-polyfill@^2.0.0:
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.4.1"
 
+react-beforeunload@^2.4.0:
+  version "2.4.0"
+  resolved "https://verdaccio.kube.teledirekt.ru/react-beforeunload/-/react-beforeunload-2.4.0.tgz#82752a0b0605285aeddc83c5c7998b7ddd67ed0a"
+  integrity sha512-62n4aInZeZ3uf4Gx1rKvUjv0OoIZpeGVgnHtuMLKxNbDZz+gpsC9VyW7uEPyLHPTWqbP2UebIZa1t0K/I6S9/Q==
+  dependencies:
+    prop-types "^15.7.2"
+    use-latest "^1.2.0"
+
 react-dev-utils@^11.0.0:
   version "11.0.0"
   resolved "https://verdaccio.kube.teledirekt.ru/react-dev-utils/-/react-dev-utils-11.0.0.tgz#9fdb1b173f4ffc1f23fcf98465d93b16a860b73e"
@@ -11168,7 +11176,7 @@ use-isomorphic-layout-effect@^1.0.0:
   resolved "https://verdaccio.kube.teledirekt.ru/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.1.0.tgz#4db2111e0d53ca694187ea5fd5cb2ba610286fe0"
   integrity sha512-kady5Z1O1qx5RitodCCKbpJSVEtECXYcnBnb5Q48Bz5V6gBmTu85ZcGdVwVFs8+DaOurNb/L5VdGHoQRMknghw==
 
-use-latest@^1.0.0:
+use-latest@^1.0.0, use-latest@^1.2.0:
   version "1.2.0"
   resolved "https://verdaccio.kube.teledirekt.ru/use-latest/-/use-latest-1.2.0.tgz#a44f6572b8288e0972ec411bdd0840ada366f232"
   integrity sha512-d2TEuG6nSLKQLAfW3By8mKr8HurOlTkul0sOpxbClIv4SQ4iOd7BYr7VIzdbktUCnv7dua/60xzd8igMU6jmyw==

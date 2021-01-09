@@ -73,7 +73,7 @@ const noteInit = (state, action) => {
 	let fullDate = day + '.' + formatDate(month) + '.' + year + ' ' + hour + ':' + formatDate(minutes);
 	let millsec =  Date.parse(date);
 	return updateObject(state, {
-		title: '',
+		title: 'context',
 		diaryObj: {},
 		fullDate: fullDate,
 		millsec: millsec,
