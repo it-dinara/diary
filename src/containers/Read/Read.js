@@ -1,5 +1,7 @@
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import s from './Read.module.css';
+import {useHistory} from 'react-router-dom';
+import * as actions from '../../store/actions/index'
 
 
 const Read = () => {
@@ -8,7 +10,15 @@ const Read = () => {
     const postDate = useSelector(state => state.read.postDate)
     const postMillsec = useSelector(state => state.read.postMillsec)
     const postId = useSelector(state => state.read.postId)
+    const history = useHistory()
+    const dispatch = useDispatch()
     const editHandler = () => {
+        //здесь из note пост переходит в объект при написании поста - diaryObj
+        const diaryObj = []
+        for(let title in postNote) {
+            dispatch(actions.saveNoteInState(title, postNote[title]))
+        }
+        history.replace('/')
     }
 
     const days = [
@@ -51,7 +61,7 @@ const Read = () => {
             <div className={s.wrapper}>
                 <div className={s.post}>
                     <button className={s.editPost}
-                            onClick={() => editHandler(postId, postNote, postDate, postMillsec)}
+                            onClick={() => editHandler()}
                     >edit
                     </button>
                     <div className={s.dateWrap}>

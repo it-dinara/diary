@@ -9,73 +9,90 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import {useHistory} from "react-router-dom";
 
 
-
 function DiaryBuilder() {
-	const title = useSelector(state => state.feelings.title);
-	const diaryArray = useSelector(state => state.feelings.titleArray)
-	const value = useSelector(state => state.feelings.value)
-	// const stateFeelings = useSelector(state => state.feelings)
-	let diary = null
-	for (let item of diaryArray) {
-		if (title === item.name) {
-			diary = <Diary 
-				key={item.name} 
-				// value={stateFeelings[item.name]}
-				/>
-		} 
-	}
-	const stateFeelings = useSelector(state => state.feelings.diaryObj)
-	const token = useSelector(state => state.auth.token)
-	const userId = useSelector(state => state.auth.userId)
-	const saved = useSelector(state => state.diary.saved)
-	console.log('saved 1', saved)
-	const history = useHistory();
-	console.log('stateFeelings', stateFeelings)
-	console.log('stateFeelings length', Object.keys(stateFeelings).length)
-	const fullDate = useSelector(state => state.feelings.fullDate);
-	const millsec =  useSelector(state => state.feelings.millsec);
-	const dispatch = useDispatch();
-	const saveDiaryHandler = (event) => {
-		event.preventDefault()
+    const {title, titleArray, diaryObj} = useSelector(state => state.feelings);
+    const {token, userId} = useSelector(state => state.auth)
+    const history = useHistory();
+    //Переменные при создании поста
+    const {fullDate, millsec} = useSelector(state => state.feelings);
+    //Переменные при редактировании поста
+    const {postDate, postMillsec, postId} = useSelector(state => state.read)
+    const dispatch = useDispatch();
+    const saveDiaryHandler = (event) => {
+        event.preventDefault()
+        //При редактировании, удаляется старый пост и сохраняется новый, со старой датой
+        if (postId) {
+            dispatch(actions.removePost(token, postId))
+        }
 
-		let note = {};
-		for (let key in stateFeelings) {
-			if(stateFeelings[key]) {
-				note[key] = stateFeelings[key]
-				console.log('note', note)
-			}
-		}
+        //Проверка на пустой пост, такой пост не сохраняется
+        let note = {};
+        for (let key in diaryObj) {
+            if (diaryObj[key]) {
+                note[key] = diaryObj[key]
+                console.log('note', note)
+            }
+        }
 
+        const diaryData = {
+            note: note,
+            userId: userId,
+            fullDate: postDate ? postDate : fullDate,
+            millsec: postMillsec ? postMillsec : millsec,
+        }
 
-		const diaryData = {
-			note: note,
-			userId: userId,
-			fullDate: fullDate,
-			millsec: millsec,
-		}
+        if (Object.keys(note).length > 0) {
+            dispatch(actions.saveDiary(diaryData, token))
+        }
+        history.replace('/start')
+    }
 
-		if(Object.keys(note).length > 0) {
-			dispatch(actions.saveDiary(diaryData, token))
-		}
-		console.log('saved 2', saved)
-		if(saved) {
-			history.replace('/start')
-		}
-	}
-	return (
+    const removeDiaryHandler = (event) => {
+        event.preventDefault()
+        if (postId) {
+            dispatch(actions.removePost(token, postId))
+        }
+        history.replace('/posts')
+    }
 
-			<form action="" >
-				<div className={s.container}>
-					<button
-						className={s.saveBtn}
-						onClick={(event) => saveDiaryHandler(event)}>
-						Save
-					</button>
-					<TitleMenu/>
-					{diary}
-				</div>
-			</form>
-	)
+    //в результате setTitle показывается соответствующий Textarea
+    let diary = null
+    for (let item of titleArray) {
+        if (title === item.name) {
+            diary = <Diary
+                key={item.name}
+            />
+        }
+    }
+    
+    let removeButton = null;
+    if(postId) {
+        removeButton = (
+            <button
+                className={[s.button, s.removeBtn].join(' ')}
+                onClick={(event) => removeDiaryHandler(event)}>
+                Delete
+            </button>
+        )
+    }
+    return (
+
+        <form action="">
+            <div className={s.container}>
+                <div className={s.buttons}>
+                    <button
+                        className={[s.button, s.saveBtn].join(' ')}
+                        onClick={(event) => saveDiaryHandler(event)}>
+                        Save
+                    </button>
+                    {removeButton}
+
+                </div>
+                <TitleMenu/>
+                {diary}
+            </div>
+        </form>
+    )
 }
 
-export default  withErrorHandler(DiaryBuilder, axios)
+export default withErrorHandler(DiaryBuilder, axios)

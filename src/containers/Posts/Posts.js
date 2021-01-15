@@ -18,7 +18,7 @@ const Posts = (props) => {
 	const fetchedPosts = useSelector(state => state.diary.fetchedPostsRes) 
 	useEffect(() => {
 		dispatch(actions.fetchPosts(token, userId))
-		dispatch(actions.noteInit())
+		// dispatch(actions.noteInit())
 	}, [token, userId, dispatch])
 	console.log('fetchedPosts', fetchedPosts, typeof fetchedPosts)
 

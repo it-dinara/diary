@@ -3,7 +3,6 @@ import { updateObject } from '../utility';
 
 const initialState = {
 	title: '',
-	note: '',
 	active: false,
 	titleArray: [
 		{id: 0, name: 'context' },
@@ -36,7 +35,9 @@ const setValue = (state, action) => {
 }
 
 const saveNoteInState = (state, action) => {
-	console.log('REDUX', action.title, action.value)
+	// console.log('1 REDUX', action.title, action.value)
+	// console.log('2 EDIT NOTE', state)
+	// console.log('3 EDIT NOTE', state.postNote)
 	let value = null
 	if(action.value) {
 		value = action.value
@@ -73,7 +74,7 @@ const noteInit = (state, action) => {
 	let fullDate = day + '.' + formatDate(month) + '.' + year + ' ' + hour + ':' + formatDate(minutes);
 	let millsec =  Date.parse(date);
 	return updateObject(state, {
-		title: 'context',
+		title: action.title,
 		diaryObj: {},
 		fullDate: fullDate,
 		millsec: millsec,

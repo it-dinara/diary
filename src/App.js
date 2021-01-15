@@ -2,7 +2,7 @@
 // import theme from '@rebass/preset'
 import './App.css'
 
-import {Route, Switch, withRouter} from 'react-router-dom';
+import {Route, Switch, withRouter, Redirect} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import DiaryBuilder from './containers/DiaryBuilder/DiaryBuilder'
 import Start from './containers/Start/Start';
@@ -27,7 +27,7 @@ const App = (props) => {
 
     let router = <Switch>
         <Route path="/auth" exact component={Auth}/>
-        {/* <Redirect to='/auth'/> */}
+        <Redirect to='/auth'/>
     </Switch>
     if (isAuthenticated) {
         router = <Switch>

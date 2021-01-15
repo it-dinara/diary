@@ -101,7 +101,7 @@ export const removePost = (token, postId) => {
         const queryParams = '?auth=' + token;
         axios.delete('https://diary-a95bf.firebaseio.com/journal/' + postId + '.json' + queryParams)
         .then(res => {
-            console.log('postId', postId)
+            console.log('REDUX postId', postId)
             dispatch(removePostSuccess(postId))
         })
         .catch(error => {

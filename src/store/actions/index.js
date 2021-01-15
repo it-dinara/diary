@@ -20,5 +20,6 @@ export {
 } from './diary.js'
 
 export {
-	setPostDataToRead
+	setPostDataToRead,
+	removePostNote,
 } from './read.js'

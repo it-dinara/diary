@@ -9,3 +9,12 @@ export const setPostDataToRead = (postNote, postDate, postMillsec, postId) => {
 		postId: postId,
 	}
 }
+
+
+
+export const removePostNote = (postNote) => {
+	return {
+		type: actionTypes.REMOVE_NOTE_TO_EDIT,
+		postNote: postNote,
+	}
+}

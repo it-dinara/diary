@@ -5,7 +5,7 @@ const initialState = {
 	postNote: '',
 	postDate: '',
 	postMillsec: '',
-	postId: '',
+	postId: null,
 }
 
 const setPostDataToRead = (state, action) => {
@@ -16,12 +16,18 @@ const setPostDataToRead = (state, action) => {
 		postId: action.postId,
 	})
 }
+const removePostNote = (state, action) => {
+	return updateObject(state, {
+		postNote: action.postNote,
+	})
+}
 
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.SET_POST_DATA_TO_READ: return setPostDataToRead(state, action);
-		default: 
+		case actionTypes.REMOVE_NOTE_TO_EDIT: return removePostNote(state, action);
+		default:
 			return state;
 	}
 }

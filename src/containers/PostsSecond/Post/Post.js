@@ -26,8 +26,8 @@ const Post = (props) => {
 
     const dispatch= useDispatch();
     const history = useHistory();
-    const toReadHandler = (postNote, postDate, millsec) => {
-        dispatch(actions.setPostDataToRead(postNote, postDate, millsec));
+    const toReadHandler = (postNote, postDate, millsec, postId) => {
+        dispatch(actions.setPostDataToRead(postNote, postDate, millsec, postId));
         history.replace('/read')
     }
 
