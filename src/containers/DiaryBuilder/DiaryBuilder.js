@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'react'
 import TitleMenu from '../TitleMenu/TitleMenu'
 import Diary from '../Diary/Diary'
 import s from './DiaryBuilder.module.css'
@@ -7,6 +7,7 @@ import * as actions from '../../store/actions/index'
 import axios from '../../axios-diary.js'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import {useHistory} from "react-router-dom";
+import Modal from "../../components/UI/Modal/Modal";
 
 
 function DiaryBuilder() {
@@ -18,6 +19,7 @@ function DiaryBuilder() {
     //Переменные при редактировании поста
     const {postDate, postMillsec, postId} = useSelector(state => state.read)
     const dispatch = useDispatch();
+    const [startRemoving, setStartRemoving] = useState(false)
     const saveDiaryHandler = (event) => {
         event.preventDefault()
         //При редактировании, удаляется старый пост и сохраняется новый, со старой датой
@@ -47,13 +49,40 @@ function DiaryBuilder() {
         history.replace('/start')
     }
 
+
+
     const removeDiaryHandler = (event) => {
         event.preventDefault()
+
         if (postId) {
             dispatch(actions.removePost(token, postId))
         }
         history.replace('/posts')
     }
+
+    let modalAlert = (
+        <Modal show={startRemoving} modalClosed={() => {setStartRemoving(false)}}>
+            {console.log('removing', startRemoving)}
+            <p style={{textAlign: 'center'}}>Are you sure you want to delete the post?</p>
+
+            <div className={s.modal}>
+                <button className={[s.buttonModal, s.cancel].join(' ')}
+                        onClick={() => {setStartRemoving(false)}}
+                >
+                    cancel
+                </button>
+                <button className={[s.buttonModal, s.removePost].join(' ')}
+                        onClick={(event) => {
+                            removeDiaryHandler(event);
+                            setStartRemoving(false)
+                        }}
+                >
+                    delete
+                </button>
+            </div>
+
+        </Modal>
+    );
 
     //в результате setTitle показывается соответствующий Textarea
     let diary = null
@@ -64,13 +93,15 @@ function DiaryBuilder() {
             />
         }
     }
-    
+
     let removeButton = null;
     if(postId) {
         removeButton = (
             <button
                 className={[s.button, s.removeBtn].join(' ')}
-                onClick={(event) => removeDiaryHandler(event)}>
+                onClick={(event) => {
+                    event.preventDefault();
+                    setStartRemoving(true)  }}>
                 Delete
             </button>
         )
@@ -90,6 +121,7 @@ function DiaryBuilder() {
                 </div>
                 <TitleMenu/>
                 {diary}
+                {modalAlert}
             </div>
         </form>
     )

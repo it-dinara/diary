@@ -3,21 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="changed the button design, set Title &quot;Context&quot; active">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Diary/Diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Diary/Diary.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Posts/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Posts/Posts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Read/Read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Read/Read.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/TitleMenu/TitleMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/TitleMenu/TitleMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/actionTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/diary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/read.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/diary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/feelings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/feelings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/read.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +52,7 @@
       <workItem from="1609777742666" duration="4000" />
       <workItem from="1609777828226" duration="2444000" />
       <workItem from="1610025957153" duration="27197000" />
-      <workItem from="1610716217893" duration="338000" />
+      <workItem from="1610716217893" duration="1906000" />
     </task>
     <task id="LOCAL-00001" summary="corrected the orders of Titles in Posts">
       <created>1610115320771</created>
@@ -74,7 +61,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610115320771</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="made Edit page with Delete button">
+      <created>1610716831669</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1610716831669</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,6 +88,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="corrected the orders of Titles in Posts" />
-    <option name="LAST_COMMIT_MESSAGE" value="corrected the orders of Titles in Posts" />
+    <MESSAGE value="made Edit page with Delete button" />
+    <option name="LAST_COMMIT_MESSAGE" value="made Edit page with Delete button" />
   </component>
 </project>
