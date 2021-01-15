@@ -1,7 +1,7 @@
 export {
 	auth,
 	logout,
-	setAuthRedirectPath,
+	setRedirectPath,
 	authCheckState
 } from './auth.js'
 
@@ -11,9 +11,6 @@ export {
 	setActive,
 	saveNoteInState,
 	noteInit,
-} from './feelings.js'
-
-export {
 	saveDiary,
 	fetchPosts,
 	removePost

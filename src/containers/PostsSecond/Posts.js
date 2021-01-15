@@ -15,6 +15,7 @@ const Posts = (props) => {
 	const dispatch = useDispatch();
 	const fetchedPosts = useSelector(state => state.diary.fetchedPostsRes) 
 	useEffect(() => {
+		dispatch(actions.setRedirectPath(null))
 		dispatch(actions.fetchPosts(token, userId))
 		dispatch(actions.noteInit())
 	}, [token, userId, dispatch])

@@ -49,11 +49,11 @@ const Auth = () => {
 	const loading = useSelector(state => state.auth.loading)
 	const error = useSelector(state => state.auth.error)
 	const isAuthenticated = useSelector(state => state.auth.token)
-	const authRedirectPath = useSelector(state => state.auth.authRedirectPath)
+	const redirectPath = useSelector(state => state.auth.redirectPath)
 	const dispatch = useDispatch()
 	// useEffect(()=>{
-	// 	console.log('setAuthRedirectPath')
-	// 	dispatch(actions.setAuthRedirectPath('/start'))
+	// 	console.log('setRedirectPath')
+	// 	dispatch(actions.setRedirectPath('/start'))
 	// }, [])
 
 	const checkValidity = (value, rules) => {
@@ -146,7 +146,7 @@ const Auth = () => {
 	let redirect = null;
 	if(isAuthenticated) {
 		console.log('isAuthenticated', isAuthenticated)
-		redirect = <Redirect to={authRedirectPath}/>
+		redirect = <Redirect to={redirectPath}/>
 	}
 
 	let errorMessage = null;

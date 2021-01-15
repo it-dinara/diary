@@ -4,18 +4,89 @@ import {updateObject} from '../utility';
 const initialState = {
     loading: false,
     removing: false,
-    saved: false,
     fetchedPostsRes: [],
     diaryId: '',
     date: '',
     newDate: '',
+    title: '',
+    active: false,
+    titleArray: [
+        {id: 0, name: 'context'},
+        {id: 1, name: 'feelings'},
+        {id: 2, name: 'body'},
+        {id: 3, name: 'thought'},
+        {id: 4, name: 'isItFamiliar'},
+        {id: 5, name: 'decision'},
+        {id: 6, name: 'conclusion'},
+    ],
+    diaryObj: {},
 }
 
+const setActive = (state, action) => {
+    return updateObject(state, {
+        active: action.active
+    })
+}
+
+const setTitle = (state, action) => {
+    return updateObject(state, {
+        title: action.title
+    })
+}
+
+const setValue = (state, action) => {
+    return updateObject(state, {
+        value: action.value
+    })
+}
+
+const saveNoteInState = (state, action) => {
+    let value = null
+    if (action.value) {
+        value = action.value
+    }
+    return {
+        ...state,
+        diaryObj: {
+            ...state.diaryObj,
+            [action.title]: value,
+        }
+    }
+}
+
+const noteInit = (state, action) => {
+    const date = new Date();
+    console.log('date', date)
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minutes = date.getMinutes();
+
+    const formatDate = (num) => {
+        const newNum = num + 1;
+        let res;
+        if (newNum.toString().length < 2) {
+            res = '0' + newNum
+        } else {
+            res = newNum
+        }
+        return res
+    }
+
+    let fullDate = day + '.' + formatDate(month) + '.' + year + ' ' + hour + ':' + formatDate(minutes);
+    let millsec = Date.parse(date);
+    return updateObject(state, {
+        title: action.title,
+        diaryObj: {},
+        fullDate: fullDate,
+        millsec: millsec,
+    })
+}
 
 const saveDiaryStart = (state, action) => {
     return updateObject(state, {
             loading: true,
-            saved: false,
         }
     )
 }
@@ -23,7 +94,6 @@ const saveDiaryStart = (state, action) => {
 const saveDiaryFail = (state, action) => {
     return updateObject(state, {
         loading: false,
-        saved: false,
         error: action.error
     })
 }
@@ -32,7 +102,6 @@ const saveDiarySuccess = (state, action) => {
     return updateObject(state, {
         loading: false,
         diaryId: action.diaryId,
-        saved: true,
     })
 }
 
@@ -81,7 +150,7 @@ const removePostSuccess = (state, action) => {
     return {
         ...state,
         fetchedPostsRes: updatedPosts,
-        loading: false
+        loading: false,
     }
 }
 
@@ -89,13 +158,23 @@ const removePostFail = (state, action) => {
     return {
         ...state,
         loading: false,
-        error: action.error
+        error: action.error,
     }
 }
 
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.SET_ACTIVE:
+            return setActive(state, action);
+        case actionTypes.SET_TITLE:
+            return setTitle(state, action);
+        case actionTypes.SET_VALUE:
+            return setValue(state, action);
+        case actionTypes.SAVE_NOTE_IN_STATE:
+            return saveNoteInState(state, action);
+        case actionTypes.NOTE_INIT:
+            return noteInit(state, action);
         case actionTypes.SAVE_DIARY_START:
             return saveDiaryStart(state, action);
         case actionTypes.SAVE_DIARY_FAIL:

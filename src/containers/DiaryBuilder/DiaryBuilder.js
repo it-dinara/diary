@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import TitleMenu from '../TitleMenu/TitleMenu'
 import Diary from '../Diary/Diary'
 import s from './DiaryBuilder.module.css'
@@ -11,15 +11,21 @@ import Modal from "../../components/UI/Modal/Modal";
 
 
 function DiaryBuilder() {
-    const {title, titleArray, diaryObj} = useSelector(state => state.feelings);
+    const {title, titleArray, diaryObj} = useSelector(state => state.diary);
     const {token, userId} = useSelector(state => state.auth)
     const history = useHistory();
     //Переменные при создании поста
-    const {fullDate, millsec} = useSelector(state => state.feelings);
+    const {fullDate, millsec} = useSelector(state => state.diary);
     //Переменные при редактировании поста
     const {postDate, postMillsec, postId} = useSelector(state => state.read)
     const dispatch = useDispatch();
     const [startRemoving, setStartRemoving] = useState(false)
+    const redirectPath = useSelector(state => state.auth.redirectPath)
+
+    useEffect(() => {
+        dispatch(actions.setRedirectPath(null))
+    }, [])
+
     const saveDiaryHandler = (event) => {
         event.preventDefault()
         //При редактировании, удаляется старый пост и сохраняется новый, со старой датой
@@ -46,10 +52,8 @@ function DiaryBuilder() {
         if (Object.keys(note).length > 0) {
             dispatch(actions.saveDiary(diaryData, token))
         }
-        history.replace('/start')
+        dispatch(actions.setRedirectPath('/start'))
     }
-
-
 
     const removeDiaryHandler = (event) => {
         event.preventDefault()
@@ -57,8 +61,10 @@ function DiaryBuilder() {
         if (postId) {
             dispatch(actions.removePost(token, postId))
         }
-        history.replace('/posts')
+        dispatch(actions.setRedirectPath('/posts'))
     }
+
+    let redirect = redirectPath && history.replace(redirectPath);
 
     let modalAlert = (
         <Modal show={startRemoving} modalClosed={() => {setStartRemoving(false)}}>
@@ -67,7 +73,9 @@ function DiaryBuilder() {
 
             <div className={s.modal}>
                 <button className={[s.buttonModal, s.cancel].join(' ')}
-                        onClick={() => {setStartRemoving(false)}}
+                        onClick={(event) => {
+                            event.preventDefault();
+                            setStartRemoving(false)}}
                 >
                     cancel
                 </button>
@@ -122,6 +130,7 @@ function DiaryBuilder() {
                 <TitleMenu/>
                 {diary}
                 {modalAlert}
+                {redirect}
             </div>
         </form>
     )

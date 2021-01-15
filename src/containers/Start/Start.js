@@ -11,9 +11,9 @@ function Start() {
 	let dispatch = useDispatch();
 	const redirect = useSelector(state => state.diary.redirect)
 	const redirectHandler = () => {
+		dispatch(actions.setRedirectPath(null))
 		dispatch(actions.noteInit())
 		history.replace('/')
-		console.log('redirect', redirect)
 	}
 	return (
 		<div className={s.wrapper} onClick={redirectHandler}>

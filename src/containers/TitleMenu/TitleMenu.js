@@ -7,7 +7,7 @@ import * as actions from '../../store/actions/index'
 
 
 const TitleMenu = React.memo(props => {
-	const titleArray = useSelector(state => state.feelings.titleArray)
+	const titleArray = useSelector(state => state.diary.titleArray)
 	const [active, setActive] = useState(false)
 	const dispatch = useDispatch();
 

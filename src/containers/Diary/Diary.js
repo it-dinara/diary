@@ -7,8 +7,8 @@ import {useDispatch, useSelector} from 'react-redux'
 
 function Diary(props) {
 
-    const title = useSelector(state => state.feelings.title)
-    const stateFeelings = useSelector(state => state.feelings.diaryObj)
+    const title = useSelector(state => state.diary.title)
+    const stateFeelings = useSelector(state => state.diary.diaryObj)
     const postNote = useSelector(state => state.read.postNote)
     //отрисовка текста в Textarea
     //Например: context: 'Привет'
