@@ -52,7 +52,6 @@ function DiaryBuilder() {
         if (Object.keys(note).length > 0) {
             dispatch(actions.saveDiary(diaryData, token))
         }
-        dispatch(actions.setRedirectPath('/start'))
     }
 
     const removeDiaryHandler = (event) => {
@@ -61,7 +60,6 @@ function DiaryBuilder() {
         if (postId) {
             dispatch(actions.removePost(token, postId))
         }
-        dispatch(actions.setRedirectPath('/posts'))
     }
 
     let redirect = redirectPath && history.replace(redirectPath);

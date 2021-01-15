@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import s from './Posts.module.css';
 
 import Post from './Post/Post';
@@ -11,21 +12,19 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
 const Posts = (props) => {
 	const {token, userId } = useSelector(state => state.auth)
-	const loading = useSelector(state => state.diary.loading)
+	const {loading, redirect, fetchedPostsRes} = useSelector(state => state.diary)
 	const dispatch = useDispatch();
-	const fetchedPosts = useSelector(state => state.diary.fetchedPostsRes) 
 	useEffect(() => {
 		dispatch(actions.setRedirectPath(null))
 		dispatch(actions.fetchPosts(token, userId))
-		dispatch(actions.noteInit())
 	}, [token, userId, dispatch])
 
 
 
 	let res = []
-	for(let key in fetchedPosts) {
-		if(fetchedPosts[key].millsec) {
-			res.push(fetchedPosts[key])
+	for(let key in fetchedPostsRes) {
+		if(fetchedPostsRes[key].millsec) {
+			res.push(fetchedPostsRes[key])
 		}
 	}
 	res.sort((a, b) => b.millsec - a.millsec) 
@@ -41,9 +40,27 @@ const Posts = (props) => {
 			/>
 		)) 
 	}
-	return <>
+	const history = useHistory();
+	const makeNewNoteHandler = () => {
+		//очистка стейта от удалёного поста
+		dispatch(actions.setPostDataToRead(null, null, null, null))
+		dispatch(actions.noteInit())
+		history.replace('/')
+	}
+
+	const start = (
+		<button
+			className={s.newNote}
+			onClick={(event) => {makeNewNoteHandler(event)}}
+		>
+			New note
+		</button>
+	)
+
+	return <div className={s.container}>
+		{start}
 		{posts}
-	</>
+	</div>
 }
 
 

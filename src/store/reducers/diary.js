@@ -138,6 +138,8 @@ const removePostStart = (state, action) => {
     }
 }
 
+//по сути ненужный акшн, так как при монтировании страницы постов,
+//они подтягиваются с сервера
 const removePostSuccess = (state, action) => {
     const updatedPosts = [];
     const posts = [...state.fetchedPostsRes]

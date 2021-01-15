@@ -1,6 +1,7 @@
 import axiosInstance from '../../axios-diary.js';
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
+import * as actions from "./index";
 
 
 export const setActive = (active) => {
@@ -66,6 +67,7 @@ export const saveDiary = (diaryData, token) => {
             .then(response => {
                 console.log('response save', response)
                 dispatch(saveDiarySuccess(response.data.name, diaryData))
+                dispatch(actions.setRedirectPath('/posts'))
             })
             .catch(error => {
                 dispatch(saveDiaryFail(error))
@@ -137,7 +139,8 @@ export const removePost = (token, postId) => {
         axios.delete('https://diary-a95bf.firebaseio.com/journal/' + postId + '.json' + queryParams)
         .then(res => {
             console.log('REDUX postId', postId)
-            dispatch(removePostSuccess(postId))
+            // dispatch(removePostSuccess(postId))
+            dispatch(actions.setRedirectPath('/posts'))
         })
         .catch(error => {
             dispatch(removePostFail(error))

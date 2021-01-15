@@ -1,15 +1,22 @@
 .wrapper {
 	position: relative;
-    width: 80%;
-    margin: 10px auto;
+    width: 100%;
+    margin: 0px auto;
     box-sizing: border-box;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
-    padding: 0 15px;
+    border: 0 solid #eee;
+	border-top-width: 1px;
+    padding: 0 20px;
+	height: 100px;
+	overflow: hidden;
 }
 
 .post {
 	transition: all .2s;
+	height: 90px;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
 }
 
 .name {

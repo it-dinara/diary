@@ -27,7 +27,7 @@ const App = (props) => {
 
     let router = <Switch>
         <Route path="/auth" exact component={Auth}/>
-        <Redirect to='/auth'/>
+        {/*<Redirect to='/auth'/>*/}
     </Switch>
     if (isAuthenticated) {
         router = <Switch>

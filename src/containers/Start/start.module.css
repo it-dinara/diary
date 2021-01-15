@@ -1,18 +1,18 @@
 .vertical {
-	position: absolute; 
-	background-color: #DFDAD7; 
-	width: .7em; 
-	height: 2.4em; 
+	position: absolute;
+	background-color: #DFDAD7;
+	width: .7em;
+	height: 2.4em;
 	top: 1.90em;
 	left: 2.75em;
 	transition: all .5s;
 }
 
 .gorizontal {
-	position: absolute; 
-	background-color: #DFDAD7; 
-	width: 2.4em; 
-	height: .7em; 
+	position: absolute;
+	background-color: #DFDAD7;
+	width: 2.4em;
+	height: .7em;
 	top: 2.75em;
 	left: 1.90em;
 	transition: all .5s;
