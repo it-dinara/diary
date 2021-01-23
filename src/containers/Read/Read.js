@@ -9,12 +9,11 @@ const Read = () => {
     const postNote = useSelector(state => state.read.postNote)
     const postDate = useSelector(state => state.read.postDate)
     const postMillsec = useSelector(state => state.read.postMillsec)
-    const postId = useSelector(state => state.read.postId)
     const history = useHistory()
     const dispatch = useDispatch()
     const editHandler = () => {
         //здесь из note пост переходит в объект при написании поста - diaryObj
-        const diaryObj = []
+        dispatch(actions.setRedirectPath(null))
         for(let title in postNote) {
             dispatch(actions.saveNoteInState(title, postNote[title]))
         }

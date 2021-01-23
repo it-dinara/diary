@@ -17,6 +17,8 @@ const Posts = (props) => {
 	useEffect(() => {
 		dispatch(actions.setRedirectPath(null))
 		dispatch(actions.fetchPosts(token, userId))
+		dispatch(actions.setPostDataToRead(null, null, null, null))
+		dispatch(actions.saveNoteInState(null, null))
 	}, [token, userId, dispatch])
 
 

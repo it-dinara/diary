@@ -39,7 +39,9 @@ const setValue = (state, action) => {
         value: action.value
     })
 }
-
+//сделать saveNoteInStateStart ..Success ..Fail
+//иначе некрасиво очистка стейта с saveNoteInState(null, null)
+//либо получение поста для чтения сделать из сервера
 const saveNoteInState = (state, action) => {
     let value = null
     if (action.value) {
