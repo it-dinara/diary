@@ -28,7 +28,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import authReducer from './store/reducers/auth';
-import feelingsReducer from './store/reducers/feelings';
 import diaryReducer from './store/reducers/diary';
 import readReducer from './store/reducers/read';
 
@@ -36,7 +35,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
 	auth: authReducer,
-	feelings: feelingsReducer,
 	diary: diaryReducer,
 	read: readReducer
 });

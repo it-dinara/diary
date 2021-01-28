@@ -22,12 +22,12 @@ const App = (props) => {
         dispatch(actions.authCheckState())
         const expirationDate = localStorage.getItem('expirationDate');
         console.log('expirationDate App', expirationDate)
-    }, [])
+    }, [dispatch])
 
 
     let router = <Switch>
         <Route path="/auth" exact component={Auth}/>
-        {/*<Redirect to='/auth'/>*/}
+        <Redirect to='/auth'/>
     </Switch>
     if (isAuthenticated) {
         router = <Switch>
@@ -36,7 +36,7 @@ const App = (props) => {
             <Route path="/posts" component={Posts}/>
             <Route path="/" exact component={DiaryBuilder}/>
             <Route path="/read" component={Read}/>
-            {/* <Redirect to='/start'/> */}
+            <Redirect to='/posts'/>
         </Switch>
     }
 

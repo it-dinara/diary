@@ -1,4 +1,3 @@
-import {useDispatch, useSelector} from 'react-redux';
 import s from './Post.module.css';
 
 
@@ -10,8 +9,7 @@ const Post = (props) => {
             content: props.note[postName]
         })
     }
-    const token = useSelector(state => state.auth.token);
-    const dispatch = useDispatch();
+
     const editHandler = () => {
 
     }

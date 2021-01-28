@@ -5,6 +5,7 @@ import {useHistory} from 'react-router-dom'
 
 
 const Post = (props) => {
+
     const template = {
         context: '',
         feelings: '',
@@ -15,7 +16,7 @@ const Post = (props) => {
         conclusion: '',
     };
     const notes = [];
-    for(let postName in template ) {
+    for (let postName in template) {
         if (props.note[postName]) {
             notes.push({
                 name: postName,
@@ -24,13 +25,15 @@ const Post = (props) => {
         }
     }
 
-    const dispatch= useDispatch();
+    const dispatch = useDispatch();
     const history = useHistory();
-    const toReadHandler = (postNote, postDate, millsec, postId) => {
-        dispatch(actions.setPostDataToRead(postNote, postDate, millsec, postId));
+    const token = useSelector(state => state.auth.token)
+    const toReadHandler = (postId) => {
+        dispatch(actions.clearDiaryObjToEdit());
+        dispatch(actions.setPostId(postId));
+        dispatch(actions.setPostDataToRead(token, postId))
         history.replace('/read')
     }
-
 
 
     const postItem = notes.map((item, i) => (
@@ -42,8 +45,11 @@ const Post = (props) => {
 
     return (
         <>
-            <div className={s.wrapper} onClick={() => toReadHandler(props.note, props.fullDate, props.millsec, props.postId)}>
-                <div className={s.post} >
+            <div className={s.wrapper}
+                // onClick={() => toReadHandler(props.note, props.fullDate, props.millsec, props.postId)}
+                 onClick={() => toReadHandler(props.postId)}
+            >
+                <div className={s.post}>
                     <p className={s.date}>{props.fullDate}</p>
                     {postItem}
                 </div>

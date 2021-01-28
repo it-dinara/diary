@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Redirect, useHistory} from 'react-router-dom'
 
@@ -108,7 +108,7 @@ const Auth = () => {
 			controls.password.value,
 			isSignup
 		))
-		history.replace('/start')
+		history.replace('/posts')
 	}
 
 	const switchAuthModeHandler = () => {

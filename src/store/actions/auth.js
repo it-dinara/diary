@@ -60,14 +60,14 @@ export const auth = (email, password, isSignup) => {
                 console.log('userId', response.data.localId);
 				console.log('response.data.expiresIn', response.data.expiresIn);
 				
-				const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 5000); 
+				const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
 				console.log('expirationDate auth', expirationDate)
 				localStorage.setItem('token', response.data.idToken);
 				localStorage.setItem('expirationDate', expirationDate);
 				localStorage.setItem('userId', response.data.localId);
 
 				dispatch(authSuccess(response.data.idToken, response.data.localId));
-				dispatch(checkAuthTimeout(response.data.expiresIn * 5000));
+				dispatch(checkAuthTimeout(response.data.expiresIn * 1000));
             })
             .catch(err => {
                 console.log('err', err.response);

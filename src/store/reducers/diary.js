@@ -39,6 +39,14 @@ const setValue = (state, action) => {
         value: action.value
     })
 }
+
+const clearDiaryObjToEdit = (state, action) => {
+    return {
+        ...state,
+        diaryObj: {}
+    }
+}
+
 //сделать saveNoteInStateStart ..Success ..Fail
 //иначе некрасиво очистка стейта с saveNoteInState(null, null)
 //либо получение поста для чтения сделать из сервера
@@ -197,6 +205,8 @@ const reducer = (state = initialState, action) => {
             return removePostStart(state, action);
         case actionTypes.REMOVE_POST_FAIL:
             return removePostFail(state, action);
+        case actionTypes.CLEAR_DIARY_OBJ_TO_EDIT:
+            return clearDiaryObjToEdit(state, action);
         default:
             return state
     }

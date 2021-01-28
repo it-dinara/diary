@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import s from './TitleMenu.module.css'
 import Title from './Title/Title'
 import {useSelector, useDispatch} from 'react-redux'

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import s from './Posts.module.css';
@@ -10,18 +10,21 @@ import axios from '../../axios-diary.js'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
 
-const Posts = (props) => {
+const Posts = () => {
 	const {token, userId } = useSelector(state => state.auth)
-	const {loading, redirect, fetchedPostsRes} = useSelector(state => state.diary)
+	const {loading, fetchedPostsRes} = useSelector(state => state.diary)
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(actions.saveNoteInState(null))
+	}, [dispatch])
+
 	useEffect(() => {
 		dispatch(actions.setRedirectPath(null))
 		dispatch(actions.fetchPosts(token, userId))
-		dispatch(actions.setPostDataToRead(null, null, null, null))
-		dispatch(actions.saveNoteInState(null, null))
+		// dispatch(actions.setTitle(null))
+
 	}, [token, userId, dispatch])
-
-
 
 	let res = []
 	for(let key in fetchedPostsRes) {
@@ -45,7 +48,6 @@ const Posts = (props) => {
 	const history = useHistory();
 	const makeNewNoteHandler = () => {
 		//очистка стейта от удалёного поста
-		dispatch(actions.setPostDataToRead(null, null, null, null))
 		dispatch(actions.noteInit())
 		history.replace('/')
 	}

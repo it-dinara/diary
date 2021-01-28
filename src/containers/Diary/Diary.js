@@ -9,7 +9,6 @@ function Diary(props) {
 
     const title = useSelector(state => state.diary.title)
     const stateFeelings = useSelector(state => state.diary.diaryObj)
-    const postNote = useSelector(state => state.read.postNote)
     //отрисовка текста в Textarea
     //Например: context: 'Привет'
     let textareaVal = stateFeelings[title] ? stateFeelings[title] : '';
@@ -20,7 +19,8 @@ function Diary(props) {
     useEffect(() => {
         //создание поста
         dispatch(actions.saveNoteInState(title, value))
-    }, [value])
+        console.log('saveNoteInState value', value)
+    }, [title, value, dispatch])
 
 
     return (

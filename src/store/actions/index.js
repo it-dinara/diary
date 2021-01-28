@@ -13,10 +13,12 @@ export {
 	noteInit,
 	saveDiary,
 	fetchPosts,
-	removePost
+	removePost,
+	clearDiaryObjToEdit
 } from './diary.js'
 
 export {
-	setPostDataToRead,
 	removePostNote,
+	setPostId,
+	setPostDataToRead,
 } from './read.js'

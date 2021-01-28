@@ -24,7 +24,7 @@ function DiaryBuilder() {
 
     useEffect(() => {
         dispatch(actions.setRedirectPath(null))
-    }, [])
+    }, [dispatch])
 
     const saveDiaryHandler = (event) => {
         event.preventDefault()

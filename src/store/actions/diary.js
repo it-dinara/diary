@@ -39,6 +39,12 @@ export const noteInit = () => {
     }
 }
 
+export const clearDiaryObjToEdit = () => {
+    return {
+        type: actionTypes.CLEAR_DIARY_OBJ_TO_EDIT
+    }
+}
+
 export const saveDiaryStart = () => {
     return {
         type: actionTypes.SAVE_DIARY_START
