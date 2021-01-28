@@ -17,7 +17,7 @@ const Read = () => {
         for(let title in postNote) {
             dispatch(actions.saveNoteInState(title, postNote[title]))
         }
-        history.replace('/')
+        history.push('/')
     }
 
     const days = [

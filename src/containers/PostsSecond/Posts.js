@@ -49,7 +49,7 @@ const Posts = () => {
 	const makeNewNoteHandler = () => {
 		//очистка стейта от удалёного поста
 		dispatch(actions.noteInit())
-		history.replace('/')
+		history.push('/')
 	}
 
 	const start = (

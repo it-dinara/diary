@@ -32,7 +32,7 @@ const Post = (props) => {
         dispatch(actions.clearDiaryObjToEdit());
         dispatch(actions.setPostId(postId));
         dispatch(actions.setPostDataToRead(token, postId))
-        history.replace('/read')
+        history.push('/read')
     }
 
 

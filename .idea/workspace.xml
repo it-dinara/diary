@@ -3,29 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="button New Note in Posts page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UI/Modal/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Modal/Modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Auth/AuthSecond.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Auth/AuthSecond.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Diary/Diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Diary/Diary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Posts/Post/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Posts/Post/Post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Button/Botton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Button/Botton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Auth/Logout/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Auth/Logout/Logout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Read/Read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Read/Read.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/TitleMenu/Title/Title.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/TitleMenu/Title/Title.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/TitleMenu/TitleMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/TitleMenu/TitleMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hoc/withErrorHandler/withErrorHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/hoc/withErrorHandler/withErrorHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/actionTypes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/diary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/feelings.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/read.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/diary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/feelings.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/read.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +58,7 @@
       <workItem from="1610716217893" duration="14932000" />
       <workItem from="1611593763680" duration="5000" />
       <workItem from="1611694653234" duration="13959000" />
-      <workItem from="1611823161892" duration="5068000" />
+      <workItem from="1611823161892" duration="7985000" />
     </task>
     <task id="LOCAL-00001" summary="corrected the orders of Titles in Posts">
       <created>1610115320771</created>
