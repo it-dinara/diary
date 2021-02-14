@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="button New Note in Posts page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Auth/Logout/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Auth/Logout/Logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Read/Read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Read/Read.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/auth.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

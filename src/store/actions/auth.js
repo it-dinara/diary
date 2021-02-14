@@ -25,6 +25,7 @@ export const authFail = (error) => {
 
 export const logout = () => {
 	localStorage.removeItem('token');
+	localStorage.removeItem('refreshToken');
 	localStorage.removeItem('expirationDate');
 	localStorage.removeItem('userId');
 	return {
@@ -42,6 +43,25 @@ export const checkAuthTimeout = (expirationTime) => {
 		, expirationTime)
 	}
 }
+
+export const ReAuth = () => {
+	setTimeout(() => {
+		const refreshToken = localStorage.getItem('refreshToken');
+		const body = 'grant_type=refresh_token&refresh_token=' + refreshToken
+		let url = 'https://securetoken.googleapis.com/v1/token?key=AIzaSyCHwkentplNqp5vvQlz_uVpf4nVZxciYqk';
+
+		axios.post(url, body)
+			.then(response => {
+				console.log('res ReAuth', response)
+			})
+			.catch(err => {
+				console.log('err ReAuth', err)
+			})
+	}, 5000)
+	
+	
+}
+
 
 export const auth = (email, password, isSignup) => {
     return dispatch => {
@@ -64,18 +84,23 @@ export const auth = (email, password, isSignup) => {
 				const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
 				console.log('expirationDate auth', expirationDate)
 				localStorage.setItem('token', response.data.idToken);
+				localStorage.setItem('refreshToken', response.data.refreshToken);
 				localStorage.setItem('expirationDate', expirationDate);
 				localStorage.setItem('userId', response.data.localId);
 
 				dispatch(authSuccess(response.data.idToken, response.data.localId));
 				dispatch(checkAuthTimeout(response.data.expiresIn * 1000));
+				dispatch(ReAuth())
+				
             })
             .catch(err => {
                 console.log('err', err.response);
-                dispatch(authFail(err.response.data.error));
+                dispatch(authFail(err.response));
             });
     };
 };
+
+
 
 export const setRedirectPath = (path) => {
 	return {
