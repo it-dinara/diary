@@ -23,6 +23,21 @@ export const authFail = (error) => {
     };
 };
 
+export const reAuthSuccess = (token, userId) => {
+	return {
+		type: actionTypes.RE_AUTH_SUCCESS,
+		idToken: token,
+		userId: userId
+	};
+};
+
+export const reAuthFail = (error) => {
+	return {
+		type: actionTypes.RE_AUTH_FAIL,
+		error: error
+	};
+};
+
 export const logout = () => {
 	localStorage.removeItem('token');
 	localStorage.removeItem('refreshToken');
@@ -37,29 +52,40 @@ export const checkAuthTimeout = (expirationTime) => {
 	console.log('checkAuthTimeout', expirationTime)
 	return dispatch => {
 		setTimeout(() => {
-
-			return dispatch(logout())
+			return dispatch(reAuth())
 		}
 		, expirationTime)
 	}
 }
 
-export const ReAuth = () => {
-	setTimeout(() => {
+export const reAuth = () => {
+	return dispatch => {
 		const refreshToken = localStorage.getItem('refreshToken');
 		const body = 'grant_type=refresh_token&refresh_token=' + refreshToken
 		let url = 'https://securetoken.googleapis.com/v1/token?key=AIzaSyCHwkentplNqp5vvQlz_uVpf4nVZxciYqk';
 
 		axios.post(url, body)
 			.then(response => {
-				console.log('res ReAuth', response)
+				console.log('----------------------- \n res ReAuth', response)
+				dispatch(authSuccess(response.data.id_token, response.data.user_id));
+
+				localStorage.removeItem('token');
+				localStorage.removeItem('refreshToken');
+				localStorage.removeItem('expirationDate');
+				localStorage.removeItem('userId');
+
+				const expirationDate = new Date(new Date().getTime() + response.data.expires_in * 1000);
+				localStorage.setItem('token', response.data.id_token);
+				localStorage.setItem('refreshToken', response.data.refresh_token);
+				localStorage.setItem('expirationDate', expirationDate);
+				localStorage.setItem('userId', response.data.user_id);
+
 			})
 			.catch(err => {
-				console.log('err ReAuth', err)
+				console.log('----------------------- \n err ReAuth', err)
+				dispatch(authFail(err))
 			})
-	}, 5000)
-	
-	
+	}
 }
 
 
@@ -89,9 +115,8 @@ export const auth = (email, password, isSignup) => {
 				localStorage.setItem('userId', response.data.localId);
 
 				dispatch(authSuccess(response.data.idToken, response.data.localId));
-				dispatch(checkAuthTimeout(response.data.expiresIn * 1000));
-				dispatch(ReAuth())
-				
+				// dispatch(checkAuthTimeout(response.data.expiresIn * 1000));
+
             })
             .catch(err => {
                 console.log('err', err.response);
@@ -113,7 +138,7 @@ export const authCheckState = () => {
 	return dispatch => {
 		const token = localStorage.getItem('token');
 		if(!token) {
-			dispatch(logout())
+			dispatch(reAuth())
 		} else {
 			const expirationDate = new Date(localStorage.getItem('expirationDate'));
 			if (expirationDate > new Date()) {
@@ -123,7 +148,7 @@ export const authCheckState = () => {
 				dispatch(authSuccess(token, userId));
 				dispatch(checkAuthTimeout(expirationDate.getTime() - new Date().getTime()))
 			} else {
-				dispatch(logout());
+				dispatch(reAuth());
 			}
 		}
 	}

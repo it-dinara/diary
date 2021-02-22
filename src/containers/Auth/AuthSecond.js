@@ -153,7 +153,7 @@ const Auth = () => {
 	if (error) {
 		errorMessage = (
 			<p>
-				{error.message}
+				{error.data.error.message}
 			</p>
 		)
 	}
