@@ -74,17 +74,16 @@ const noteInit = (state, action) => {
     const minutes = date.getMinutes();
 
     const formatDate = (num) => {
-        const newNum = num + 1;
         let res;
-        if (newNum.toString().length < 2) {
-            res = '0' + newNum
+        if (num.toString().length < 2) {
+            res = '0' + num
         } else {
-            res = newNum
+            res = num
         }
         return res
     }
 
-    let fullDate = day + '.' + formatDate(month) + '.' + year + ' ' + hour + ':' + formatDate(minutes);
+    let fullDate = day + '.' + formatDate(month) + '.' + year + ' ' + formatDate(hour) + ':' + formatDate(minutes);
     let millsec = Date.parse(date);
     return updateObject(state, {
         title: action.title,
