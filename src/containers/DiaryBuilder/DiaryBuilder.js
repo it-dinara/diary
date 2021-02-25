@@ -14,10 +14,10 @@ function DiaryBuilder() {
     const {title, titleArray, diaryObj} = useSelector(state => state.diary);
     const {token, userId} = useSelector(state => state.auth)
     const history = useHistory();
-    //Переменные при создании поста
-    const {fullDate, millsec} = useSelector(state => state.diary);
     //Переменные при редактировании поста
-    const {postDate, postMillsec, postId} = useSelector(state => state.read)
+    const postId = useSelector(state => state.read.postId)
+    const postMillsec = useSelector(state => state.read.postData.millsec)
+    const postDate = useSelector(state => state.read.postData.fullDate)
     const dispatch = useDispatch();
     const [startRemoving, setStartRemoving] = useState(false)
     const redirectPath = useSelector(state => state.auth.redirectPath)
@@ -41,7 +41,29 @@ function DiaryBuilder() {
                 console.log('note', note)
             }
         }
+        //Дата
+        let date = new Date();
+        console.log('date', date)
+        let year = date.getFullYear();
+        let month = date.getMonth();
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minutes = date.getMinutes();
 
+        const formatDate = (num) => {
+            let res;
+            if (num.toString().length < 2) {
+                res = '0' + num
+            } else {
+                res = num
+            }
+            return res
+        }
+
+        let fullDate = day + '.' + formatDate(month) + '.' + year + ' ' + formatDate(hour) + ':' + formatDate(minutes);
+        let millsec = Date.parse(date);
+        console.log('postDate', postDate)
+        console.log('postMillsec', postMillsec)
         const diaryData = {
             note: note,
             userId: userId,

@@ -8,6 +8,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 const Read = () => {
 
     const postData = useSelector(state => state.read.postData)
+    // console.log('postData', postData)
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -29,15 +30,7 @@ const Read = () => {
         'Пятница',
         'Суббота'
     ];
-    const template = {
-        context: '',
-        feelings: '',
-        body: '',
-        thought: '',
-        isItFamiliar: '',
-        decision: '',
-        conclusion: '',
-    };
+    const template = useSelector(state => state.diary.template);
     const notes = [];
     let postNote = null;
     if(postData) {

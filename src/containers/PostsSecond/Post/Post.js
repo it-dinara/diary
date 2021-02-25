@@ -6,15 +6,7 @@ import {useHistory} from 'react-router-dom'
 
 const Post = (props) => {
 
-    const template = {
-        context: '',
-        feelings: '',
-        body: '',
-        thought: '',
-        isItFamiliar: '',
-        decision: '',
-        conclusion: '',
-    };
+    const template = useSelector(state => state.diary.template);
     const notes = [];
     for (let postName in template) {
         if (props.note[postName]) {
