@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from "axios";
+import * as actions from "./index";
 
 
 export const removePostNote = (postNote) => {
@@ -43,6 +44,7 @@ export const setPostDataToRead = (token, postId) => {
 		axios.get('https://diary-a95bf.firebaseio.com/journal/' + postId + '.json' + queryParams)
 		.then(res => {
 			dispatch(setPostDataToReadSuccess(res.data))
+			dispatch(actions.setRedirectPath(null))
 			console.log('READUX READ RES', res)
 		})
 		.catch(error => {

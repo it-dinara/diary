@@ -14,7 +14,7 @@ const Read = () => {
 
     const editHandler = () => {
         //здесь из note пост переходит в объект при написании поста - diaryObj
-        dispatch(actions.setRedirectPath(null))
+        // dispatch(actions.setRedirectPath(null))
         for(let title in postNote) {
             dispatch(actions.saveNoteInState(title, postNote[title]))
         }

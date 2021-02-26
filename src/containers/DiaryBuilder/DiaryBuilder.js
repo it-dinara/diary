@@ -22,9 +22,9 @@ function DiaryBuilder() {
     const [startRemoving, setStartRemoving] = useState(false)
     const redirectPath = useSelector(state => state.auth.redirectPath)
 
-    useEffect(() => {
-        dispatch(actions.setRedirectPath(null))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(actions.setRedirectPath(null))
+    // }, [dispatch])
 
     const saveDiaryHandler = (event) => {
         event.preventDefault()
@@ -73,7 +73,6 @@ function DiaryBuilder() {
 
         if (Object.keys(note).length > 0) {
             dispatch(actions.saveDiary(diaryData, token))
-                //history.replace('/posts')
         }
     }
 
@@ -83,7 +82,6 @@ function DiaryBuilder() {
         if (postId) {
             dispatch(actions.removePost(token, postId))
         }
-        history.push('/posts')
     }
 
     let redirect = redirectPath && history.replace(redirectPath);

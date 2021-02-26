@@ -17,10 +17,11 @@ const Posts = () => {
 
 	useEffect(() => {
 		dispatch(actions.saveNoteInState(null))
+		dispatch(actions.setPostId(null))
+		//dispatch(actions.setRedirectPath(null))
 	}, [dispatch])
 
 	useEffect(() => {
-		dispatch(actions.setRedirectPath(null))
 		dispatch(actions.fetchPosts(token, userId))
 		// dispatch(actions.setTitle(null))
 
