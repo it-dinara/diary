@@ -111,6 +111,7 @@ export const fetchPosts = (token, userId) => {
         // console.log('res', res)
             console.log('res.data', res.data)
             dispatch(fetchPostsSuccess(res.data))
+            dispatch(actions.setRedirectPath(null))
         })
         .catch(error => {
             dispatch(fetchPostsFail(error))

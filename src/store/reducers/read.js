@@ -2,7 +2,12 @@ import * as actionTypes from '../actions/actionTypes';
 import {updateObject} from '../utility';
 
 const initialState = {
-    postData: null,
+    postData: {
+        fullDate: null,
+        millsec: null,
+        note: {},
+        userId: null,
+    },
     postId: null,
 }
 
