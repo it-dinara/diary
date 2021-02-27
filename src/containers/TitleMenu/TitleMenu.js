@@ -14,13 +14,8 @@ const TitleMenu = React.memo(props => {
 	const setTitleHandler = (event, title, id) => {
 		event.preventDefault()
 		setActive(active => { return {[id]: !active[id]} })
-		// console.log('id', id)
 		return dispatch(actions.setTitle(title))
 	}
-	// console.log('active', active)
-
-	
-
 
 	return (
 			<ul className={s.titleMenu}>

@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import TextareaAutosize from 'react-textarea-autosize';
 import s from './Diary.module.css'
 import * as actions from '../../store/actions/index'
 import {useDispatch, useSelector} from 'react-redux'
 
 
-function Diary(props) {
+const Diary = React.forwardRef((props, ref) => {
 
     const title = useSelector(state => state.diary.title)
     const stateFeelings = useSelector(state => state.diary.diaryObj)
@@ -15,11 +15,12 @@ function Diary(props) {
     const [value, setValue] = useState(textareaVal)
 
     const dispatch = useDispatch();
-
+    const txt1 = useRef(null);
     useEffect(() => {
         //создание поста
         dispatch(actions.saveNoteInState(title, value))
         console.log('saveNoteInState value', value)
+        txt1.current.focus();
     }, [title, value, dispatch])
 
 
@@ -35,10 +36,13 @@ function Diary(props) {
                 onChange={(event) => {
                     setValue(event.target.value)
                 }}
+                ref={txt1}
+                onFocus={(e)=>e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
+                // autoFocus
             />
         </div>
 
     )
-}
+})
 
 export default Diary

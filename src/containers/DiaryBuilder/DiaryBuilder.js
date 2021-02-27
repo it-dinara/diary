@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import TitleMenu from '../TitleMenu/TitleMenu'
 import Diary from '../Diary/Diary'
 import s from './DiaryBuilder.module.css'
@@ -113,7 +113,7 @@ function DiaryBuilder() {
     );
 
     //в результате setTitle показывается соответствующий Textarea
-    let diary = null
+    let diary = null;
     for (let item of titleArray) {
         if (title === item.name) {
             diary = <Diary
@@ -147,7 +147,7 @@ function DiaryBuilder() {
                     {removeButton}
 
                 </div>
-                <TitleMenu/>
+                <TitleMenu />
                 {diary}
                 {modalAlert}
                 {redirect}
