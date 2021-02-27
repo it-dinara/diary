@@ -24,20 +24,20 @@ const initialState = {
         {id: 10, name: 'answer'},
         {id: 11, name: 'step'},
     ],
-    template: {
-        context: '',
-        feelings: '',
-        body: '',
-        thought: '',
-        isItFamiliar: '',
-        decision: '',
-        conclusion: '',
-        want: '',
-        care: '',
-        question: '',
-        answer: '',
-        step: '',
-    },
+    template: [
+        'context',
+        'feelings',
+        'body',
+        'thought',
+        'isItFamiliar',
+        'decision',
+        'conclusion',
+        'want',
+        'care',
+        'question',
+        'answer',
+        'step',
+    ],
     diaryObj: {},
 }
 
@@ -68,7 +68,7 @@ const clearDiaryObjToEdit = (state, action) => {
 
 //сделать saveNoteInStateStart ..Success ..Fail
 //иначе некрасиво очистка стейта с saveNoteInState(null, null)
-//либо получение поста для чтения сделать из сервера
+//либо получение поста для чтения сделать из сервера - сделала
 const saveNoteInState = (state, action) => {
     let value = null
     if (action.value) {
@@ -107,8 +107,8 @@ const noteInit = (state, action) => {
     return updateObject(state, {
         title: action.title,
         diaryObj: {},
-        fullDate: fullDate,
-        millsec: millsec,
+        fullDate: null,
+        millsec: null,
     })
 }
 

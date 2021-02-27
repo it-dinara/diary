@@ -8,7 +8,7 @@ const Post = (props) => {
 
     const template = useSelector(state => state.diary.template);
     const notes = [];
-    for (let postName in template) {
+    for (let postName of template) {
         if (props.note[postName]) {
             notes.push({
                 name: postName,

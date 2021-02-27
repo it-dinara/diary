@@ -36,7 +36,7 @@ const Read = () => {
     if(postData) {
         postNote = postData.note;
         console.log('postNote', postNote)
-        for (let postName in template) {
+        for (let postName of template) {
             if (postNote[postName]) {
                 notes.push({
                     name: postName,

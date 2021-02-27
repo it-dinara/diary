@@ -11,7 +11,9 @@ import Modal from "../../components/UI/Modal/Modal";
 
 
 function DiaryBuilder() {
-    const {title, titleArray, diaryObj} = useSelector(state => state.diary);
+    const title = useSelector(state => state.diary.title);
+    const titleArray = useSelector(state => state.diary.titleArray);
+    const diaryObj = useSelector(state => state.diary.diaryObj);
     const {token, userId} = useSelector(state => state.auth)
     const history = useHistory();
     //Переменные при редактировании поста
@@ -67,8 +69,8 @@ function DiaryBuilder() {
         const diaryData = {
             note: note,
             userId: userId,
-            fullDate: postDate ? postDate : fullDate,
-            millsec: postMillsec ? postMillsec : millsec,
+            fullDate: (postId && postDate) ? postDate : fullDate,
+            millsec: (postId && postMillsec) ? postMillsec : millsec,
         }
 
         if (Object.keys(note).length > 0) {

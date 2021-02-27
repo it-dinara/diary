@@ -38,7 +38,6 @@ const Diary = React.forwardRef((props, ref) => {
                 }}
                 ref={txt1}
                 onFocus={(e)=>e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
-                // autoFocus
             />
         </div>
 

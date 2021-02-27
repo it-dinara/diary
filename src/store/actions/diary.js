@@ -147,7 +147,7 @@ export const removePost = (token, postId) => {
         .then(res => {
             console.log('REDUX postId', postId)
             // dispatch(removePostSuccess(postId))
-            // dispatch(actions.setRedirectPath('/posts'))
+            dispatch(actions.setRedirectPath('/posts'))
         })
         .catch(error => {
             dispatch(removePostFail(error))

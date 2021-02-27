@@ -1,6 +1,7 @@
 .Content {
-    margin-top: 72px;
-    height: calc(100vh - 72px);
+    margin-top: 56px;
+    padding-top: 16px;
+    height: calc(100vh - 56px);
     display: flex;
     flex-direction: column;
 }
