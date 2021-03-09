@@ -153,7 +153,7 @@ const Auth = () => {
 	if (error) {
 		errorMessage = (
 			<p>
-				{error.data.error.message}
+				{error.data && error.data.error.message}
 			</p>
 		)
 	}

@@ -101,21 +101,40 @@ export const fetchPostsStart = () => {
     }
 }
 
-export const fetchPosts = (token, userId) => {
-    return dispatch => {
-        dispatch(fetchPostsStart());
+// export const fetchPosts = (token, userId) => {
+//     return dispatch => {
+//         dispatch(fetchPostsStart());
+//
+//         const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+//         axiosInstance.get('/journal.json' + queryParams)
+//         .then(res => {
+//         // console.log('res', res)
+//             console.log('res.data', res.data)
+//             dispatch(fetchPostsSuccess(res.data))
+//             dispatch(actions.setRedirectPath(null))
+//         })
+//         .catch(error => {
+//             dispatch(fetchPostsFail(error))
+//         })
+//     }
+// }
 
+export const fetchPosts = (token, userId) => {
+    return async dispatch => {
+        dispatch(fetchPostsStart());
         const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
-        axiosInstance.get('/journal.json' + queryParams)
-        .then(res => {
-        // console.log('res', res)
+
+        try {
+
+            const res = await axiosInstance.get('/journal.json' + queryParams)
             console.log('res.data', res.data)
             dispatch(fetchPostsSuccess(res.data))
             dispatch(actions.setRedirectPath(null))
-        })
-        .catch(error => {
-            dispatch(fetchPostsFail(error))
-        })
+
+        } catch (e) {
+            dispatch(fetchPostsFail(e))
+        }
+
     }
 }
 
@@ -140,6 +159,10 @@ export const removePostFail = (error) => {
 }
 
 export const removePost = (token, postId) => {
+    if (!postId.length) {
+        console.log('Did not delete, removePost postId not correct', postId)
+        return null;
+    }
     return dispatch => {
         dispatch(removePostStart())
         const queryParams = '?auth=' + token;
