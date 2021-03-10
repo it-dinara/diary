@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import s from './Posts.module.css';
 
 import Post from './Post/Post';
@@ -14,6 +14,7 @@ const Posts = () => {
 	const {token, userId } = useSelector(state => state.auth)
 	const {loading, fetchedPostsRes} = useSelector(state => state.diary)
 	const dispatch = useDispatch();
+	const [value, setValue] = useState('')
 
 	useEffect(() => {
 		dispatch(actions.saveNoteInState(null))
@@ -33,19 +34,37 @@ const Posts = () => {
 			res.push(fetchedPostsRes[key])
 		}
 	}
-	res.sort((a, b) => b.millsec - a.millsec) 
+	const [flag, setFlag] = useState(false)
+	if(!flag) {
+		res.sort((a, b) => b.millsec - a.millsec)
+	} else {
+		res.sort((a, b) => a.millsec - b.millsec)
+	}
+
+	const sortHandler = () => {
+		setFlag(!flag)
+	}
+
 	let posts = <Spinner/>;
 	if (!loading) {
-		posts = res.map(post => (
-			<Post
-			key={post.id}
-			note={post.note}
-			fullDate={post.fullDate}
-			postId={post.id}
-			millsec={post.millsec}
-			/>
-		)) 
+
+		posts = res.map(post => {
+			if(value=== '' || Object.keys(post.note).concat(Object.values(post.note)).join(' ').indexOf(value) >= 0) {
+				return (
+					<Post
+						key={post.id}
+						note={post.note}
+						fullDate={post.fullDate}
+						postId={post.id}
+						millsec={post.millsec}
+					/>
+				)
+			}
+
+		})
 	}
+
+
 	const history = useHistory();
 	const makeNewNoteHandler = () => {
 		//очистка стейта от удалёного поста
@@ -57,12 +76,22 @@ const Posts = () => {
 		<button
 			className={s.newNote}
 			onClick={(event) => {makeNewNoteHandler(event)}}
-		>
+			>
 			New note
 		</button>
 	)
 
 	return <div className={s.container}>
+		<div className={s.search}>
+			<input
+				type='text'
+				value={value}
+				onChange={(event) => {
+					console.log('val', event.target.value)
+					setValue(event.target.value)}}
+			/>
+			<button onClick={sortHandler}>{flag ? '↓↑' : '↑↓'}</button>
+		</div>
 		{start}
 		{posts}
 	</div>

@@ -62,7 +62,7 @@ function DiaryBuilder() {
             return res
         }
 
-        let fullDate = day + '.' + formatDate(month) + '.' + year + ' ' + formatDate(hour) + ':' + formatDate(minutes);
+        let fullDate = day + '.' + formatDate(month + 1) + '.' + year + ' ' + formatDate(hour) + ':' + formatDate(minutes);
         let millsec = Date.parse(date);
         console.log('postDate', postDate)
         console.log('postMillsec', postMillsec)
