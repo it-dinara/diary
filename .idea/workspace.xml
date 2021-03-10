@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="button New Note in Posts page">
-      <change beforePath="$PROJECT_DIR$/src/store/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/auth.js" afterDir="false" />
+    <list default="true" id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="Search and Sort in Posts Page DIAR-18">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,6 +13,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1mbzDByroVjIx6jZd5mEuk6UFz7" />
   <component name="ProjectLevelVcsManager">
@@ -37,6 +42,23 @@
       <recent name="C:\Users\TheBoringDeveloper\git\diary\src\containers" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -54,6 +76,7 @@
       <workItem from="1611593763680" duration="5000" />
       <workItem from="1611694653234" duration="13959000" />
       <workItem from="1611823161892" duration="7985000" />
+      <workItem from="1615364639612" duration="9086000" />
     </task>
     <task id="LOCAL-00001" summary="corrected the orders of Titles in Posts">
       <created>1610115320771</created>
@@ -90,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611430671560</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Search and Sort in Posts Page DIAR-18">
+      <created>1615372812926</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1615372812926</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +144,7 @@
     <MESSAGE value="made Delete Alert" />
     <MESSAGE value="made SetRedirectPatch for whole project" />
     <MESSAGE value="Removed Item Note from NavigationBar, fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed Item Note from NavigationBar, fixes" />
+    <MESSAGE value="Search and Sort in Posts Page DIAR-18" />
+    <option name="LAST_COMMIT_MESSAGE" value="Search and Sort in Posts Page DIAR-18" />
   </component>
 </project>

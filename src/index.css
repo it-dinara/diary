@@ -98,7 +98,7 @@ button {
 }
 
 /* Remove excess padding and border in Firefox 4+ */
-&::-moz-focus-inner {
+button::-moz-focus-inner {
     border: 0;
     padding: 0;
 }
