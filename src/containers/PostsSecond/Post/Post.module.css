@@ -8,11 +8,11 @@
     padding: 0 20px;
 	height: 100px;
 	overflow: hidden;
+	white-space: pre-wrap;
 }
 
 .post {
 	transition: all .2s;
-	height: 90px;
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-line-clamp: 3;

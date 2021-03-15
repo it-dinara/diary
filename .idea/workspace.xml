@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="Search and Sort in Posts Page DIAR-18">
+    <list default="true" id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="Lazy Loading on Post Component DIAR-31">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/TitleMenu/TitleMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/TitleMenu/TitleMenu.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +79,9 @@
       <workItem from="1611694653234" duration="13959000" />
       <workItem from="1611823161892" duration="7985000" />
       <workItem from="1615364639612" duration="9086000" />
+      <workItem from="1615542521483" duration="636000" />
+      <workItem from="1615751476188" duration="575000" />
+      <workItem from="1615823105591" duration="3794000" />
     </task>
     <task id="LOCAL-00001" summary="corrected the orders of Titles in Posts">
       <created>1610115320771</created>

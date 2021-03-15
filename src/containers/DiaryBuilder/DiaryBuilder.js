@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import * as actions from '../../store/actions/index'
 import axios from '../../axios-diary.js'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
-import {useHistory} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import Modal from "../../components/UI/Modal/Modal";
 
 
@@ -15,7 +15,6 @@ function DiaryBuilder() {
     const titleArray = useSelector(state => state.diary.titleArray);
     const diaryObj = useSelector(state => state.diary.diaryObj);
     const {token, userId} = useSelector(state => state.auth)
-    const history = useHistory();
     //Переменные при редактировании поста
     const postId = useSelector(state => state.read.postId)
     const postMillsec = useSelector(state => state.read.postData.millsec)
@@ -86,7 +85,7 @@ function DiaryBuilder() {
         }
     }
 
-    let redirect = redirectPath && history.replace(redirectPath);
+    let redirect = redirectPath && <Redirect to={'/posts'}/>
 
     let modalAlert = (
         <Modal show={startRemoving} modalClosed={() => {setStartRemoving(false)}}>

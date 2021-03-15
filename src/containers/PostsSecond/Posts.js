@@ -47,13 +47,11 @@ const Posts = () => {
 
     let posts = <Spinner/>;
     if (!loading) {
-
         posts = res.map(post => {
             if (value === '' || Object.keys(post.note).concat(Object.values(post.note)).join(' ').indexOf(value) >= 0) {
                 return (
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<div>Loading...</div>} key={post.id}>
                         <Post
-                            key={post.id}
                             note={post.note}
                             fullDate={post.fullDate}
                             postId={post.id}
@@ -61,8 +59,7 @@ const Posts = () => {
                         />
                     </Suspense>
                 )
-            }
-
+            } return null
         })
     }
 

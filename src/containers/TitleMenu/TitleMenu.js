@@ -35,7 +35,7 @@ const TitleMenu = React.memo(props => {
 			}
 
 		}
-	}, [])
+	}, [postId,titleArray,template,postNote,dispatch])
 
 	return (
 			<ul className={s.titleMenu}>
