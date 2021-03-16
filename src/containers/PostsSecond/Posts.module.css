@@ -74,4 +74,30 @@
 		width: 80%;
 		max-width: 630px;
 	}
+	.list {
+		height: calc(100vh - 300px);
+		overflow-y: scroll;
+		background: #f0f8ffd9;
+		border-radius: 10px;
+	}
+	/* width */
+	::-webkit-scrollbar {
+		width: 2px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		border-radius: 10px;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: #262e3391;
+		border-radius: 10px;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: #262e33;
+	}
 }

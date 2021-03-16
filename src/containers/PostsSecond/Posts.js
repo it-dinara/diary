@@ -95,7 +95,9 @@ const Posts = () => {
             <button onClick={sortHandler}>{flag ? '↓↑' : '↑↓'}</button>
         </div>
         {start}
-        {posts}
+        <div className={s.list}>
+            {posts}
+        </div>
     </div>
 }
 
