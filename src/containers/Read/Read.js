@@ -63,11 +63,13 @@ const Read = () => {
                             onClick={() => editHandler()}
                     >edit
                     </button>
-                    <div className={s.dateWrap}>
-                        <p className={[s.date, s.day].join(' ')}>{days[new Date(postData.millsec).getDay()]}</p>
-                        <p className={s.date}>{postData.fullDate}</p>
+                    <div className={s.read}>
+                        <div className={s.dateWrap}>
+                            <p className={[s.date, s.day].join(' ')}>{days[new Date(postData.millsec).getDay()]}</p>
+                            <p className={s.date}>{postData.fullDate}</p>
+                        </div>
+                        {postItem}
                     </div>
-                    {postItem}
                 </div>
             </div>
         </>

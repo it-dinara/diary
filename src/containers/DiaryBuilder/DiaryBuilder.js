@@ -148,8 +148,10 @@ function DiaryBuilder() {
                     {removeButton}
 
                 </div>
-                <TitleMenu />
-                {diary}
+                <div className={s.diary}>
+                    <TitleMenu />
+                    {diary}
+                </div>
                 {modalAlert}
                 {redirect}
             </div>

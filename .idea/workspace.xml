@@ -3,14 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="87c6e837-51bb-47c3-b184-b1c824371e13" name="Default Changelist" comment="Lazy Loading on Post Component DIAR-31">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/architecture.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Diary/Diary.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Diary/Diary.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Spinner/Spinner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Spinner/Spinner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Spinner/Spinner.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Spinner/Spinner.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Auth/Auth.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Auth/Auth.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/DiaryBuilder/DiaryBuilder.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Post/Post.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/PostsSecond/Posts.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Read/Read.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Read/Read.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/Read/Read.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Read/Read.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hoc/Layout/Layout.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/hoc/Layout/Layout.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/diary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/diary.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +95,7 @@
       <workItem from="1615751476188" duration="575000" />
       <workItem from="1615823105591" duration="3794000" />
       <workItem from="1615921364995" duration="6160000" />
+      <workItem from="1616058315424" duration="5967000" />
     </task>
     <task id="LOCAL-00001" summary="corrected the orders of Titles in Posts">
       <created>1610115320771</created>

@@ -20,9 +20,6 @@ const initialState = {
         {id: 6, name: 'conclusion'},
         {id: 7, name: 'want'},
         {id: 8, name: 'care'},
-        {id: 9, name: 'question'},
-        {id: 10, name: 'answer'},
-        {id: 11, name: 'step'},
     ],
     template: [
         'context',
@@ -34,9 +31,6 @@ const initialState = {
         'conclusion',
         'want',
         'care',
-        'question',
-        'answer',
-        'step',
     ],
     diaryObj: {},
 }

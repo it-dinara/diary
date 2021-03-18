@@ -6,7 +6,6 @@ import * as actions from '../../store/actions/index'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import axios from '../../axios-diary.js'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
-// import Post from './Post/Post';
 const Post = React.lazy(() => import('./Post/Post'))
 
 
@@ -19,12 +18,10 @@ const Posts = () => {
     useEffect(() => {
         dispatch(actions.saveNoteInState(null))
         dispatch(actions.setPostId(null))
-        //dispatch(actions.setRedirectPath(null))
     }, [dispatch])
 
     useEffect(() => {
         dispatch(actions.fetchPosts(token, userId))
-        // dispatch(actions.setTitle(null))
 
     }, [token, userId, dispatch])
 
@@ -83,18 +80,21 @@ const Posts = () => {
     )
 
     return <div className={s.container}>
-        <div className={s.search}>
-            <input
-                type='text'
-                value={value}
-                onChange={(event) => {
-                    console.log('val', event.target.value)
-                    setValue(event.target.value)
-                }}
-            />
-            <button onClick={sortHandler}>{flag ? '↓↑' : '↑↓'}</button>
+        <div className={s.panel}>
+            {start}
+            <div className={s.search}>
+                <button onClick={sortHandler}>{flag ? '↓↑' : '↑↓'}</button>
+                <input
+                    type='text'
+                    value={value}
+                    onChange={(event) => {
+                        console.log('val', event.target.value)
+                        setValue(event.target.value)
+                    }}
+                />
+            </div>
         </div>
-        {start}
+
         <div className={s.list}>
             {posts}
         </div>

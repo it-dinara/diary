@@ -75,10 +75,16 @@
 }
 
 @media (min-width: 600px) {
-	.post {
+	.read {
 		padding: 25px 15px;
-		background: #f0f8ffd9;
+		background: #f0f8ff;
 		border-radius: 10px;
+	}
+	.editPost {
+		margin: -10px 0 25px 15px;
+	}
+	.wrapper {
+		margin: 70px auto;
 	}
 }
 
