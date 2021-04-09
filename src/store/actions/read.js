@@ -45,7 +45,7 @@ export const setPostDataToRead = (token, postId) => {
 		.then(res => {
 			dispatch(setPostDataToReadSuccess(res.data))
 			dispatch(actions.setRedirectPath(null))
-			console.log('READUX READ RES', res)
+			// console.log('READUX READ RES', res)
 		})
 		.catch(error => {
 			dispatch(setPostDataToReadFail(error))

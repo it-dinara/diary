@@ -39,12 +39,12 @@ function DiaryBuilder() {
         for (let key in diaryObj) {
             if (diaryObj[key]) {
                 note[key] = diaryObj[key]
-                console.log('note', note)
+                // console.log('note', note)
             }
         }
         //Дата
         let date = new Date();
-        console.log('date', date)
+        // console.log('date', date)
         let year = date.getFullYear();
         let month = date.getMonth();
         let day = date.getDate();
@@ -63,8 +63,8 @@ function DiaryBuilder() {
 
         let fullDate = day + '.' + formatDate(month + 1) + '.' + year + ' ' + formatDate(hour) + ':' + formatDate(minutes);
         let millsec = Date.parse(date);
-        console.log('postDate', postDate)
-        console.log('postMillsec', postMillsec)
+        // console.log('postDate', postDate)
+        // console.log('postMillsec', postMillsec)
         const diaryData = {
             note: note,
             userId: userId,
@@ -89,7 +89,6 @@ function DiaryBuilder() {
 
     let modalAlert = (
         <Modal show={startRemoving} modalClosed={() => {setStartRemoving(false)}}>
-            {console.log('removing', startRemoving)}
             <p style={{textAlign: 'center'}}>Are you sure you want to delete the post?</p>
 
             <div className={s.modal}>

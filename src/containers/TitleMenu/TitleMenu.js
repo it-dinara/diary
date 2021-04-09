@@ -27,7 +27,7 @@ const TitleMenu = React.memo(props => {
 		} else {
 			for(let title of template) {
 				if(Object.keys(postNote).includes(title)) {
-					console.log('template title', title)
+					// console.log('template title', title)
 					dispatch(actions.setTitle(title))
 					setActive({[title]: true})
 					break

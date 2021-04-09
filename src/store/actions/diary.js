@@ -71,7 +71,7 @@ export const saveDiary = (diaryData, token) => {
         dispatch(saveDiaryStart());
         axiosInstance.post('/journal.json?auth=' + token, diaryData)
             .then(response => {
-                console.log('response save', response)
+                // console.log('response save', response)
                 dispatch(saveDiarySuccess(response.data.name, diaryData))
                 dispatch(actions.setRedirectPath('/posts'))
             })
@@ -127,7 +127,7 @@ export const fetchPosts = (token, userId) => {
         try {
 
             const res = await axiosInstance.get('/journal.json' + queryParams)
-            console.log('res.data', res.data)
+            // console.log('res.data', res.data)
             dispatch(fetchPostsSuccess(res.data))
             dispatch(actions.setRedirectPath(null))
 
@@ -160,7 +160,7 @@ export const removePostFail = (error) => {
 
 export const removePost = (token, postId) => {
     if (!postId.length) {
-        console.log('Did not delete, removePost postId not correct', postId)
+        // console.log('Did not delete, removePost postId not correct', postId)
         return null;
     }
     return dispatch => {
@@ -168,7 +168,7 @@ export const removePost = (token, postId) => {
         const queryParams = '?auth=' + token;
         axios.delete('https://diary-a95bf.firebaseio.com/journal/' + postId + '.json' + queryParams)
         .then(res => {
-            console.log('REDUX postId', postId)
+            // console.log('REDUX postId', postId)
             // dispatch(removePostSuccess(postId))
             dispatch(actions.setRedirectPath('/posts'))
         })

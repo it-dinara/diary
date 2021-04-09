@@ -19,7 +19,7 @@ const Diary = React.forwardRef((props, ref) => {
     useEffect(() => {
         //создание поста
         dispatch(actions.saveNoteInState(title, value))
-        console.log('saveNoteInState value', value)
+        // console.log('saveNoteInState value', value)
         txt1.current.focus();
     }, [title, value, dispatch])
 

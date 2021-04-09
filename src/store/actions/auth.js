@@ -39,17 +39,14 @@ export const reAuthFail = (error) => {
 };
 
 export const logout = () => {
-	localStorage.removeItem('token');
-	localStorage.removeItem('refreshToken');
-	localStorage.removeItem('expirationDate');
-	localStorage.removeItem('userId');
+	sessionStorage.clear()
 	return {
 		type: actionTypes.AUTH_LOGOUT,
 	}
 }
 
 export const checkAuthTimeout = (expirationTime) => {
-	console.log('checkAuthTimeout', expirationTime)
+	// console.log('checkAuthTimeout', expirationTime)
 	return dispatch => {
 		setTimeout(() => {
 			return dispatch(reAuth())
@@ -60,29 +57,26 @@ export const checkAuthTimeout = (expirationTime) => {
 
 export const reAuth = () => {
 	return dispatch => {
-		const refreshToken = localStorage.getItem('refreshToken');
+		const refreshToken = sessionStorage.getItem('refreshToken');
 		const body = 'grant_type=refresh_token&refresh_token=' + refreshToken
 		let url = 'https://securetoken.googleapis.com/v1/token?key=AIzaSyCHwkentplNqp5vvQlz_uVpf4nVZxciYqk';
 
 		axios.post(url, body)
 			.then(response => {
-				console.log('----------------------- \n res ReAuth', response)
+				// console.log('----------------------- \n res ReAuth', response)
 				dispatch(authSuccess(response.data.id_token, response.data.user_id));
 
-				localStorage.removeItem('token');
-				localStorage.removeItem('refreshToken');
-				localStorage.removeItem('expirationDate');
-				localStorage.removeItem('userId');
+				sessionStorage.clear()
 
 				const expirationDate = new Date(new Date().getTime() + response.data.expires_in * 1000);
-				localStorage.setItem('token', response.data.id_token);
-				localStorage.setItem('refreshToken', response.data.refresh_token);
-				localStorage.setItem('expirationDate', expirationDate);
-				localStorage.setItem('userId', response.data.user_id);
+				sessionStorage.setItem('token', response.data.id_token);
+				sessionStorage.setItem('refreshToken', response.data.refresh_token);
+				sessionStorage.setItem('expirationDate', expirationDate);
+				sessionStorage.setItem('userId', response.data.user_id);
 
 			})
 			.catch(err => {
-				console.log('----------------------- \n err ReAuth', err)
+				// console.log('----------------------- \n err ReAuth', err)
 				dispatch(authFail(err))
 			})
 	}
@@ -103,23 +97,20 @@ export const auth = (email, password, isSignup) => {
         }
         axios.post(url, authData)
             .then(response => {
-                console.log('response', response);
-                console.log('userId', response.data.localId);
-				console.log('response.data.expiresIn', response.data.expiresIn);
 				
 				const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-				console.log('expirationDate auth', expirationDate)
-				localStorage.setItem('token', response.data.idToken);
-				localStorage.setItem('refreshToken', response.data.refreshToken);
-				localStorage.setItem('expirationDate', expirationDate);
-				localStorage.setItem('userId', response.data.localId);
+				// console.log('expirationDate auth', expirationDate)
+				sessionStorage.setItem('token', response.data.idToken);
+				sessionStorage.setItem('refreshToken', response.data.refreshToken);
+				sessionStorage.setItem('expirationDate', expirationDate);
+				sessionStorage.setItem('userId', response.data.localId);
 
 				dispatch(authSuccess(response.data.idToken, response.data.localId));
 				// dispatch(checkAuthTimeout(response.data.expiresIn * 1000));
 
             })
             .catch(err => {
-                console.log('err', err.response);
+                // console.log('err', err.response);
                 dispatch(authFail(err.response));
             });
     };
@@ -136,14 +127,14 @@ export const setRedirectPath = (path) => {
 
 export const authCheckState = () => {
 	return dispatch => {
-		const token = localStorage.getItem('token');
+		const token = sessionStorage.getItem('token');
 		if(!token) {
 			dispatch(reAuth())
 		} else {
-			const expirationDate = new Date(localStorage.getItem('expirationDate'));
+			const expirationDate = new Date(sessionStorage.getItem('expirationDate'));
 			if (expirationDate > new Date()) {
-				const userId = localStorage.getItem('userId');
-				console.log( 'expirationDate authCheckState', expirationDate.getTime() - new Date().getTime() )
+				const userId = sessionStorage.getItem('userId');
+				// console.log( 'expirationDate authCheckState', expirationDate.getTime() - new Date().getTime() )
 				
 				dispatch(authSuccess(token, userId));
 				dispatch(checkAuthTimeout(expirationDate.getTime() - new Date().getTime()))

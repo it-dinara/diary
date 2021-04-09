@@ -20,8 +20,8 @@ const App = (props) => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(actions.authCheckState())
-        const expirationDate = localStorage.getItem('expirationDate');
-        console.log('expirationDate App', expirationDate)
+        // const expirationDate = localStorage.getItem('expirationDate');
+        // console.log('expirationDate App', expirationDate)
     }, [dispatch])
 
 

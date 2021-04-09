@@ -35,7 +35,7 @@ const Read = () => {
     let postNote = null;
     if(postData) {
         postNote = postData.note;
-        console.log('postNote', postNote)
+        // console.log('postNote', postNote)
         for (let postName of template) {
             if (postNote[postName]) {
                 notes.push({
@@ -49,7 +49,7 @@ const Read = () => {
 
     let post = Spinner;
     if(postData) {
-        console.log('notes', notes)
+        // console.log('notes', notes)
         const postItem = notes.map((item, i) => (
             <div className={s.container} key={i}>
                 <p className={s.name}>{item.name}</p>
