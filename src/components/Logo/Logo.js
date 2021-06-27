@@ -7,6 +7,7 @@ const logo = (props) => (
     <div className={s.Logo} style={{height: props.height}}>
         <img src={burgerLogo}  style={{height: '53px'}} alt="Diary" />
         {'test1'}
+        {'test on new branch'}
     </div>
 );
 
