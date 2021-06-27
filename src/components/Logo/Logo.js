@@ -8,6 +8,7 @@ const logo = (props) => (
         <img src={burgerLogo}  style={{height: '53px'}} alt="Diary" />
         {'test1'}
         {'test on new branch'}
+        {'test on new branch second commit'}
     </div>
 );
 
