@@ -10,12 +10,14 @@ import reportWebVitals from "./reportWebVitals";
 import authReducer from "./store/reducers/auth";
 import diaryReducer from "./store/reducers/diary";
 import readReducer from "./store/reducers/read";
+import testReducer from "./features/test/testSlice";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     diary: diaryReducer,
     read: readReducer,
+    test: testReducer,
   },
 });
 
