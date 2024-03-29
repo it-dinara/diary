@@ -10,7 +10,7 @@ const testSlice = createSlice({
   initialState,
   reducers: {
     tested(state, action) {
-      state.testState.push(action.payload);
+      state.second = action.payload;
     },
   },
 });

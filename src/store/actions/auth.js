@@ -86,7 +86,7 @@ export const reAuth = () => {
 export const auth = (email, password, isSignup) => {
     return dispatch => {
         dispatch(authStart());
-        const authData = {
+		const authData = {
             email: email,
             password: password,
             returnSecureToken: true
