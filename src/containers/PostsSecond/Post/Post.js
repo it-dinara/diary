@@ -26,8 +26,7 @@ const Post = (props) => {
   const toReadHandler = (postId) => {
     dispatch(actions.clearDiaryObjToEdit());
     dispatch(setPostId(postId));
-    console.log("postId", postId, props.postId);
-    dispatch(setPostDataToRead({token, postId}));
+    dispatch(setPostDataToRead({ token, postId }));
     history.push("/read");
   };
   const second2 = useSelector((state) => state.test.second);

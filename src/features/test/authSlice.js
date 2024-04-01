@@ -2,11 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  token: null,
   userId: null,
+  token: null,
   error: null,
   loading: false,
   redirectPath: "/",
+  authData: null,
 };
 
 const authSlice = createSlice({
@@ -14,8 +15,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout(state, action) {
-      state.token = null;
-      state.userId = null;
+      return;
     },
     setRedirectPath(state, action) {
       state.redirectPath = action.payload;
@@ -25,14 +25,20 @@ const authSlice = createSlice({
     builder
       .addCase(auth.pending, (state, action) => {
         state.loading = true;
+        // console.log(action.meta.arg);
+        state.email = action.meta.arg.email;
+        state.password = action.meta.arg.password;
       })
       .addCase(auth.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.error.message;
       })
       .addCase(auth.fulfilled, (state, action) => {
+        const { idToken, localId } = action.payload;
+        state.token = idToken;
+        state.userId = localId;
         state.loading = false;
-        state.postData = action.payload;
+        state.error = null;
       });
   },
 });
@@ -45,6 +51,7 @@ export const auth = createAsyncThunk(
       password: password,
       returnSecureToken: true,
     };
+
     let url =
       "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCHwkentplNqp5vvQlz_uVpf4nVZxciYqk";
     if (!isSignup) {
@@ -55,7 +62,7 @@ export const auth = createAsyncThunk(
     const expirationDate = new Date(
       new Date().getTime() + response.data.expiresIn * 1000
     );
-    // console.log('expirationDate auth', expirationDate)
+
     sessionStorage.setItem("token", response.data.idToken);
     sessionStorage.setItem("refreshToken", response.data.refreshToken);
     sessionStorage.setItem("expirationDate", expirationDate);

@@ -38,7 +38,6 @@ const readSlice = createSlice({
 export const setPostDataToRead = createAsyncThunk(
   "read/setPostDataToRead",
   async ({ token, postId }) => {
-    console.log("slice", postId);
     const queryParams = "?auth=" + token;
     const response = await axios.get(`
       https://diary-a95bf.firebaseio.com/journal/${postId}.json${queryParams}

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   testState: [],
@@ -14,6 +14,8 @@ const testSlice = createSlice({
     },
   },
 });
+
+// export createAsyncThunk("test/async", {payload})
 
 export const { tested } = testSlice.actions;
 
