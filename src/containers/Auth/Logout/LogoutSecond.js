@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { logout } from "../../../features/test/authSlice";
 
 const Logout = () => {
@@ -10,7 +10,7 @@ const Logout = () => {
     dispatch(logout());
   }, [dispatch]);
 
-  return <Redirect to="/auth" />;
+  return <Navigate to="/auth" push />;
 };
 
 export default Logout;

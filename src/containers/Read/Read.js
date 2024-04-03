@@ -1,27 +1,28 @@
 import { useSelector, useDispatch } from "react-redux";
 import s from "./Read.module.css";
-import { useHistory } from "react-router-dom";
-import * as actions from "../../store/actions/index";
+import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { useEffect } from "react";
+import { saveNoteInState } from "../../features/test/diarySlice.js";
 
 const Read = () => {
   const postData = useSelector((state) => state.read.postData);
   // console.log('postData', postData)
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const editHandler = () => {
     //здесь из note пост переходит в объект при написании поста - diaryObj
     // dispatch(actions.setRedirectPath(null))
     for (let title in postNote) {
-      dispatch(actions.saveNoteInState(title, postNote[title]));
+      let value = postNote[title];
+      dispatch(saveNoteInState({ title, value }));
     }
-    history.push("/");
+    navigate("/");
   };
 
-//   const postIdSelector = useSelector((state) => state.read.postId);
-//   useEffect(() => console.log("page read postId", postIdSelector), []);
+  //   const postIdSelector = useSelector((state) => state.read.postId);
+  //   useEffect(() => console.log("page read postId", postIdSelector), []);
 
   const days = [
     "Воскресенье",

@@ -2,7 +2,7 @@ import authReducer from "../features/test/authSlice";
 import readReducer from "../features/test/readSlice";
 import testReducer from "../features/test/testSlice";
 import { logout } from "../features/test/authSlice";
-import diaryReducer from "../store/reducers/diary";
+import diaryReducer from "../features/test/diarySlice";
 import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit";
 
 const listenerMiddleware = createListenerMiddleware();

@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
 import Spinner from "../../components/UI/Spinner/Spinner";
-
 import classes from "./Auth.module.css";
-import * as actions from "../../store/actions/index";
-
 import { auth } from "../../features/test/authSlice";
 
 const Auth = () => {
@@ -104,7 +100,7 @@ const Auth = () => {
 
     setControls(updatedControls);
   };
-  const history = useHistory();
+  const navigate = useNavigate();
   const submitHandler = (event) => {
     event.preventDefault();
     const {
@@ -112,7 +108,7 @@ const Auth = () => {
       password: { value: password },
     } = controls;
     dispatch(auth({ email, password, isSignup }));
-    // history.replace("/posts");
+    navigate("/posts");
   };
 
   const switchAuthModeHandler = () => {
@@ -149,7 +145,7 @@ const Auth = () => {
   let redirect = null;
   if (isAuthenticated) {
     console.log("isAuthenticated", isAuthenticated);
-    // redirect = <Redirect to={redirectPath} />;
+    // redirect = <Navigate to={redirectPath} />;
   }
 
   let errorMessage = null;

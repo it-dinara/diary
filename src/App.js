@@ -2,7 +2,7 @@
 // import theme from '@rebass/preset'
 import "./App.css";
 
-import { Route, Switch, withRouter, Redirect } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import DiaryBuilder from "./containers/DiaryBuilder/DiaryBuilder";
 import Start from "./containers/Start/Start";
@@ -10,7 +10,6 @@ import Read from "./containers/Read/Read";
 import Posts from "./containers/PostsSecond/Posts";
 import Auth from "./containers/Auth/AuthSecond";
 import Logout from "./containers/Auth/Logout/LogoutSecond";
-import * as actions from "./store/actions/index";
 import React, { useEffect } from "react";
 import Layout from "./hoc/Layout/Layout";
 
@@ -24,21 +23,22 @@ const App = (props) => {
   }, [dispatch]);
 
   let router = (
-    <Switch>
-      <Route path="/auth" exact component={Auth} />
-      <Redirect to="/auth" />
-    </Switch>
+    <Routes>
+      <Route path="/auth" end element={<Auth />} />
+      <Route path="*" element={<Navigate to="/auth" />} />
+    </Routes>
   );
+
   if (isAuthenticated) {
     router = (
-      <Switch>
-        <Route path="/start" component={Start} />
-        <Route path="/logout" component={Logout} />
-        <Route path="/posts" component={Posts} />
-        <Route path="/" exact component={DiaryBuilder} />
-        <Route path="/read" component={Read} />
-        <Redirect to="/posts" />
-      </Switch>
+      <Routes>
+        <Route path="/start" element={<Start />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/" end element={<DiaryBuilder />} />
+        <Route path="/read" element={<Read />} />
+        <Route path="*" element={<Navigate to="/posts" />} />
+      </Routes>
     );
   }
 
@@ -49,4 +49,4 @@ const App = (props) => {
   );
 };
 
-export default withRouter(App);
+export default App;

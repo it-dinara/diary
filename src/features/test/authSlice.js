@@ -59,14 +59,7 @@ export const auth = createAsyncThunk(
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCHwkentplNqp5vvQlz_uVpf4nVZxciYqk";
     }
     const response = await axios.post(url, authData);
-    const expirationDate = new Date(
-      new Date().getTime() + response.data.expiresIn * 1000
-    );
 
-    sessionStorage.setItem("token", response.data.idToken);
-    sessionStorage.setItem("refreshToken", response.data.refreshToken);
-    sessionStorage.setItem("expirationDate", expirationDate);
-    sessionStorage.setItem("userId", response.data.localId);
     return response.data;
   }
 );

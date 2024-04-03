@@ -1,47 +1,47 @@
-import React, {useEffect, useState, useRef} from 'react'
-import TextareaAutosize from 'react-textarea-autosize';
-import s from './Diary.module.css'
-import * as actions from '../../store/actions/index'
-import {useDispatch, useSelector} from 'react-redux'
-
+import React, { useEffect, useState, useRef } from "react";
+import TextareaAutosize from "react-textarea-autosize";
+import s from "./Diary.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { saveNoteInState } from "../../features/test/diarySlice";
 
 const Diary = React.forwardRef((props, ref) => {
+  const title = useSelector((state) => state.diary.title);
+  const stateFeelings = useSelector((state) => state.diary.diaryObj);
+  //отрисовка текста в Textarea
+  //Например: context: 'Привет'
+  let textareaVal = stateFeelings[title] ? stateFeelings[title] : "";
+  const [value, setValue] = useState(textareaVal);
 
-    const title = useSelector(state => state.diary.title)
-    const stateFeelings = useSelector(state => state.diary.diaryObj)
-    //отрисовка текста в Textarea
-    //Например: context: 'Привет'
-    let textareaVal = stateFeelings[title] ? stateFeelings[title] : '';
-    const [value, setValue] = useState(textareaVal)
+  const dispatch = useDispatch();
+  const txt1 = useRef(null);
+  useEffect(() => {
+    //создание поста
+    dispatch(saveNoteInState(title, value));
+    // console.log('saveNoteInState value', value)
+    txt1.current.focus();
+  }, [title, value, dispatch]);
 
-    const dispatch = useDispatch();
-    const txt1 = useRef(null);
-    useEffect(() => {
-        //создание поста
-        dispatch(actions.saveNoteInState(title, value))
-        // console.log('saveNoteInState value', value)
-        txt1.current.focus();
-    }, [title, value, dispatch])
+  return (
+    <div className={s.wrap}>
+      <TextareaAutosize
+        name="textValue"
+        minRows={15}
+        onHeightChange={() => {}}
+        className={s.textarea}
+        value={value}
+        onChange={(event) => {
+          setValue(event.target.value);
+        }}
+        ref={txt1}
+        onFocus={(e) =>
+          e.currentTarget.setSelectionRange(
+            e.currentTarget.value.length,
+            e.currentTarget.value.length
+          )
+        }
+      />
+    </div>
+  );
+});
 
-
-    return (
-        <div className={s.wrap}>
-            <TextareaAutosize
-                name='textValue'
-                minRows={15}
-                onHeightChange={() => {
-                }}
-                className={s.textarea}
-                value={value}
-                onChange={(event) => {
-                    setValue(event.target.value)
-                }}
-                ref={txt1}
-                onFocus={(e)=>e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
-            />
-        </div>
-
-    )
-})
-
-export default Diary
+export default Diary;

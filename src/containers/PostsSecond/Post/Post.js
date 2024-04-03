@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import s from "./Post.module.css";
-import * as actions from "../../../store/actions/index";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { tested } from "../../../features/test/testSlice";
 import { setPostId, setPostDataToRead } from "../../../features/test/readSlice";
+import { clearDiaryObjToEdit } from "../../../features/test/diarySlice.js";
 
 const Post = (props) => {
   const template = useSelector((state) => state.diary.template);
@@ -21,13 +21,14 @@ const Post = (props) => {
   const postIdSelector = useSelector((state) => state.read.postId);
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
   const toReadHandler = (postId) => {
-    dispatch(actions.clearDiaryObjToEdit());
+    dispatch(clearDiaryObjToEdit());
+    console.log("postIdSelector", postIdSelector, "postId", postId);
     dispatch(setPostId(postId));
     dispatch(setPostDataToRead({ token, postId }));
-    history.push("/read");
+    navigate("/read");
   };
   const second2 = useSelector((state) => state.test.second);
   const testFn = (postId) => {

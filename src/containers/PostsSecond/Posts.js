@@ -1,12 +1,16 @@
 import React, { useEffect, useState, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import s from "./Posts.module.css";
-import * as actions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import axios from "../../axios-diary.js";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import { setPostId } from "../../features/test/readSlice.js";
+import {
+  saveNoteInState,
+  noteInit,
+  fetchPosts,
+} from "../../features/test/diarySlice.js";
 const Post = React.lazy(() => import("./Post/Post"));
 
 const Posts = () => {
@@ -16,12 +20,13 @@ const Posts = () => {
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    dispatch(actions.saveNoteInState(null));
+    dispatch(saveNoteInState(null));
     dispatch(setPostId(null));
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(actions.fetchPosts(token, userId));
+    console.log("token", token, "userId", userId);
+    dispatch(fetchPosts({ token, userId }));
   }, [token, userId, dispatch]);
 
   let res = [];
@@ -66,10 +71,10 @@ const Posts = () => {
     });
   }
 
-  const history = useHistory();
+  const history = useNavigate();
   const makeNewNoteHandler = () => {
     //очистка стейта от удалёного поста
-    dispatch(actions.noteInit());
+    dispatch(noteInit());
     history.push("/");
   };
 

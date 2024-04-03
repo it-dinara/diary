@@ -1,17 +1,17 @@
 import s from "./start.module.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import * as actions from "../../store/actions/index";
 import axios from "../../axios-diary.js";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
+import { noteInit } from "../../features/test/diarySlice.js";
 
 function Start() {
-  let history = useHistory();
+  let navigate = useNavigate();
   let dispatch = useDispatch();
   const redirect = useSelector((state) => state.diary.redirect);
   const redirectHandler = () => {
-    dispatch(actions.noteInit());
-    history.replace("/");
+    dispatch(noteInit());
+    navigate.push("/");
     console.log("redirect", redirect);
   };
   return (
