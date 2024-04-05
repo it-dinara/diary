@@ -21,6 +21,7 @@ const authSlice = createSlice({
     setRedirectPath(state, action) {
       state.redirectPath = action.payload;
     },
+    authCheckState(state, action) {},
   },
   extraReducers: (builder) => {
     builder
@@ -36,12 +37,14 @@ const authSlice = createSlice({
       })
       .addCase(auth.fulfilled, (state, action) => {
         const { idToken, localId, expiresIn } = action.payload;
+        console.log("auth action.payload", action.payload);
         state.token = idToken;
         state.userId = localId;
         state.loading = false;
         state.error = null;
         state.expiresIn = expiresIn;
       });
+    // authCheckState
   },
 });
 
@@ -74,6 +77,26 @@ export const auth = createAsyncThunk(
   }
 );
 
-export const { logout, setRedirectPath } = authSlice.actions;
+// export const authCheckState = createAsyncThunk(
+//   "auth/authCheckState",
+//   async (_, { dispatch }) => {
+//     // console.log("authCheckState token", token);
+//     const token = sessionStorage.getItem("token");
+//     if (!token) {
+//       // dispatch(reAuth())
+//       console.log("!!!token");
+//       return;
+//     } else {
+//       const expirationDate = new Date(sessionStorage.getItem("expirationDate"));
+//       if (expirationDate > new Date()) {
+//         const userId = sessionStorage.getItem("userId");
+//         console.log("auth.fulfilled({ token, userId })", token, userId);
+//         dispatch(auth.fulfilled({ token, userId }));
+//       }
+//     }
+//   }
+// );
+
+export const { logout, setRedirectPath, authCheckState } = authSlice.actions;
 
 export default authSlice.reducer;

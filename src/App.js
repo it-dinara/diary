@@ -6,19 +6,20 @@ import { useDispatch, useSelector } from "react-redux";
 import DiaryBuilder from "./containers/DiaryBuilder/DiaryBuilder";
 import Start from "./containers/Start/Start";
 import Read from "./containers/Read/Read";
-import Posts from "./containers/PostsSecond/Posts";
-import Auth from "./containers/Auth/AuthSecond";
-import Logout from "./containers/Auth/Logout/LogoutSecond";
+import Posts from "./containers/Posts/Posts";
+import Auth from "./containers/Auth/Auth";
+import Logout from "./containers/Auth/Logout/Logout";
 import React, { useEffect } from "react";
 import Layout from "./hoc/Layout/Layout";
+import { authCheckState } from "./features/test/authSlice";
 
 const App = (props) => {
   const isAuthenticated = useSelector((state) => state.auth.token !== null);
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(actions.authCheckState())
-    // const expirationDate = localStorage.getItem('expirationDate');
-    // console.log('expirationDate App', expirationDate)
+    dispatch(authCheckState());
+    const expirationDate = sessionStorage.getItem("expirationDate");
+    console.log("expirationDate App", expirationDate);
   }, [dispatch]);
 
   let router = (

@@ -1,7 +1,11 @@
 import authReducer, { auth } from "../features/test/authSlice";
 import readReducer from "../features/test/readSlice";
 import testReducer from "../features/test/testSlice";
-import { logout, setRedirectPath } from "../features/test/authSlice";
+import {
+  logout,
+  setRedirectPath,
+  authCheckState,
+} from "../features/test/authSlice";
 import diaryReducer, {
   saveDiary,
   fetchPosts,
@@ -57,5 +61,16 @@ listenerMiddleware.startListening({
   actionCreator: removePost.fulfilled,
   effect: (action, listenerApi) => {
     listenerApi.dispatch(setRedirectPath("/posts"));
+  },
+});
+listenerMiddleware.startListening({
+  actionCreator: authCheckState,
+  effect: (action, listenerApi) => {
+    const idToken = sessionStorage.getItem("token");
+    const localId = sessionStorage.getItem("userId");
+    const expirationDate = new Date(sessionStorage.getItem("expirationDate"));
+    if (expirationDate > new Date()) {
+      listenerApi.dispatch(auth.fulfilled({ idToken, localId }));
+    }
   },
 });
