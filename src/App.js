@@ -1,7 +1,6 @@
 // import { ThemeProvider } from 'emotion-theming'
 // import theme from '@rebass/preset'
 import "./App.css";
-
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import DiaryBuilder from "./containers/DiaryBuilder/DiaryBuilder";

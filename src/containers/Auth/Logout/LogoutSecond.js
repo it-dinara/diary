@@ -10,7 +10,7 @@ const Logout = () => {
     dispatch(logout());
   }, [dispatch]);
 
-  return <Navigate to="/auth" push />;
+  return <Navigate to="/auth" />;
 };
 
 export default Logout;

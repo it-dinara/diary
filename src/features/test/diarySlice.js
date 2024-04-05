@@ -78,7 +78,6 @@ const diarySlice = createSlice({
       })
       // fetchPosts
       .addCase(fetchPosts.pending, (state, action) => {
-        console.log("fetchPosts", action.meta);
         state.token = action.meta.arg.token;
         state.userId = action.meta.arg.userId;
         // очистить потом стейт, и в auth тоже? или так и так его видно было.
@@ -111,7 +110,7 @@ const diarySlice = createSlice({
 });
 
 export const saveDiary = createAsyncThunk(
-  "saveDiary/auth",
+  "diary/saveDiary",
   async ({ diaryData, token }) => {
     const response = await axiosInstance.post(
       "/journal.json?auth=" + token,
@@ -124,7 +123,6 @@ export const saveDiary = createAsyncThunk(
 export const fetchPosts = createAsyncThunk(
   "diary/fetchPosts",
   async ({ token, userId }) => {
-    console.log("fetchPosts userId", userId, "token", token);
     const queryParams =
       "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
     const response = await axiosInstance.get("/journal.json" + queryParams);
@@ -134,9 +132,11 @@ export const fetchPosts = createAsyncThunk(
 
 export const removePost = createAsyncThunk(
   "diary/removePost",
-  async ({ token, postId }) => {
-    if (!postId.length) {
-      // console.log('Did not delete, removePost postId not correct', postId)
+  async ({ ntoken, npostId }, { getState }) => {
+    const token = getState().auth.token;
+    const postId = getState().read.postId;
+    console.log("removePost", token, postId, getState());
+    if (postId?.length === 0) {
       return null;
     }
     const queryParams = "?auth=" + token;
@@ -146,6 +146,7 @@ export const removePost = createAsyncThunk(
         ".json" +
         queryParams
     );
+    console.log("deleting", response);
     return response.data;
   }
 );

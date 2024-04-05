@@ -25,7 +25,6 @@ const Posts = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("token", token, "userId", userId);
     dispatch(fetchPosts({ token, userId }));
   }, [token, userId, dispatch]);
 
@@ -75,7 +74,7 @@ const Posts = () => {
   const makeNewNoteHandler = () => {
     //очистка стейта от удалёного поста
     dispatch(noteInit());
-    history.push("/");
+    history("/");
   };
 
   const start = (

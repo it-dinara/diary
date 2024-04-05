@@ -16,7 +16,7 @@ const Diary = React.forwardRef((props, ref) => {
   const txt1 = useRef(null);
   useEffect(() => {
     //создание поста
-    dispatch(saveNoteInState(title, value));
+    dispatch(saveNoteInState({ title, value }));
     // console.log('saveNoteInState value', value)
     txt1.current.focus();
   }, [title, value, dispatch]);
@@ -30,6 +30,7 @@ const Diary = React.forwardRef((props, ref) => {
         className={s.textarea}
         value={value}
         onChange={(event) => {
+          console.log("Diary", event.target.value);
           setValue(event.target.value);
         }}
         ref={txt1}

@@ -30,7 +30,7 @@ function DiaryBuilder() {
     event.preventDefault();
     //При редактировании, удаляется старый пост и сохраняется новый, со старой датой
     if (postId) {
-      dispatch(removePost(token, postId));
+      dispatch(removePost({ token, postId }));
     }
 
     //Проверка на пустой пост, такой пост не сохраняется
@@ -81,7 +81,7 @@ function DiaryBuilder() {
     };
 
     if (Object.keys(note).length > 0) {
-      dispatch(saveDiary(diaryData, token));
+      dispatch(saveDiary({ diaryData, token }));
     }
   };
 

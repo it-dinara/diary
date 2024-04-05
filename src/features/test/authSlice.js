@@ -15,7 +15,8 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout(state, action) {
-      return;
+      state.token = null;
+      state.userId = null;
     },
     setRedirectPath(state, action) {
       state.redirectPath = action.payload;
@@ -34,11 +35,12 @@ const authSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(auth.fulfilled, (state, action) => {
-        const { idToken, localId } = action.payload;
+        const { idToken, localId, expiresIn } = action.payload;
         state.token = idToken;
         state.userId = localId;
         state.loading = false;
         state.error = null;
+        state.expiresIn = expiresIn;
       });
   },
 });
@@ -59,6 +61,14 @@ export const auth = createAsyncThunk(
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCHwkentplNqp5vvQlz_uVpf4nVZxciYqk";
     }
     const response = await axios.post(url, authData);
+    const expirationDate = new Date(
+      new Date().getTime() + response.data.expiresIn * 1000
+    );
+    // console.log('expirationDate auth', expirationDate)
+    sessionStorage.setItem("token", response.data.idToken);
+    sessionStorage.setItem("refreshToken", response.data.refreshToken);
+    sessionStorage.setItem("expirationDate", expirationDate);
+    sessionStorage.setItem("userId", response.data.localId);
 
     return response.data;
   }
