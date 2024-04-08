@@ -1,77 +1,112 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import s from './Posts.module.css';
+import React, { useEffect, useState, Suspense } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import s from "./Posts.module.css";
+import Spinner from "../../components/UI/Spinner/Spinner";
+import axios from "../../axios-diary.js";
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
+import { setPostId } from "../../features/readSlice.js";
+import {
+  saveNoteInState,
+  noteInit,
+  fetchPosts,
+} from "../../features/diarySlice.js";
+const Post = React.lazy(() => import("./Post/Post"));
 
-import Post from './Post/Post';
-import * as actions from '../../store/actions/index'
-import Spinner from '../../components/UI/Spinner/Spinner'
-import Modal from '../../components/UI/Modal/Modal'
-import axios from '../../axios-diary.js'
-import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
+const Posts = () => {
+  const { loading, fetchedPostsRes } = useSelector((state) => state.diary);
+  const dispatch = useDispatch();
+  const [value, setValue] = useState("");
 
+  useEffect(() => {
+    dispatch(saveNoteInState(null));
+    dispatch(setPostId(null));
+  }, [dispatch]);
 
-const Posts = (props) => {
-	const token = useSelector(state => state.auth.token) 
-	const userId = useSelector(state => state.auth.userId) 
-	const loading = useSelector(state => state.diary.loading) 
-	const dispatch = useDispatch();
-	const fetchedPosts = useSelector(state => state.diary.fetchedPostsRes) 
-	useEffect(() => {
-		dispatch(actions.fetchPosts(token, userId))
-		// dispatch(actions.noteInit())
-	}, [token, userId, dispatch])
-	console.log('fetchedPosts', fetchedPosts, typeof fetchedPosts)
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
 
-	const [startRemoving, setStartRemoving] = useState('')
-    let modalAlert = (
-            <Modal show={startRemoving} modalClosed={() => {setStartRemoving(false)}}>
-				{console.log('removing', startRemoving)}
-                <p style={{textAlign: 'center'}}>Are you sure you want to delete the post?</p>
+  let res = [];
+  for (let key in fetchedPostsRes) {
+    if (fetchedPostsRes[key].millsec) {
+      res.push(fetchedPostsRes[key]);
+    }
+  }
+  const [flag, setFlag] = useState(false);
+  if (!flag) {
+    res.sort((a, b) => b.millsec - a.millsec);
+  } else {
+    res.sort((a, b) => a.millsec - b.millsec);
+  }
 
-                <div className={s.modal}>
-                    <button className={[s.buttonModal, s.cancel].join(' ')}
-                        onClick={() => {setStartRemoving(false)}}
-                        >
-                        cancel
-                    </button>
-                    <button className={[s.buttonModal, s.removePost].join(' ')}
-                        onClick={() => {
-                        		dispatch(actions.removePost(token, startRemoving));
-								setStartRemoving(false)
-                        	}}
-                        >
-                        delete
-                    </button>
-                </div>
+  const sortHandler = () => {
+    setFlag(!flag);
+  };
 
-            </Modal>
+  let posts = <Spinner />;
+  if (!loading) {
+    posts = res.map((post) => {
+      if (
+        value === "" ||
+        Object.keys(post.note)
+          .concat(Object.values(post.note))
+          .join(" ")
+          .indexOf(value) >= 0
+      ) {
+        return (
+          <Suspense fallback={<div>Loading...</div>} key={post.id}>
+            <Post
+              note={post.note}
+              fullDate={post.fullDate}
+              postId={post.id}
+              millsec={post.millsec}
+            />
+          </Suspense>
         );
+      }
+      return null;
+    });
+  }
 
-	let res = []
-	for(let key in fetchedPosts) {
-		if(fetchedPosts[key].millsec) {
-			res.push(fetchedPosts[key])
-		}
-	}
-	res.sort((a, b) => b.millsec - a.millsec) 
-	let posts = <Spinner/>;
-	if (!loading) {
-		posts = res.map(post => (
-			<Post
-			key={post.id}
-			note={post.note}
-			fullDate={post.fullDate}
-			postId={post.id}
-			startRemovingHandler={setStartRemoving}
-			/>
-		)) 
-	}
-	return <>
-		{posts}
-		{modalAlert}
-	</>
-}
+  const history = useNavigate();
+  const makeNewNoteHandler = () => {
+    //очистка стейта от удалёного поста
+    dispatch(noteInit());
+    history("/");
+  };
 
+  const start = (
+    <button
+      className={s.newNote}
+      onClick={(event) => {
+        makeNewNoteHandler(event);
+      }}
+    >
+      New note
+    </button>
+  );
 
+  return (
+    <div className={s.container}>
+      <div className={s.panel}>
+        {start}
+        <div className={s.search}>
+          <button onClick={sortHandler}>{flag ? "↓↑" : "↑↓"}</button>
+          <input
+            type="text"
+            value={value}
+            onChange={(event) => {
+              console.log("val", event.target.value);
+              setValue(event.target.value);
+            }}
+          />
+        </div>
+      </div>
+
+      <div className={s.list}>{posts}</div>
+    </div>
+  );
+};
 
 export default withErrorHandler(Posts, axios);

@@ -1,26 +1,16 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom';
-import * as actions from '../../../store/actions/index'
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { logout } from "../../../features/authSlice";
 
+const Logout = () => {
+  const dispatch = useDispatch();
 
-class Logout extends Component {
+  useEffect(() => {
+    dispatch(logout());
+  }, [dispatch]);
 
-	componentDidMount() {
-		this.props.logout()
-	}
+  return <Navigate to="/auth" />;
+};
 
-	render() {
-		return (
-			<Redirect to='/auth'/>
-		)
-	}
-}
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-		logout: dispatch(actions.logout())
-	}
-}
-
-export default connect(null, mapDispatchToProps)(Logout);
+export default Logout;
