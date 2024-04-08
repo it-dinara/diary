@@ -3,14 +3,11 @@ import axios from "axios";
 import axiosInstance from "../../axios-diary.js";
 
 const initialState = {
-  loading: false,
-  removing: false,
   fetchedPostsRes: [],
   diaryId: "",
-  date: "",
-  newDate: "",
+  // date: "",
+  // newDate: "",
   title: "",
-  active: false,
   titleArray: [
     { id: 0, name: "context" },
     { id: 1, name: "feelings" },
@@ -40,25 +37,19 @@ const diarySlice = createSlice({
   name: "diary",
   initialState,
   reducers: {
-    setActive(state, action) {
-      state.active = action.payload;
-    },
-    setTitle(state, action) {
-      state.title = action.payload;
-    },
-    setValue(state, action) {
-      state.value = action.payload;
+    setTitle(state, { payload }) {
+      state.title = payload;
     },
     clearDiaryObjToEdit(state, action) {
       state.diaryObj = {};
     },
-    saveNoteInState(state, action) {
-      const title = action.payload?.title;
-      const value = action.payload?.value;
+    saveNoteInState(state, { payload }) {
+      const title = payload?.title;
+      const value = payload?.value;
       state.diaryObj = { ...state.diaryObj, [title]: value };
     },
-    noteInit(state, action) {
-      state.title = action.payload;
+    noteInit(state, { payload }) {
+      state.title = payload;
       state.diaryObj = {};
       state.fullDate = null;
       state.millsec = null;
@@ -67,26 +58,15 @@ const diarySlice = createSlice({
   extraReducers: (builder) => {
     builder
       // saveDiary
-      .addCase(saveDiary.pending, (state, action) => {})
-      .addCase(saveDiary.rejected, (state, action) => {
-        state.error = action.error.message;
+      .addCase(saveDiary.rejected, (state, { error }) => {
+        state.error = error.message;
       })
-      .addCase(saveDiary.fulfilled, (state, action) => {
-        const { name, diaryData } = action.payload;
+      .addCase(saveDiary.fulfilled, (state, { payload: { name } }) => {
         state.diaryId = name;
-        state.diary = diaryData;
       })
       // fetchPosts
-      .addCase(fetchPosts.pending, (state, action) => {
-        state.token = action.meta.arg.token;
-        state.userId = action.meta.arg.userId;
-        // очистить потом стейт, и в auth тоже? или так и так его видно было.
-        // чтобы не хранить много данных
-        // вообще надо брать этот стейт из auth напрямую,
-        // а у меня ДАННЫЕ ДУБЛИРУЮТСЯ
-      })
-      .addCase(fetchPosts.rejected, (state, action) => {
-        state.error = action.error.message;
+      .addCase(fetchPosts.rejected, (state, { error }) => {
+        state.error = error.message;
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         const fetchedPostsRes = [];
@@ -99,12 +79,8 @@ const diarySlice = createSlice({
         state.fetchedPostsRes = fetchedPostsRes;
       })
       //removePost
-      .addCase(removePost.pending, (state, action) => {})
-      .addCase(removePost.rejected, (state, action) => {
-        state.error = action.error.message;
-      })
-      .addCase(removePost.fulfilled, (state, { postId }) => {
-        state.postId = postId;
+      .addCase(removePost.rejected, (state, { error }) => {
+        state.error = error.message;
       });
   },
 });
@@ -122,7 +98,8 @@ export const saveDiary = createAsyncThunk(
 
 export const fetchPosts = createAsyncThunk(
   "diary/fetchPosts",
-  async ({ token, userId }) => {
+  async (_, { getState }) => {
+    const { token, userId } = getState().auth;
     const queryParams =
       "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
     const response = await axiosInstance.get("/journal.json" + queryParams);
@@ -132,7 +109,7 @@ export const fetchPosts = createAsyncThunk(
 
 export const removePost = createAsyncThunk(
   "diary/removePost",
-  async ({ ntoken, npostId }, { getState }) => {
+  async (_, { getState }) => {
     const token = getState().auth.token;
     const postId = getState().read.postId;
     console.log("removePost", token, postId, getState());
@@ -151,13 +128,7 @@ export const removePost = createAsyncThunk(
   }
 );
 
-export const {
-  setActive,
-  setTitle,
-  setValue,
-  clearDiaryObjToEdit,
-  saveNoteInState,
-  noteInit,
-} = diarySlice.actions;
+export const { setTitle, clearDiaryObjToEdit, saveNoteInState, noteInit } =
+  diarySlice.actions;
 
 export default diarySlice.reducer;

@@ -14,7 +14,6 @@ import {
 const Post = React.lazy(() => import("./Post/Post"));
 
 const Posts = () => {
-  const { token, userId } = useSelector((state) => state.auth);
   const { loading, fetchedPostsRes } = useSelector((state) => state.diary);
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
@@ -25,8 +24,8 @@ const Posts = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchPosts({ token, userId }));
-  }, [token, userId, dispatch]);
+    dispatch(fetchPosts());
+  }, [dispatch]);
 
   let res = [];
   for (let key in fetchedPostsRes) {
