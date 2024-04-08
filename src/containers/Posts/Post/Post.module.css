@@ -1,15 +1,22 @@
 .wrapper {
 	position: relative;
-    width: 80%;
-    margin: 10px auto;
+    width: 100%;
+    margin: 0px auto;
     box-sizing: border-box;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
-    padding: 0 15px;
+    border: 0 solid #eee;
+	border-top-width: 1px;
+    padding: 0 20px;
+	height: 100px;
+	overflow: hidden;
+	white-space: pre-wrap;
 }
 
 .post {
 	transition: all .2s;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
 }
 
 .name {
@@ -37,8 +44,8 @@
 	right: 20px;
 	color: #fbb03b;
 	font-weight: bold;
-	background: #fff;
-	box-shadow: 0px 0px 3px 3px #fff;
+	/*background: aliceblue;*/
+	/*box-shadow: 0px 0px 3px 3px aliceblue;*/
 }
 
 
@@ -50,28 +57,6 @@
 	text-transform: uppercase;
 	margin: 0 10px;
 	transition: all .4s;
-}
-
-.editPost {
-	color: #5C9210;
-	border: 2px solid #5C9210;
-}
-
-.editPost:hover {
-	color: #fff;
-	border: 2px solid #5C9210;
-	background: #5C9210;
-}
-
-.removePost {
-	color: #e65100bf;
-	border: 2px solid #e65100bf;
-}
-
-.removePost:hover {
-	color: #fff;
-	border: 2px solid #e65100bf;
-	background: #e65100bf;
 }
 
 .cover {
@@ -91,8 +76,6 @@
     opacity: 0.1;
 }
 
-.wrapper:hover .button{
-    opacity: 1;
-}
+
 
 

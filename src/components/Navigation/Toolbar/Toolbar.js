@@ -1,20 +1,27 @@
-import React from 'react';
+import classes from "./Toolbar.module.css";
+import Logo from "../../Logo/Logo";
+import NavigationItems from "../NavigationItems/NavigationItems";
+import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import classes from './Toolbar.module.css';
-import Logo from '../../Logo/Logo';
-import NavigationItems from '../NavigationItems/NavigationItems';
-import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
-
-const toolbar = ( props ) => (
+const Toolbar = (props) => {
+  const isAuthenticated = useSelector((state) => state.auth.token !== null);
+  return (
     <header className={classes.Toolbar}>
-        <DrawerToggle clicked={props.drawerToggleClicked} />
-        <div className={classes.Logo}>
-            <Logo />
-        </div>
-        <nav className={classes.DesktopOnly}>
-            <NavigationItems isAuthentication={props.isAuthentication}/>
-        </nav>
-    </header>
-);
+      <DrawerToggle clicked={props.drawerToggleClicked} />
+      <NavLink
+        to={isAuthenticated ? "/posts" : "/auth"}
+        className={classes.Logo}
+      >
+        <Logo />
+      </NavLink>
 
-export default toolbar;
+      <nav className={classes.DesktopOnly}>
+        <NavigationItems isAuthentication={props.isAuthentication} />
+      </nav>
+    </header>
+  );
+};
+
+export default Toolbar;
