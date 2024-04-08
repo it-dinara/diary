@@ -1,38 +1,126 @@
 /*Modal alert*/
 
 .buttonModal {
-	padding: 5px 20px;
-	cursor: pointer;
-	border-radius: 5px;
-	text-transform: uppercase;
-	margin: 0 10px;
-	transition: all .4s;
+  padding: 5px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-transform: uppercase;
+  margin: 0 10px;
+  transition: all 0.4s;
 }
 
 .cancel {
-	color: red;
-	border: 2px solid red;
+  color: red;
+  border: 2px solid red;
 }
 
 .cancel:hover {
-	color: #fff;
-	border: 2px solid red;
-	background: red;
+  color: #fff;
+  border: 2px solid red;
+  background: red;
 }
 
 .modal {
-	display: flex;
-	justify-content: center;
-	padding-top: 15px;
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
 }
 
 .removePost {
-	color: #e65100bf;
-	border: 2px solid #e65100bf;
+  color: #e65100bf;
+  border: 2px solid #e65100bf;
 }
 
 .removePost:hover {
-	color: #fff;
-	border: 2px solid #e65100bf;
-	background: #e65100bf;
+  color: #fff;
+  border: 2px solid #e65100bf;
+  background: #e65100bf;
+}
+
+.container {
+  width: 100%;
+  margin: 0px auto;
+}
+
+.newNote {
+  background-image: url("data:image/svg+xml,%3Csvg id='Capa_1' enable-background='new 0 0 512 512' height='512' viewBox='0 0 512 512' width='512' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Cpath d='m115.817 138.734h195.166v30h-195.166z'/%3E%3Cpath d='m115.817 198.734h195.166v30h-195.166z'/%3E%3Cpath d='m115.817 258.734h195.166v30h-195.166z'/%3E%3Cpath d='m438.304 330.762c-15.36-15.361-34.297-25.016-54.154-28.976v-301.786h-272.714l-68.786 68.787v372.418h220.429c5.203 14.767 13.686 28.302 25.084 39.7 20.052 20.052 46.713 31.095 75.071 31.095 28.357 0 55.019-11.043 75.07-31.096 41.395-41.394 41.395-108.747 0-150.142zm-316.92-298.283v46.255h-46.255zm-48.734 378.726v-302.47h78.734v-78.735h202.766v270.11c-24.084 2.05-47.598 12.262-65.987 30.652-20.053 20.052-31.096 46.713-31.096 75.071 0 1.798.045 3.588.133 5.371h-184.55zm344.442 48.486c-14.386 14.386-33.513 22.309-53.858 22.309-20.346 0-39.473-7.923-53.858-22.309-14.386-14.386-22.309-33.513-22.309-53.857s7.923-39.472 22.309-53.858c14.851-14.85 34.351-22.273 53.858-22.273 19.502 0 39.011 7.426 53.857 22.273 29.698 29.697 29.698 78.018.001 107.715z'/%3E%3Cpath d='m378.233 365.807h-30v25.026h-25.026v30h25.026v25.027h30v-25.027h25.027v-30h-25.027z'/%3E%3C/g%3E%3C/svg%3E");
+  margin: 35px 0 35px 18px;
+  background-size: 35px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 12px 0 5px 40px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.search {
+  margin: 50px 0 0 18px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.search input {
+  padding: 3px;
+}
+
+.search button {
+  /*outline: -webkit-focus-ring-color auto 1px;*/
+  margin: 0 5px;
+  padding: 2px 8px 4px;
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@media (min-width: 600px) {
+  .container {
+    width: 80%;
+    max-width: 630px;
+  }
+  .list {
+    height: calc(100vh - 300px);
+    overflow-y: scroll;
+    background: #f0f8ff;
+    border-radius: 10px;
+  }
+  /* width */
+  .list::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  /* Track */
+  .list::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  .list::-webkit-scrollbar-thumb {
+    background: #262e3391;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  .list::-webkit-scrollbar-thumb:hover {
+    background: #262e33;
+  }
+  .panel {
+    display: flex;
+    justify-content: space-between;
+    margin: 65px 15px 30px 10px;
+    flex-direction: row;
+  }
+  .newNote {
+    margin: 0;
+    flex-direction: row;
+  }
+  .search {
+    margin: 0;
+    flex-direction: row;
+  }
 }
