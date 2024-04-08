@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import s from "./Post.module.css";
 import { useNavigate } from "react-router-dom";
-import { tested } from "../../../features/test/testSlice";
-import { setPostId, setPostDataToRead } from "../../../features/test/readSlice";
-import { clearDiaryObjToEdit } from "../../../features/test/diarySlice.js";
+import { tested } from "../../../features/testSlice";
+import { setPostId, setPostDataToRead } from "../../../features/readSlice";
+import { clearDiaryObjToEdit } from "../../../features/diarySlice.js";
 
 const Post = (props) => {
   const template = useSelector((state) => state.diary.template);

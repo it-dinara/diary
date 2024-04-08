@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import s from "./TitleMenu.module.css";
 import Title from "./Title/Title";
 import { useSelector, useDispatch } from "react-redux";
-import { setTitle } from "../../features/test/diarySlice.js";
+import { setTitle } from "../../features/diarySlice.js";
 
 const TitleMenu = React.memo((props) => {
   const titleArray = useSelector((state) => state.diary.titleArray);

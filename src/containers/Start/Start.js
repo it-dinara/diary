@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "../../axios-diary.js";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
-import { noteInit } from "../../features/test/diarySlice.js";
+import { noteInit } from "../../features/diarySlice.js";
 
 function Start() {
   let navigate = useNavigate();

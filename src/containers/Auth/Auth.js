@@ -5,7 +5,7 @@ import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import classes from "./Auth.module.css";
-import { auth } from "../../features/test/authSlice";
+import { auth } from "../../features/authSlice";
 
 const Auth = () => {
   const [controls, setControls] = useState({

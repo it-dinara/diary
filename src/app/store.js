@@ -1,16 +1,16 @@
-import authReducer, { auth } from "../features/test/authSlice";
-import readReducer from "../features/test/readSlice";
-import testReducer from "../features/test/testSlice";
-import {
+import readReducer from "../features/readSlice";
+import testReducer from "../features/testSlice";
+import authReducer, {
+  auth,
   logout,
   setRedirectPath,
   authCheckState,
-} from "../features/test/authSlice";
+} from "../features/authSlice";
 import diaryReducer, {
   saveDiary,
   fetchPosts,
   removePost,
-} from "../features/test/diarySlice";
+} from "../features/diarySlice";
 import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit";
 
 const listenerMiddleware = createListenerMiddleware();
@@ -26,24 +26,8 @@ export default configureStore({
 });
 
 listenerMiddleware.startListening({
-  actionCreator: auth.fulfilled,
-  effect: (_, listenerApi, meta) => {
-    console.log("listenerApi auth", listenerApi);
-    // const data = listenerApi.getState().auth;
-    // const expirationDate = new Date(
-    //   new Date().getTime() + data.expiresIn * 1000
-    // );
-    // // console.log('expirationDate auth', expirationDate)
-    // sessionStorage.setItem("token", data.idToken);
-    // sessionStorage.setItem("refreshToken", data.refreshToken);
-    // sessionStorage.setItem("expirationDate", expirationDate);
-    // sessionStorage.setItem("userId", data.localId);
-  },
-});
-listenerMiddleware.startListening({
   actionCreator: fetchPosts.fulfilled,
   effect: (_, listenerApi) => {
-    console.log("listenerApi fetchPosts", listenerApi);
     listenerApi.dispatch(setRedirectPath(null));
   },
 });
@@ -53,7 +37,7 @@ listenerMiddleware.startListening({
 });
 listenerMiddleware.startListening({
   actionCreator: saveDiary.fulfilled,
-  effect: (action, listenerApi) => {
+  effect: (_, listenerApi) => {
     listenerApi.dispatch(setRedirectPath("/posts"));
   },
 });

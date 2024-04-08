@@ -11,7 +11,7 @@ import Auth from "./containers/Auth/Auth";
 import Logout from "./containers/Auth/Logout/Logout";
 import React, { useEffect } from "react";
 import Layout from "./hoc/Layout/Layout";
-import { authCheckState } from "./features/test/authSlice";
+import { authCheckState } from "./features/authSlice";
 
 const App = (props) => {
   const isAuthenticated = useSelector((state) => state.auth.token !== null);

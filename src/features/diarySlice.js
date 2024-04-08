@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import axiosInstance from "../../axios-diary.js";
+import axiosInstance from "../axios-diary.js";
 
 const initialState = {
   fetchedPostsRes: [],

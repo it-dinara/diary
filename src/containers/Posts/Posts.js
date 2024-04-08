@@ -5,12 +5,12 @@ import s from "./Posts.module.css";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import axios from "../../axios-diary.js";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
-import { setPostId } from "../../features/test/readSlice.js";
+import { setPostId } from "../../features/readSlice.js";
 import {
   saveNoteInState,
   noteInit,
   fetchPosts,
-} from "../../features/test/diarySlice.js";
+} from "../../features/diarySlice.js";
 const Post = React.lazy(() => import("./Post/Post"));
 
 const Posts = () => {

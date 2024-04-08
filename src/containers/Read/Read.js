@@ -2,12 +2,10 @@ import { useSelector, useDispatch } from "react-redux";
 import s from "./Read.module.css";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import { useEffect } from "react";
-import { saveNoteInState } from "../../features/test/diarySlice.js";
+import { saveNoteInState } from "../../features/diarySlice.js";
 
 const Read = () => {
   const postData = useSelector((state) => state.read.postData);
-  // console.log('postData', postData)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -20,9 +18,6 @@ const Read = () => {
     }
     navigate("/");
   };
-
-  //   const postIdSelector = useSelector((state) => state.read.postId);
-  //   useEffect(() => console.log("page read postId", postIdSelector), []);
 
   const days = [
     "Воскресенье",
@@ -38,7 +33,6 @@ const Read = () => {
   let postNote = null;
   if (postData) {
     postNote = postData.note;
-    // console.log('postNote', postNote)
     for (let postName of template) {
       if (postNote[postName]) {
         notes.push({
@@ -51,7 +45,6 @@ const Read = () => {
 
   let post = Spinner;
   if (postData) {
-    // console.log('notes', notes)
     const postItem = notes.map((item, i) => (
       <div className={s.container} key={i}>
         <p className={s.name}>{item.name}</p>

@@ -7,7 +7,7 @@ import axios from "../../axios-diary.js";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import { Navigate } from "react-router-dom";
 import Modal from "../../components/UI/Modal/Modal";
-import { saveDiary, removePost } from "../../features/test/diarySlice.js";
+import { saveDiary, removePost } from "../../features/diarySlice.js";
 
 function DiaryBuilder() {
   const title = useSelector((state) => state.diary.title);
@@ -71,8 +71,7 @@ function DiaryBuilder() {
       ":" +
       formatDate(minutes);
     let millsec = Date.parse(date);
-    // console.log('postDate', postDate)
-    // console.log('postMillsec', postMillsec)
+
     const diaryData = {
       note: note,
       userId: userId,

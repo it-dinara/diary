@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import s from "./Diary.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { saveNoteInState } from "../../features/test/diarySlice";
+import { saveNoteInState } from "../../features/diarySlice";
 
 const Diary = React.forwardRef((props, ref) => {
   const title = useSelector((state) => state.diary.title);
