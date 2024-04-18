@@ -4,17 +4,16 @@ import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import DiaryBuilder from "./containers/DiaryBuilder/DiaryBuilder";
-import Start from "./containers/Start/Start";
 import Read from "./containers/Read/Read";
 import Posts from "./containers/Posts/Posts";
 import Auth from "./containers/Auth/Auth";
 import Logout from "./containers/Auth/Logout/Logout";
 import React, { useEffect } from "react";
 import Layout from "./hoc/Layout/Layout";
-import { authCheckState } from "./features/authSlice";
+import { authCheckState, authToken } from "./features/authSlice";
 
 const App = (props) => {
-  const isAuthenticated = useSelector((state) => state.auth.token !== null);
+  const isAuthenticated = useSelector(authToken) !== null;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authCheckState());
@@ -32,7 +31,6 @@ const App = (props) => {
   if (isAuthenticated) {
     router = (
       <Routes>
-        <Route path="/start" element={<Start />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/posts" element={<Posts />} />
         <Route path="/" end element={<DiaryBuilder />} />

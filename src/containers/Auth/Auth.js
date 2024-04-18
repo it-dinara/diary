@@ -5,7 +5,7 @@ import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import classes from "./Auth.module.css";
-import { auth } from "../../features/authSlice";
+import { auth, authToken } from "../../features/authSlice";
 
 const Auth = () => {
   const [controls, setControls] = useState({
@@ -44,13 +44,8 @@ const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
   const loading = useSelector((state) => state.auth.loading);
   const error = useSelector((state) => state.auth.error);
-  const isAuthenticated = useSelector((state) => state.auth.token);
-  const redirectPath = useSelector((state) => state.auth.redirectPath);
+  const isAuthenticated = useSelector(authToken);
   const dispatch = useDispatch();
-  // useEffect(()=>{
-  // 	console.log('setRedirectPath')
-  // 	dispatch(actions.setRedirectPath('/start'))
-  // }, [])
 
   const checkValidity = (value, rules) => {
     let isValid = true;

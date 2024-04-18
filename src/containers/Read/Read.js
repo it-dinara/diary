@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import s from "./Read.module.css";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import { saveNoteInState } from "../../features/diarySlice.js";
+import { diaryTemplate, saveNoteInState } from "../../features/diarySlice.js";
 
 const Read = () => {
   const postData = useSelector((state) => state.read.postData);
@@ -28,7 +28,7 @@ const Read = () => {
     "Пятница",
     "Суббота",
   ];
-  const template = useSelector((state) => state.diary.template);
+  const template = useSelector(diaryTemplate);
   const notes = [];
   let postNote = null;
   if (postData) {

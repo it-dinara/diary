@@ -49,3 +49,5 @@ export const setPostDataToRead = createAsyncThunk(
 export const { setPostId } = readSlice.actions;
 
 export default readSlice.reducer;
+
+export const noteId = (state) => state.read.postId;

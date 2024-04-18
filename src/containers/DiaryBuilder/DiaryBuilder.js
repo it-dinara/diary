@@ -7,24 +7,27 @@ import axios from "../../axios-diary.js";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import { Navigate } from "react-router-dom";
 import Modal from "../../components/UI/Modal/Modal";
-import { saveDiary, removePost } from "../../features/diarySlice.js";
+import {
+  saveDiary,
+  removePost,
+  diaryObj,
+  diaryTitle,
+  titleArr,
+} from "../../features/diarySlice.js";
+import { noteId } from "../../features/readSlice.js";
 
 function DiaryBuilder() {
-  const title = useSelector((state) => state.diary.title);
-  const titleArray = useSelector((state) => state.diary.titleArray);
-  const diaryObj = useSelector((state) => state.diary.diaryObj);
+  const title = useSelector(diaryTitle);
+  const titleArray = useSelector(titleArr);
+  const stateFeelings = useSelector(diaryObj);
   const { token, userId } = useSelector((state) => state.auth);
   //Переменные при редактировании поста
-  const postId = useSelector((state) => state.read.postId);
+  const postId = useSelector(noteId);
   const postMillsec = useSelector((state) => state.read.postData.millsec);
   const postDate = useSelector((state) => state.read.postData.fullDate);
   const dispatch = useDispatch();
   const [startRemoving, setStartRemoving] = useState(false);
   const redirectPath = useSelector((state) => state.auth.redirectPath);
-
-  // useEffect(() => {
-  //     dispatch(actions.setRedirectPath(null))
-  // }, [dispatch])
 
   const saveDiaryHandler = (event) => {
     event.preventDefault();
@@ -35,15 +38,14 @@ function DiaryBuilder() {
 
     //Проверка на пустой пост, такой пост не сохраняется
     let note = {};
-    for (let key in diaryObj) {
-      if (diaryObj[key]) {
-        note[key] = diaryObj[key];
+    for (let key in stateFeelings) {
+      if (stateFeelings[key]) {
+        note[key] = stateFeelings[key];
         // console.log('note', note)
       }
     }
     //Дата
     let date = new Date();
-    // console.log('date', date)
     let year = date.getFullYear();
     let month = date.getMonth();
     let day = date.getDate();

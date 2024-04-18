@@ -2,11 +2,20 @@ import { useDispatch, useSelector } from "react-redux";
 import s from "./Post.module.css";
 import { useNavigate } from "react-router-dom";
 import { tested } from "../../../features/testSlice";
-import { setPostId, setPostDataToRead } from "../../../features/readSlice";
-import { clearDiaryObjToEdit } from "../../../features/diarySlice.js";
+import {
+  setPostId,
+  setPostDataToRead,
+  noteId,
+} from "../../../features/readSlice";
+import {
+  clearDiaryObjToEdit,
+  diaryTemplate,
+} from "../../../features/diarySlice.js";
+import { authToken } from "../../../features/authSlice.js";
 
 const Post = (props) => {
-  const template = useSelector((state) => state.diary.template);
+  // console.log("diaryTemplate", diaryTemplate);
+  const template = useSelector(diaryTemplate);
   const second = useSelector((state) => state.test.second);
   const notes = [];
   for (let postName of template) {
@@ -18,11 +27,11 @@ const Post = (props) => {
     }
   }
 
-  const postIdSelector = useSelector((state) => state.read.postId);
+  const postIdSelector = useSelector(noteId);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token = useSelector((state) => state.auth.token);
+  const token = useSelector(authToken);
   const toReadHandler = (postId) => {
     dispatch(clearDiaryObjToEdit());
     console.log("postIdSelector", postIdSelector, "postId", postId);

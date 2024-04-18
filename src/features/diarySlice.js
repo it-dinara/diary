@@ -127,8 +127,12 @@ export const removePost = createAsyncThunk(
     return response.data;
   }
 );
-
 export const { setTitle, clearDiaryObjToEdit, saveNoteInState, noteInit } =
   diarySlice.actions;
+
+export const diaryTemplate = (state) => state.diary.template;
+export const diaryObj = (state) => state.diary.diaryObj;
+export const diaryTitle = (state) => state.diary.title;
+export const titleArr = (state) => state.diary.titleArray;
 
 export default diarySlice.reducer;

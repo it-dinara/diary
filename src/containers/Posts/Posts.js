@@ -21,9 +21,6 @@ const Posts = () => {
   useEffect(() => {
     dispatch(saveNoteInState(null));
     dispatch(setPostId(null));
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
 

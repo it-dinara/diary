@@ -2,13 +2,18 @@ import React, { useState, useEffect } from "react";
 import s from "./TitleMenu.module.css";
 import Title from "./Title/Title";
 import { useSelector, useDispatch } from "react-redux";
-import { setTitle } from "../../features/diarySlice.js";
+import {
+  diaryTemplate,
+  setTitle,
+  titleArr,
+} from "../../features/diarySlice.js";
+import { noteId } from "../../features/readSlice.js";
 
-const TitleMenu = React.memo((props) => {
-  const titleArray = useSelector((state) => state.diary.titleArray);
+const TitleMenu = React.memo(() => {
+  const titleArray = useSelector(titleArr);
   const postNote = useSelector((state) => state.read.postData.note);
-  const postId = useSelector((state) => state.read.postId);
-  const template = useSelector((state) => state.diary.template);
+  const postId = useSelector(noteId);
+  const template = useSelector(diaryTemplate);
   const [active, setActive] = useState(false);
   const dispatch = useDispatch();
 
@@ -27,7 +32,6 @@ const TitleMenu = React.memo((props) => {
     } else {
       for (let title of template) {
         if (Object.keys(postNote).includes(title)) {
-          // console.log('template title', title)
           dispatch(setTitle(title));
           setActive({ [title]: true });
           break;

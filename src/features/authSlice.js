@@ -100,3 +100,5 @@ export const auth = createAsyncThunk(
 export const { logout, setRedirectPath, authCheckState } = authSlice.actions;
 
 export default authSlice.reducer;
+
+export const authToken = (state) => state.auth.token;
