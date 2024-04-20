@@ -1,5 +1,4 @@
 import readReducer from "../features/readSlice";
-import testReducer from "../features/testSlice";
 import authReducer, {
   auth,
   logout,
@@ -19,7 +18,6 @@ export default configureStore({
     auth: authReducer,
     diary: diaryReducer,
     read: readReducer,
-    test: testReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend(listenerMiddleware.middleware),

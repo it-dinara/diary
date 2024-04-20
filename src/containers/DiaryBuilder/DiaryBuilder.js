@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TitleMenu from "../TitleMenu/TitleMenu";
 import Diary from "../Diary/Diary";
 import s from "./DiaryBuilder.module.css";
@@ -41,7 +41,6 @@ function DiaryBuilder() {
     for (let key in stateFeelings) {
       if (stateFeelings[key]) {
         note[key] = stateFeelings[key];
-        // console.log('note', note)
       }
     }
     //Дата

@@ -137,7 +137,6 @@ const Auth = () => {
     form = <Spinner />;
   }
 
-  let redirect = null;
   if (isAuthenticated) {
     console.log("isAuthenticated", isAuthenticated);
     // redirect = <Navigate to={redirectPath} />;

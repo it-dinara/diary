@@ -21,13 +21,12 @@ const authSlice = createSlice({
     setRedirectPath(state, action) {
       state.redirectPath = action.payload;
     },
-    authCheckState(state, action) {},
+    authCheckState() {},
   },
   extraReducers: (builder) => {
     builder
       .addCase(auth.pending, (state, action) => {
         state.loading = true;
-        // console.log(action.meta.arg);
         state.email = action.meta.arg.email;
         state.password = action.meta.arg.password;
       })
@@ -44,7 +43,6 @@ const authSlice = createSlice({
         state.error = null;
         state.expiresIn = expiresIn;
       });
-    // authCheckState
   },
 });
 
@@ -67,7 +65,6 @@ export const auth = createAsyncThunk(
     const expirationDate = new Date(
       new Date().getTime() + response.data.expiresIn * 1000
     );
-    // console.log('expirationDate auth', expirationDate)
     sessionStorage.setItem("token", response.data.idToken);
     sessionStorage.setItem("refreshToken", response.data.refreshToken);
     sessionStorage.setItem("expirationDate", expirationDate);
@@ -77,25 +74,7 @@ export const auth = createAsyncThunk(
   }
 );
 
-// export const authCheckState = createAsyncThunk(
-//   "auth/authCheckState",
-//   async (_, { dispatch }) => {
-//     // console.log("authCheckState token", token);
-//     const token = sessionStorage.getItem("token");
-//     if (!token) {
-//       // dispatch(reAuth())
-//       console.log("!!!token");
-//       return;
-//     } else {
-//       const expirationDate = new Date(sessionStorage.getItem("expirationDate"));
-//       if (expirationDate > new Date()) {
-//         const userId = sessionStorage.getItem("userId");
-//         console.log("auth.fulfilled({ token, userId })", token, userId);
-//         dispatch(auth.fulfilled({ token, userId }));
-//       }
-//     }
-//   }
-// );
+// написать reAuth
 
 export const { logout, setRedirectPath, authCheckState } = authSlice.actions;
 
