@@ -22,6 +22,7 @@ const authSlice = createSlice({
       state.redirectPath = action.payload;
     },
     authCheckState() {},
+    checkAuthTimeout() {},
   },
   extraReducers: (builder) => {
     builder
@@ -35,13 +36,25 @@ const authSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(auth.fulfilled, (state, action) => {
-        const { idToken, localId, expiresIn } = action.payload;
-        console.log("auth action.payload", action.payload);
-        state.token = idToken;
-        state.userId = localId;
+        console.log("auth.fulfilled", action);
+        // remove from state?
+        state.token = action.payload.idToken;
+        state.userId = action.payload.localId;
+        //
         state.loading = false;
         state.error = null;
-        state.expiresIn = expiresIn;
+      })
+      .addCase(reAuth.rejected, (state, action) => {
+        console.log("reAuth Rejected", action);
+        state.error = action.error.message;
+      })
+      .addCase(reAuth.pending, (state, action) => {
+        console.log("reAuth Pending", action);
+      })
+      .addCase(reAuth.fulfilled, (state, action) => {
+        console.log("reAuth Fulfilled", action);
+        state.token = action.payload.id_token;
+        state.userId = action.payload.user_id;
       });
   },
 });
@@ -74,9 +87,31 @@ export const auth = createAsyncThunk(
   }
 );
 
-// написать reAuth
+export const reAuth = createAsyncThunk("auth/reAuth", async (_, thunkIPA) => {
+  const refreshToken = sessionStorage.getItem("refreshToken");
+  const body = "grant_type=refresh_token&refresh_token=" + refreshToken;
+  let url =
+    "https://securetoken.googleapis.com/v1/token?key=AIzaSyCHwkentplNqp5vvQlz_uVpf4nVZxciYqk";
+  sessionStorage.clear();
+  const response = await axios.post(url, body);
+  // const idToken = response.data.id_token;
+  // const localId = response.data.user_id;
+  // thunkIPA.dispatch(auth.fulfilled({ idToken, localId }));
+  const expirationDate = new Date(
+    new Date().getTime() + response.data.expires_in * 1000
+  );
+  sessionStorage.setItem("token", response.data.id_token);
+  sessionStorage.setItem("refreshToken", response.data.refresh_token);
+  sessionStorage.setItem("expirationDate", expirationDate);
+  sessionStorage.setItem("userId", response.data.user_id);
 
-export const { logout, setRedirectPath, authCheckState } = authSlice.actions;
+  console.log("reAuth ---", response.data);
+
+  return response.data;
+});
+
+export const { logout, setRedirectPath, authCheckState, checkAuthTimeout } =
+  authSlice.actions;
 
 export default authSlice.reducer;
 

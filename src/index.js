@@ -1,4 +1,4 @@
-import React from "react";
+import { StrictMode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -12,7 +12,9 @@ import store from "./app/store";
 const app = (
   <Provider store={store}>
     <BrowserRouter>
+      {/* <StrictMode> */}
       <App />
+      {/* </StrictMode> */}
     </BrowserRouter>
   </Provider>
 );
