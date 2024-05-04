@@ -15,7 +15,7 @@ import diaryReducer, {
 import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit";
 
 const listenerMiddleware = createListenerMiddleware();
-export default configureStore({
+const store = configureStore({
   reducer: {
     auth: authReducer,
     diary: diaryReducer,
@@ -51,17 +51,21 @@ listenerMiddleware.startListening({
   actionCreator: authCheckState,
   effect: (_, listenerApi) => {
     const idToken = sessionStorage.getItem("token");
-    const expirationDate = new Date(sessionStorage.getItem("expirationDate"));
+    const expirationDate = new Date(
+      sessionStorage.getItem("expirationDate") as string
+    );
     if (!idToken) {
       console.log("!idToken----------------", idToken);
       listenerApi.dispatch(reAuth());
     } else {
       if (expirationDate > new Date()) {
         const localId = sessionStorage.getItem("userId");
-        listenerApi.dispatch(auth.fulfilled({ idToken, localId }));
         listenerApi.dispatch(
-          checkAuthTimeout(expirationDate.getTime() - new Date().getTime())
+          // TODO strange id parameter, added cause ts error
+          auth.fulfilled({ idToken, localId }, "id: authCheckState")
         );
+        const calc = expirationDate.getTime() - new Date().getTime();
+        listenerApi.dispatch(checkAuthTimeout(calc as any as void));
         console.log(
           "expirationMin",
           new Date(
@@ -77,9 +81,14 @@ listenerMiddleware.startListening({
 });
 listenerMiddleware.startListening({
   actionCreator: checkAuthTimeout,
-  effect: (_, listenerApi) => {
-    return (expirationTime) => {
+  effect: async (_, listenerApi) => {
+    const timer = () => (expirationTime: number) => {
       return setTimeout(() => listenerApi.dispatch(reAuth()), expirationTime);
     };
+    timer();
   },
 });
+
+export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
