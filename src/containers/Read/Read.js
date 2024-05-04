@@ -8,6 +8,7 @@ const Read = () => {
   const postData = useSelector((state) => state.read.postData);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.read.loading);
 
   const editHandler = () => {
     //здесь из note пост переходит в объект при написании поста - diaryObj
@@ -42,9 +43,8 @@ const Read = () => {
       }
     }
   }
-
-  let post = Spinner;
-  if (postData) {
+  let post = <Spinner />;
+  if (postData && !loading) {
     const postItem = notes.map((item, i) => (
       <div className={s.container} key={i}>
         <p className={s.name}>{item.name}</p>

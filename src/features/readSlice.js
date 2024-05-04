@@ -9,6 +9,7 @@ const initialState = {
     note: {},
     userId: null,
   },
+  loading: false,
 };
 
 const readSlice = createSlice({
@@ -21,13 +22,13 @@ const readSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // .addCase(setPostDataToRead.pending, (state, action) => {
-      //   state.loading = true;
-      // })
-      // .addCase(setPostDataToRead.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.error = action.payload;
-      // })
+      .addCase(setPostDataToRead.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(setPostDataToRead.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       .addCase(setPostDataToRead.fulfilled, (state, action) => {
         state.loading = false;
         state.postData = action.payload;

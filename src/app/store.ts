@@ -1,4 +1,4 @@
-import readReducer from "../features/readSlice";
+import readReducer from "../features/readSlice.js";
 import authReducer, {
   auth,
   logout,
@@ -6,12 +6,12 @@ import authReducer, {
   authCheckState,
   checkAuthTimeout,
   reAuth,
-} from "../features/authSlice";
+} from "../features/authSlice.js";
 import diaryReducer, {
   saveDiary,
   fetchPosts,
   removePost,
-} from "../features/diarySlice";
+} from "../features/diarySlice.js";
 import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit";
 
 const listenerMiddleware = createListenerMiddleware();

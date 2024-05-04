@@ -12,13 +12,13 @@ import {
   removePost,
   diaryObj,
   diaryTitle,
-  titleArr,
+  diaryTemplate,
 } from "../../features/diarySlice.js";
 import { noteId } from "../../features/readSlice.js";
 
 function DiaryBuilder() {
   const title = useSelector(diaryTitle);
-  const titleArray = useSelector(titleArr);
+  const template = useSelector(diaryTemplate);
   const stateFeelings = useSelector(diaryObj);
   const { token, userId } = useSelector((state) => state.auth);
   //Переменные при редактировании поста
@@ -131,9 +131,9 @@ function DiaryBuilder() {
 
   //в результате setTitle показывается соответствующий Textarea
   let diary = null;
-  for (let item of titleArray) {
-    if (title === item.name) {
-      diary = <Diary key={item.name} />;
+  for (let item of template) {
+    if (title === item) {
+      diary = <Diary key={item} />;
     }
   }
 

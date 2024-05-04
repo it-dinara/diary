@@ -8,17 +8,6 @@ const initialState = {
   // date: "",
   // newDate: "",
   title: "",
-  titleArray: [
-    { id: 0, name: "context" },
-    { id: 1, name: "feelings" },
-    { id: 3, name: "thought" },
-    { id: 2, name: "body" },
-    { id: 4, name: "isItFamiliar" },
-    { id: 5, name: "decision" },
-    { id: 6, name: "conclusion" },
-    { id: 7, name: "want" },
-    { id: 8, name: "care" },
-  ],
   template: [
     "context",
     "feelings",
