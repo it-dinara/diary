@@ -1,4 +1,4 @@
-import readReducer from "../features/readSlice.js";
+import readReducer from "../features/readSlice";
 import authReducer, {
   auth,
   logout,
