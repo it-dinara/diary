@@ -3,7 +3,7 @@ import s from "./TitleMenu.module.css";
 import Title from "./Title/Title";
 import { useSelector, useDispatch } from "react-redux";
 import { diaryTemplate, setTitle } from "../../features/diarySlice.js";
-import { noteId } from "../../features/readSlice.js";
+import { noteId } from "../../features/readSlice";
 
 const TitleMenu = React.memo(() => {
   const postNote = useSelector((state) => state.read.postData.note);

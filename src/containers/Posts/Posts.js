@@ -5,7 +5,7 @@ import s from "./Posts.module.css";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import axios from "../../axios-diary.js";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
-import { setPostId } from "../../features/readSlice.js";
+import { setPostId } from "../../features/readSlice";
 import {
   saveNoteInState,
   noteInit,

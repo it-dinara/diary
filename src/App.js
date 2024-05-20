@@ -8,11 +8,11 @@ import Read from "./containers/Read/Read";
 import Posts from "./containers/Posts/Posts";
 import Auth from "./containers/Auth/Auth";
 import Logout from "./containers/Auth/Logout/Logout";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Layout from "./hoc/Layout/Layout";
 import { authCheckState, authToken } from "./features/authSlice";
 
-const App = (props) => {
+const App = () => {
   const isAuthenticated = useSelector(authToken) !== null;
   const dispatch = useDispatch();
   useEffect(() => {

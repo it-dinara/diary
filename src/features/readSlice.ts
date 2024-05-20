@@ -1,12 +1,26 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = {
+interface TPostData {
+  fullDate: string | null;
+  millsec: number | null;
+  note: Record<string, string>;
+  userId: string | null;
+}
+
+interface TReadState {
+  postId: string | null;
+  postData: TPostData;
+  loading: boolean;
+  error?: any;
+}
+
+const initialState: TReadState = {
   postId: null,
   postData: {
     fullDate: null,
     millsec: null,
-    note: {},
+    note: { asd: "zxc" },
     userId: null,
   },
   loading: false,
@@ -16,13 +30,13 @@ const readSlice = createSlice({
   name: "read",
   initialState,
   reducers: {
-    setPostId(state, action) {
+    setPostId(state, action: PayloadAction<string>) {
       state.postId = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(setPostDataToRead.pending, (state, action) => {
+      .addCase(setPostDataToRead.pending, (state) => {
         state.loading = true;
       })
       .addCase(setPostDataToRead.rejected, (state, action) => {
@@ -38,7 +52,7 @@ const readSlice = createSlice({
 
 export const setPostDataToRead = createAsyncThunk(
   "read/setPostDataToRead",
-  async ({ token, postId }) => {
+  async ({ token, postId }: { token: string; postId: string }) => {
     const queryParams = "?auth=" + token;
     const response = await axios.get(`
       https://diary-a95bf.firebaseio.com/journal/${postId}.json${queryParams}
@@ -51,4 +65,4 @@ export const { setPostId } = readSlice.actions;
 
 export default readSlice.reducer;
 
-export const noteId = (state) => state.read.postId;
+export const noteId = (state: { read: TReadState }) => state.read.postId;

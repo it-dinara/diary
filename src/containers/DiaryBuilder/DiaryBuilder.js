@@ -14,7 +14,7 @@ import {
   diaryTitle,
   diaryTemplate,
 } from "../../features/diarySlice.js";
-import { noteId } from "../../features/readSlice.js";
+import { noteId } from "../../features/readSlice";
 
 function DiaryBuilder() {
   const title = useSelector(diaryTitle);
