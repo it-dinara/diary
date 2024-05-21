@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import s from "./TitleMenu.module.css";
 import Title from "./Title/Title";
 import { useSelector, useDispatch } from "react-redux";
-import { diaryTemplate, setTitle } from "../../features/diarySlice.js";
+import { diaryTemplate, setTitle } from "../../features/diarySlice";
 import { noteId } from "../../features/readSlice";
 
 const TitleMenu = React.memo(() => {

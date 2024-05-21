@@ -10,7 +10,7 @@ import {
   saveNoteInState,
   noteInit,
   fetchPosts,
-} from "../../features/diarySlice.js";
+} from "../../features/diarySlice";
 const Post = React.lazy(() => import("./Post/Post"));
 
 const Posts = () => {

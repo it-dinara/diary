@@ -8,7 +8,7 @@ interface TPostData {
   userId: string | null;
 }
 
-interface TReadState {
+export interface TReadState {
   postId: string | null;
   postData: TPostData;
   loading: boolean;

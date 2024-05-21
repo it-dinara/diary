@@ -1,24 +1,35 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = {
+const initialState: TAuthState = {
   userId: null,
   token: null,
   error: null,
   loading: false,
   redirectPath: "/",
-  authData: null,
+  email: "",
+  password: "",
 };
+
+interface TAuthState {
+  userId: string | null;
+  token: string | null;
+  error?: any;
+  loading: boolean;
+  redirectPath: string | null;
+  email: string;
+  password: string;
+}
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout(state, action) {
+    logout(state) {
       state.token = null;
       state.userId = null;
     },
-    setRedirectPath(state, action) {
+    setRedirectPath(state, action: PayloadAction<string | null>) {
       state.redirectPath = action.payload;
     },
     authCheckState() {},
@@ -61,7 +72,15 @@ const authSlice = createSlice({
 
 export const auth = createAsyncThunk(
   "auth/auth",
-  async ({ email, password, isSignup }) => {
+  async ({
+    email,
+    password,
+    isSignup,
+  }: {
+    email: string;
+    password: string;
+    isSignup: boolean;
+  }) => {
     const authData = {
       email: email,
       password: password,
@@ -80,7 +99,7 @@ export const auth = createAsyncThunk(
     );
     sessionStorage.setItem("token", response.data.idToken);
     sessionStorage.setItem("refreshToken", response.data.refreshToken);
-    sessionStorage.setItem("expirationDate", expirationDate);
+    sessionStorage.setItem("expirationDate", expirationDate as any as string);
     sessionStorage.setItem("userId", response.data.localId);
 
     return response.data;
@@ -102,7 +121,7 @@ export const reAuth = createAsyncThunk("auth/reAuth", async (_, thunkIPA) => {
   );
   sessionStorage.setItem("token", response.data.id_token);
   sessionStorage.setItem("refreshToken", response.data.refresh_token);
-  sessionStorage.setItem("expirationDate", expirationDate);
+  sessionStorage.setItem("expirationDate", expirationDate as any as string);
   sessionStorage.setItem("userId", response.data.user_id);
 
   console.log("reAuth ---", response.data);
@@ -115,4 +134,4 @@ export const { logout, setRedirectPath, authCheckState, checkAuthTimeout } =
 
 export default authSlice.reducer;
 
-export const authToken = (state) => state.auth.token;
+export const authToken = (state: { auth: TAuthState }) => state.auth.token;

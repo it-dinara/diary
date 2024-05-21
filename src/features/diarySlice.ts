@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import axiosInstance from "../axios-diary.js";
+import { TReadState } from "./readSlice";
 
 const template = [
   "context",
@@ -13,17 +14,6 @@ const template = [
   "want",
   "care",
 ] as const;
-
-interface TDiaryState {
-  fetchedPostsRes: Record<string, string>[];
-  diaryId: string | null;
-  title: string | null;
-  template: typeof template;
-  diaryObj: Record<string, string>;
-  fullDate: string | null;
-  millsec: number | null;
-  error?: any;
-}
 
 const initialState: TDiaryState = {
   fetchedPostsRes: [],
@@ -45,6 +35,22 @@ const initialState: TDiaryState = {
   millsec: null,
   error: false,
 };
+
+interface TDiaryState {
+  fetchedPostsRes: Record<string, string>[];
+  diaryId: string | null;
+  title: string | null;
+  template: typeof template;
+  diaryObj: Record<string, string>;
+  fullDate: string | null;
+  millsec: number | null;
+  error?: any;
+}
+
+interface TState {
+  auth: Record<string, string>;
+  read: TReadState;
+}
 
 const diarySlice = createSlice({
   name: "diary",
@@ -109,12 +115,7 @@ export const saveDiary = createAsyncThunk(
   }
 );
 
-interface TAuthState {
-  auth: Record<string, string>;
-  read: Record<string, string>;
-}
-
-export const fetchPosts = createAsyncThunk<any, any, { state: TAuthState }>(
+export const fetchPosts = createAsyncThunk<any, any, { state: TState }>(
   "diary/fetchPosts",
   async (_, { getState }) => {
     const { token, userId } = getState().auth;
@@ -125,7 +126,7 @@ export const fetchPosts = createAsyncThunk<any, any, { state: TAuthState }>(
   }
 );
 
-export const removePost = createAsyncThunk<any, any, { state: TAuthState }>(
+export const removePost = createAsyncThunk<any, any, { state: TState }>(
   "diary/removePost",
   async (_, { getState }) => {
     const token = getState().auth.token;

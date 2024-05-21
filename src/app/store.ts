@@ -6,21 +6,26 @@ import authReducer, {
   authCheckState,
   checkAuthTimeout,
   reAuth,
-} from "../features/authSlice.js";
+} from "../features/authSlice";
 import diaryReducer, {
   saveDiary,
   fetchPosts,
   removePost,
-} from "../features/diarySlice.js";
-import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit";
+} from "../features/diarySlice";
+import {
+  combineReducers,
+  configureStore,
+  createListenerMiddleware,
+} from "@reduxjs/toolkit";
 
 const listenerMiddleware = createListenerMiddleware();
+const rootReducer = combineReducers({
+  auth: authReducer,
+  diary: diaryReducer,
+  read: readReducer,
+});
 const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    diary: diaryReducer,
-    read: readReducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend(listenerMiddleware.middleware),
 });
@@ -62,7 +67,11 @@ listenerMiddleware.startListening({
         const localId = sessionStorage.getItem("userId");
         listenerApi.dispatch(
           // TODO strange id parameter, added cause ts error
-          auth.fulfilled({ idToken, localId }, "id: authCheckState")
+          auth.fulfilled({ idToken, localId }, "id: authCheckState", {
+            email: "",
+            password: "",
+            isSignup: false,
+          })
         );
         const calc = expirationDate.getTime() - new Date().getTime();
         listenerApi.dispatch(checkAuthTimeout(calc as any as void));

@@ -5,8 +5,8 @@ import { setPostId, setPostDataToRead } from "../../../features/readSlice";
 import {
   clearDiaryObjToEdit,
   diaryTemplate,
-} from "../../../features/diarySlice.js";
-import { authToken } from "../../../features/authSlice.js";
+} from "../../../features/diarySlice";
+import { authToken } from "../../../features/authSlice";
 
 const Post = (props) => {
   const template = useSelector(diaryTemplate);

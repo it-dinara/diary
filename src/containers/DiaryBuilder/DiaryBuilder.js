@@ -13,7 +13,7 @@ import {
   diaryObj,
   diaryTitle,
   diaryTemplate,
-} from "../../features/diarySlice.js";
+} from "../../features/diarySlice";
 import { noteId } from "../../features/readSlice";
 
 function DiaryBuilder() {
