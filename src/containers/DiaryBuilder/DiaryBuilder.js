@@ -15,6 +15,7 @@ import {
   diaryTemplate,
 } from "../../features/diarySlice";
 import { noteId } from "../../features/readSlice";
+import getNoteDate from "../../helpers/getNoteDate";
 
 function DiaryBuilder() {
   const title = useSelector(diaryTitle);
@@ -43,35 +44,11 @@ function DiaryBuilder() {
         note[key] = stateFeelings[key];
       }
     }
-    //Дата
-    let date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth();
-    let day = date.getDate();
-    let hour = date.getHours();
-    let minutes = date.getMinutes();
 
-    const formatDate = (num) => {
-      let res;
-      if (num.toString().length < 2) {
-        res = "0" + num;
-      } else {
-        res = num;
-      }
-      return res;
-    };
+    let fullDate = getNoteDate.fullDate;
+    let millsec = getNoteDate.millsec;
 
-    let fullDate =
-      day +
-      "." +
-      formatDate(month + 1) +
-      "." +
-      year +
-      " " +
-      formatDate(hour) +
-      ":" +
-      formatDate(minutes);
-    let millsec = Date.parse(date);
+    console.log("fullDate", fullDate);
 
     const diaryData = {
       note: note,
