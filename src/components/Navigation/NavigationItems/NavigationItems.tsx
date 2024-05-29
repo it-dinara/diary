@@ -1,8 +1,10 @@
-import React from "react";
 import classes from "./NavigationItems.module.css";
 import NavigationItem from "./NavigationItem/NavigationItem";
 
-const navigationItems = (props) => (
+const navigationItems = (props: {
+  link: string;
+  isAuthentication: boolean;
+}) => (
   <ul className={classes.NavigationItems}>
     {props.isAuthentication ? (
       <NavigationItem link="/posts">Posts</NavigationItem>
