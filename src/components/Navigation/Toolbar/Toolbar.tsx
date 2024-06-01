@@ -3,16 +3,18 @@ import Logo from "../../Logo/Logo";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { authToken } from "../../../features/authSlice";
 
-const Toolbar = (props) => {
-  const isAuthenticated = useSelector(authToken) !== null;
+type TToolbar = {
+  drawerToggleClicked: () => void;
+  isAuthentication: boolean;
+};
+
+const Toolbar = (props: TToolbar) => {
   return (
     <header className={classes.Toolbar}>
       <DrawerToggle clicked={props.drawerToggleClicked} />
       <NavLink
-        to={isAuthenticated ? "/posts" : "/auth"}
+        to={props.isAuthentication ? "/posts" : "/auth"}
         className={classes.Logo}
       >
         <Logo />

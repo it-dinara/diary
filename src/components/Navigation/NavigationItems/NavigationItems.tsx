@@ -1,20 +1,20 @@
 import classes from "./NavigationItems.module.css";
 import NavigationItem from "./NavigationItem/NavigationItem";
 
-const navigationItems = (props: {
-  link: string;
-  isAuthentication: boolean;
-}) => (
-  <ul className={classes.NavigationItems}>
-    {props.isAuthentication ? (
-      <NavigationItem link="/posts">Posts</NavigationItem>
-    ) : null}
-    {!props.isAuthentication ? (
-      <NavigationItem link="/auth">Authenticate</NavigationItem>
-    ) : (
-      <NavigationItem link="/logout">Logout</NavigationItem>
-    )}
-  </ul>
-);
+const navigationItems = (props: { isAuthentication: boolean }) => {
+  console.log("navigationItems props", props);
+  return (
+    <ul className={classes.NavigationItems}>
+      {props.isAuthentication ? (
+        <>
+          <NavigationItem link="/posts">Posts</NavigationItem>
+          <NavigationItem link="/logout">Logout</NavigationItem>
+        </>
+      ) : (
+        <NavigationItem link="/auth">Authenticate</NavigationItem>
+      )}
+    </ul>
+  );
+};
 
 export default navigationItems;

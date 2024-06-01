@@ -42,6 +42,8 @@ const authSlice = createSlice({
         state.email = action.meta.arg.email;
         state.password = action.meta.arg.password;
       })
+      //error state dublicates across the slices
+      //to do some utile fn
       .addCase(auth.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
@@ -59,7 +61,7 @@ const authSlice = createSlice({
         console.log("reAuth Rejected", action);
         state.error = action.error.message;
       })
-      .addCase(reAuth.pending, (state, action) => {
+      .addCase(reAuth.pending, (_, action) => {
         console.log("reAuth Pending", action);
       })
       .addCase(reAuth.fulfilled, (state, action) => {
