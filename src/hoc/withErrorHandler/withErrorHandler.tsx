@@ -1,21 +1,25 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import Modal from "../../components/UI/Modal/Modal";
-import { AxiosInstance } from "axios";
+import { AxiosInstance, AxiosError } from "axios";
 
 const withErrorHandler =
-  (WrappedComponent: any, axios: AxiosInstance) => (props: any) => {
-    const [error, setError] = useState<any>(null); //todo remove any
-    const errorConfirmedHandler = () => setError(null);
+  <TProps extends JSX.IntrinsicAttributes>(
+    WrappedComponent: React.FC<TProps>,
+    axios: AxiosInstance
+  ) =>
+  (props: TProps) => {
+    const [error, setError] = useState<null | AxiosError>(null);
 
     useEffect(() => {
-      const reqInterceptor = axios.interceptors.request.use((req: any) => {
-        useState(null);
+      const reqInterceptor = axios.interceptors.request.use((req) => {
+        setError(null);
         return req;
       });
       const resInterceptor = axios.interceptors.response.use(
-        (res: any) => res,
-        (error: any) => {
-          useState(error);
+        (res) => res,
+        (error) => {
+          setError(error);
         }
       );
       return () => {
@@ -26,9 +30,9 @@ const withErrorHandler =
 
     return (
       <>
-        <Modal show={error} modalClosed={errorConfirmedHandler}>
+        <Modal show={error} modalClosed={() => setError(null)}>
           {error
-            ? error.response.status === 401
+            ? error.response?.status === 401
               ? "please log in"
               : error.message
             : null}
