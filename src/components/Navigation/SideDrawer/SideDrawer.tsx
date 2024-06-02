@@ -4,13 +4,13 @@ import classes from "./SideDrawer.module.css";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import Aux from "../../../hoc/_Aux/_Aux";
 
-type tsideDrawer = {
+type SideDrawerProps = {
   open: boolean;
   closed: () => void;
   isAuthentication: boolean;
 };
 
-const sideDrawer = (props: tsideDrawer) => {
+const SideDrawer = (props: SideDrawerProps) => {
   let attachedClasses = [classes.SideDrawer, classes.Close];
   if (props.open) {
     attachedClasses = [classes.SideDrawer, classes.Open];
@@ -30,4 +30,4 @@ const sideDrawer = (props: tsideDrawer) => {
   );
 };
 
-export default sideDrawer;
+export default SideDrawer;

@@ -1,13 +1,13 @@
 import { NavLink } from "react-router-dom";
 import classes from "./NavigationItem.module.css";
 
-interface TNavigationItem {
+interface NavigationItemProps {
   link: string;
   end?: boolean;
   children: React.ReactNode;
 }
 
-const navigationItem = (props: TNavigationItem) => {
+const navigationItem = (props: NavigationItemProps) => {
   return (
     <li className={classes.NavigationItem}>
       <NavLink

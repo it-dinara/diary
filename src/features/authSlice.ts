@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState: TAuthState = {
+const initialState: AuthStateType = {
   userId: null,
   token: null,
   error: null,
@@ -11,7 +11,7 @@ const initialState: TAuthState = {
   password: "",
 };
 
-interface TAuthState {
+interface AuthStateType {
   userId: string | null;
   token: string | null;
   error?: any;
@@ -136,4 +136,4 @@ export const { logout, setRedirectPath, authCheckState, checkAuthTimeout } =
 
 export default authSlice.reducer;
 
-export const authToken = (state: { auth: TAuthState }) => state.auth.token;
+export const authToken = (state: { auth: AuthStateType }) => state.auth.token;

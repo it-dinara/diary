@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import axiosInstance from "../axios-diary.js";
-import { TReadState } from "./readSlice";
+import { ReadStateType } from "./readSlice";
 
 const template = [
   "context",
@@ -15,7 +15,7 @@ const template = [
   "care",
 ] as const;
 
-const initialState: TDiaryState = {
+const initialState: DiaryStateType = {
   fetchedPostsRes: [],
   diaryId: "",
   title: "",
@@ -36,7 +36,7 @@ const initialState: TDiaryState = {
   error: false,
 };
 
-interface TDiaryState {
+interface DiaryStateType {
   fetchedPostsRes: Record<string, string>[];
   diaryId: string | null;
   title: string | null;
@@ -49,7 +49,7 @@ interface TDiaryState {
 
 interface TState {
   auth: Record<string, string>;
-  read: TReadState;
+  read: ReadStateType;
 }
 
 const diarySlice = createSlice({
@@ -149,9 +149,11 @@ export const removePost = createAsyncThunk<any, any, { state: TState }>(
 export const { setTitle, clearDiaryObjToEdit, saveNoteInState, noteInit } =
   diarySlice.actions;
 
-export const diaryTemplate = (state: { diary: TDiaryState }) =>
+export const diaryTemplate = (state: { diary: DiaryStateType }) =>
   state.diary.template;
-export const diaryObj = (state: { diary: TDiaryState }) => state.diary.diaryObj;
-export const diaryTitle = (state: { diary: TDiaryState }) => state.diary.title;
+export const diaryObj = (state: { diary: DiaryStateType }) =>
+  state.diary.diaryObj;
+export const diaryTitle = (state: { diary: DiaryStateType }) =>
+  state.diary.title;
 
 export default diarySlice.reducer;

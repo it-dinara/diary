@@ -8,14 +8,14 @@ interface TPostData {
   userId: string | null;
 }
 
-export interface TReadState {
+export interface ReadStateType {
   postId: string | null;
   postData: TPostData;
   loading: boolean;
   error?: any;
 }
 
-const initialState: TReadState = {
+const initialState: ReadStateType = {
   postId: null,
   postData: {
     fullDate: null,
@@ -65,4 +65,4 @@ export const { setPostId } = readSlice.actions;
 
 export default readSlice.reducer;
 
-export const noteId = (state: { read: TReadState }) => state.read.postId;
+export const noteId = (state: { read: ReadStateType }) => state.read.postId;

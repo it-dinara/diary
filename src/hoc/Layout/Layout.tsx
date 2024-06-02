@@ -7,11 +7,11 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { authToken } from "../../features/authSlice";
 
-type TLayout = {
+type LayoutProps = {
   children: React.ReactNode;
 };
 
-export default function Layout(props: TLayout) {
+export default function Layout(props: LayoutProps) {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
   const isAuthentication = useSelector(authToken) !== null;
   const sideDrawerClosedHandler = () => {

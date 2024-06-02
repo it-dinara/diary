@@ -4,12 +4,12 @@ import NavigationItems from "../NavigationItems/NavigationItems";
 import DrawerToggle from "../SideDrawer/DrawerToggle/DrawerToggle";
 import { NavLink } from "react-router-dom";
 
-type TToolbar = {
+type ToolbarProps = {
   drawerToggleClicked: () => void;
   isAuthentication: boolean;
 };
 
-const Toolbar = (props: TToolbar) => {
+const Toolbar = (props: ToolbarProps) => {
   return (
     <header className={classes.Toolbar}>
       <DrawerToggle clicked={props.drawerToggleClicked} />

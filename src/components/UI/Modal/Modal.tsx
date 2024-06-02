@@ -2,13 +2,13 @@ import React from "react";
 import classes from "./Modal.module.css";
 import Backdrop from "../Backdrop/Backdrop";
 
-type TModal = {
+type ModalProps = {
   children: React.ReactNode;
   show: {} | null;
   modalClosed: () => void;
 };
 
-const Modal = React.memo((props: TModal) => {
+const Modal = React.memo((props: ModalProps) => {
   return (
     <>
       <Backdrop show={props.show} clicked={props.modalClosed} />
