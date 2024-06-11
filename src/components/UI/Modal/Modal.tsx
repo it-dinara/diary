@@ -4,7 +4,7 @@ import Backdrop from "../Backdrop/Backdrop";
 
 type ModalProps = {
   children: React.ReactNode;
-  show: {} | null;
+  show: boolean;
   modalClosed: () => void;
 };
 

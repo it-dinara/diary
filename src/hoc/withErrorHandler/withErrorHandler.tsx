@@ -30,7 +30,7 @@ const withErrorHandler =
 
     return (
       <>
-        <Modal show={error} modalClosed={() => setError(null)}>
+        <Modal show={error ? true : false} modalClosed={() => setError(null)}>
           {error
             ? error.response?.status === 401
               ? "please log in"
