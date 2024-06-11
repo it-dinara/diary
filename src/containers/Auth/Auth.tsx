@@ -1,22 +1,35 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import classes from "./Auth.module.css";
 import { auth, authToken } from "../../features/authSlice";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+
+type EmailValidationType = {
+  kind: "email";
+  required: boolean;
+  isEmail: boolean;
+};
+
+type PasswordValidationType = {
+  kind: "password";
+  required: boolean;
+  minLength: number;
+};
 
 const Auth = () => {
   const [controls, setControls] = useState({
     email: {
-      elementType: "input",
+      elementType: "input" as const,
       elementConfig: {
         type: "email",
         placeholder: "Mail Address",
       },
       value: "",
       validation: {
+        kind: "email" as const,
         required: true,
         isEmail: true,
       },
@@ -25,13 +38,14 @@ const Auth = () => {
       id: "email",
     },
     password: {
-      elementType: "input",
+      elementType: "input" as const,
       elementConfig: {
         type: "password",
         placeholder: "Password",
       },
       value: "",
       validation: {
+        kind: "password" as const,
         required: true,
         minLength: 6,
       },
@@ -42,12 +56,19 @@ const Auth = () => {
   });
 
   const [isSignup, setIsSignup] = useState(false);
-  const loading = useSelector((state) => state.auth.loading);
-  const error = useSelector((state) => state.auth.error);
-  const isAuthenticated = useSelector(authToken);
-  const dispatch = useDispatch();
+  const loading = useAppSelector((state) => state.auth.loading);
+  const error = useAppSelector((state) => state.auth.error);
+  const isAuthenticated = useAppSelector(authToken);
+  const dispatch = useAppDispatch();
 
-  const checkValidity = (value, rules) => {
+  const checkValidity = (
+    value: string,
+    rules: (EmailValidationType | PasswordValidationType) &
+      Partial<{
+        maxLength: number;
+        isNumeric: number;
+      }>
+  ) => {
     let isValid = true;
     if (!rules) {
       return true;
@@ -56,19 +77,22 @@ const Auth = () => {
     if (rules.required) {
       isValid = value.trim() !== "" && isValid;
     }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
+    if (rules.kind === "password") {
+      if (rules.minLength) {
+        isValid = value.length >= rules.minLength && isValid;
+      }
     }
 
     if (rules.maxLength) {
       isValid = value.length <= rules.maxLength && isValid;
     }
 
-    if (rules.isEmail) {
-      const pattern =
-        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-      isValid = pattern.test(value) && isValid;
+    if (rules.kind === "email") {
+      if (rules.isEmail) {
+        const pattern =
+          /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        isValid = pattern.test(value) && isValid;
+      }
     }
 
     if (rules.isNumeric) {
@@ -79,7 +103,13 @@ const Auth = () => {
     return isValid;
   };
 
-  const inputChangedHandler = (event, controlName) => {
+  const TestT = "email" in controls;
+  console.log("==========", TestT);
+
+  const inputChangedHandler = (
+    event: { target: { value: string } },
+    controlName: "password" | "email"
+  ) => {
     const updatedControls = {
       ...controls,
       [controlName]: {
@@ -92,11 +122,10 @@ const Auth = () => {
         touched: true,
       },
     };
-
     setControls(updatedControls);
   };
   const navigate = useNavigate();
-  const submitHandler = (event) => {
+  const submitHandler = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     const {
       email: { value: email },
@@ -110,29 +139,32 @@ const Auth = () => {
     setIsSignup((isSignup) => !isSignup);
   };
 
+  type ControlsKeysType = keyof typeof controls;
   const formElementsArray = [];
-  for (let key in controls) {
+
+  for (const key in controls) {
     formElementsArray.push({
-      key: key,
-      config: controls[key],
+      key: key as ControlsKeysType,
+      config: controls[key as ControlsKeysType],
     });
   }
 
-  let form = formElementsArray.map((formElement, i) => (
-    <Input
-      key={formElement.key}
-      elementType={formElement.config.elementType}
-      elementConfig={formElement.config.elementConfig}
-      value={formElement.config.value}
-      invalid={!formElement.config.valid}
-      shouldValidate={formElement.config.validation}
-      touched={formElement.config.touched}
-      changed={(event) => inputChangedHandler(event, formElement.key)}
-      id={formElement.config.id}
-      for={formElement.config.id}
-    />
-  ));
-
+  let form: JSX.Element | JSX.Element[] = formElementsArray.map(
+    (formElement, i) => (
+      <Input
+        key={formElement.key}
+        elementType={formElement.config.elementType}
+        elementConfig={formElement.config.elementConfig}
+        value={formElement.config.value}
+        invalid={!formElement.config.valid}
+        shouldValidate={formElement.config.validation}
+        touched={formElement.config.touched}
+        changed={(event) => inputChangedHandler(event, formElement.key)}
+        id={formElement.config.id}
+        for={formElement.config.id}
+      />
+    )
+  );
   if (loading) {
     form = <Spinner />;
   }
