@@ -23,7 +23,7 @@ const App = () => {
 
   let router = (
     <Routes>
-      <Route path="/auth" end element={<Auth />} />
+      <Route path="/auth" element={<Auth />} />
       <Route path="*" element={<Navigate to="/auth" />} />
     </Routes>
   );
@@ -33,7 +33,7 @@ const App = () => {
       <Routes>
         <Route path="/logout" element={<Logout />} />
         <Route path="/posts" element={<Posts />} />
-        <Route path="/" end element={<DiaryBuilder />} />
+        <Route path="/" element={<DiaryBuilder />} />
         <Route path="/read" element={<Read />} />
         <Route path="*" element={<Navigate to="/posts" />} />
       </Routes>
