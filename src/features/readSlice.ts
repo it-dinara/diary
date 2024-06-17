@@ -30,7 +30,7 @@ const readSlice = createSlice({
   name: "read",
   initialState,
   reducers: {
-    setPostId(state, action: PayloadAction<string>) {
+    setPostId(state, action: PayloadAction<string | null>) {
       state.postId = action.payload;
     },
   },

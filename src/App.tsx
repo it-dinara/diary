@@ -14,6 +14,9 @@ import { authCheckState, authToken } from "./features/authSlice";
 
 const App = () => {
   const isAuthenticated = useSelector(authToken) !== null;
+  console.log(
+    "----------------------- test if actions twiced due to of parent component useSelector"
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authCheckState());

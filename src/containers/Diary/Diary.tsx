@@ -1,23 +1,27 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, ElementRef } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import s from "./Diary.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { saveNoteInState, diaryObj, diaryTitle } from "../../features/diarySlice";
+import {
+  saveNoteInState,
+  diaryObj,
+  diaryTitle,
+} from "../../features/diarySlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 const Diary = React.forwardRef((props, ref) => {
-  const title = useSelector(diaryTitle);
-  const stateFeelings = useSelector(diaryObj);
+  const title = useAppSelector(diaryTitle);
+  const stateFeelings = useAppSelector(diaryObj);
   //отрисовка текста в Textarea
   //Например: context: 'Привет'
   let textareaVal = stateFeelings[title] ? stateFeelings[title] : "";
   const [value, setValue] = useState(textareaVal);
 
-  const dispatch = useDispatch();
-  const txt = useRef(null);
+  const dispatch = useAppDispatch();
+  const txt = useRef<ElementRef<"textarea">>(null);
   useEffect(() => {
     //создание поста
     dispatch(saveNoteInState({ title, value }));
-    txt.current.focus();
+    txt.current?.focus();
   }, [title, value, dispatch]);
 
   return (

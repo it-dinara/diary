@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
 import s from "./Post.module.css";
 import { useNavigate } from "react-router-dom";
 import { setPostId, setPostDataToRead } from "../../../features/readSlice";
@@ -7,9 +6,17 @@ import {
   diaryTemplate,
 } from "../../../features/diarySlice";
 import { authToken } from "../../../features/authSlice";
+import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 
-const Post = (props) => {
-  const template = useSelector(diaryTemplate);
+type PostProps = {
+  note: Record<string, string>;
+  postId: string;
+  fullDate: string;
+  millsec: number;
+};
+
+const Post = (props: PostProps) => {
+  const template = useAppSelector(diaryTemplate);
   const notes = [];
   for (let postName of template) {
     if (props.note[postName]) {
@@ -20,13 +27,15 @@ const Post = (props) => {
     }
   }
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const token = useSelector(authToken);
-  const toReadHandler = (postId) => {
+  const token = useAppSelector(authToken);
+  const toReadHandler = (postId: string) => {
     dispatch(clearDiaryObjToEdit());
     dispatch(setPostId(postId));
-    dispatch(setPostDataToRead({ token, postId }));
+    if (token !== null) {
+      dispatch(setPostDataToRead({ token, postId }));
+    }
     navigate("/read");
   };
 

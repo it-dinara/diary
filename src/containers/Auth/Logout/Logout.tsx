@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { logout } from "../../../features/authSlice";
+import { useAppDispatch } from "../../../app/hooks";
 
 const Logout = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(logout());

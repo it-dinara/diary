@@ -1,5 +1,4 @@
 import React, { useEffect, useState, Suspense } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import s from "./Posts.module.css";
 import Spinner from "../../components/UI/Spinner/Spinner";
@@ -11,23 +10,31 @@ import {
   noteInit,
   fetchPosts,
 } from "../../features/diarySlice";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 const Post = React.lazy(() => import("./Post/Post"));
 
 const Posts = () => {
-  const { loading, fetchedPostsRes } = useSelector((state) => state.diary);
-  const dispatch = useDispatch();
+  const fetchedPostsRes = useAppSelector(
+    (state) => state.diary.fetchedPostsRes
+  );
+  const loading = useAppSelector((state) => state.diary.loading);
+  const dispatch = useAppDispatch();
   const [value, setValue] = useState("");
 
   useEffect(() => {
     dispatch(saveNoteInState(null));
     dispatch(setPostId(null));
     dispatch(fetchPosts());
+    // to do fetchPosts recieve data twice(as other data receiving actions too), apparently case of
+    // file structure(useSelector of parent component, may be need to cach data)
   }, [dispatch]);
 
   let res = [];
+  type KeyofFetchedPostsRes = keyof typeof fetchedPostsRes;
+
   for (let key in fetchedPostsRes) {
-    if (fetchedPostsRes[key].millsec) {
-      res.push(fetchedPostsRes[key]);
+    if (fetchedPostsRes[key as KeyofFetchedPostsRes].millsec) {
+      res.push(fetchedPostsRes[key as KeyofFetchedPostsRes]);
     }
   }
   const [flag, setFlag] = useState(false);
@@ -41,7 +48,7 @@ const Posts = () => {
     setFlag(!flag);
   };
 
-  let posts = <Spinner />;
+  let posts: React.ReactNode = <Spinner />;
   if (!loading) {
     posts = res.map((post) => {
       if (
@@ -69,17 +76,12 @@ const Posts = () => {
   const history = useNavigate();
   const makeNewNoteHandler = () => {
     //очистка стейта от удалёного поста
-    dispatch(noteInit());
+    dispatch(noteInit(null));
     history("/");
   };
 
   const start = (
-    <button
-      className={s.newNote}
-      onClick={(event) => {
-        makeNewNoteHandler(event);
-      }}
-    >
+    <button className={s.newNote} onClick={() => makeNewNoteHandler()}>
       New note
     </button>
   );

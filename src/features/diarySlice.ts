@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import axiosInstance from "../axios-diary.js";
 import { ReadStateType } from "./readSlice";
+import { RootState } from "../app/store.js";
 
 const template = [
   "context",
@@ -34,17 +35,20 @@ const initialState: DiaryStateType = {
   fullDate: null,
   millsec: null,
   error: false,
+  loading: false,
 };
 
 interface DiaryStateType {
-  fetchedPostsRes: Record<string, string>[];
+  // to do try use zod on fetchedPostsRes, e.g. Array<typeof fetchedData>
+  fetchedPostsRes: Array<any>;
   diaryId: string | null;
-  title: string | null;
+  title: string;
   template: typeof template;
   diaryObj: Record<string, string>;
   fullDate: string | null;
   millsec: number | null;
   error?: any;
+  loading: boolean;
 }
 
 interface TState {
@@ -59,7 +63,7 @@ const diarySlice = createSlice({
     setTitle(state, { payload }) {
       state.title = payload;
     },
-    clearDiaryObjToEdit(state, action) {
+    clearDiaryObjToEdit(state) {
       state.diaryObj = {};
     },
     saveNoteInState(state, { payload }) {
@@ -67,7 +71,7 @@ const diarySlice = createSlice({
       const value = payload?.value;
       state.diaryObj = { ...state.diaryObj, [title]: value };
     },
-    noteInit(state, { payload }) {
+    noteInit(state, { payload = null }) {
       state.title = payload;
       state.diaryObj = {};
       state.fullDate = null;
@@ -84,8 +88,13 @@ const diarySlice = createSlice({
         state.diaryId = name;
       })
       // fetchPosts
+      .addCase(fetchPosts.pending, (state) => {
+        //to do remove dublicated loadings from slices
+        state.loading = true;
+      })
       .addCase(fetchPosts.rejected, (state, { error }) => {
         state.error = error.message;
+        state.loading = false;
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         const fetchedPostsRes = [];
@@ -96,6 +105,7 @@ const diarySlice = createSlice({
           });
         }
         state.fetchedPostsRes = fetchedPostsRes;
+        state.loading = false;
       })
       //removePost
       .addCase(removePost.rejected, (state, { error }) => {
@@ -115,10 +125,10 @@ export const saveDiary = createAsyncThunk(
   }
 );
 
-export const fetchPosts = createAsyncThunk<any, any, { state: TState }>(
+export const fetchPosts = createAsyncThunk(
   "diary/fetchPosts",
   async (_, { getState }) => {
-    const { token, userId } = getState().auth;
+    const { token, userId } = (getState() as RootState).auth;
     const queryParams =
       "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
     const response = await axiosInstance.get("/journal.json" + queryParams);
@@ -126,11 +136,11 @@ export const fetchPosts = createAsyncThunk<any, any, { state: TState }>(
   }
 );
 
-export const removePost = createAsyncThunk<any, any, { state: TState }>(
+export const removePost = createAsyncThunk(
   "diary/removePost",
   async (_, { getState }) => {
-    const token = getState().auth.token;
-    const postId = getState().read.postId;
+    const token = (getState() as RootState).auth.token;
+    const postId = (getState() as RootState).read.postId;
     console.log("removePost", token, postId, getState());
     if (postId?.length === 0) {
       return null;
