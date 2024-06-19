@@ -31,8 +31,8 @@ const Read: FC = () => {
     "Суббота",
   ];
   const template = useAppSelector(diaryTemplate);
-  const notes: { name: string; content: any }[] = [];
-  let postNote: any = null;
+  const notes: { name: string; content: string }[] = [];
+  let postNote: null | Record<string, string> = null;
   if (postData) {
     postNote = postData.note;
     for (let postName of template) {

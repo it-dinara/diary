@@ -44,7 +44,7 @@ const TitleMenu = React.memo(() => {
         <Title
           key={title}
           name={title}
-          clicked={(event: any) => setTitleHandler(event, title)}
+          clicked={(event) => setTitleHandler(event, title)}
           active={active[title]}
         />
       ))}

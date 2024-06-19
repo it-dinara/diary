@@ -2,7 +2,7 @@ import React, { useEffect, useState, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import s from "./Posts.module.css";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import axios from "../../axios-diary.js";
+import axios from "../../axios-diary";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import { setPostId } from "../../features/readSlice";
 import {

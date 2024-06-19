@@ -1,8 +1,11 @@
 import s from "./Title.module.css";
 
 type TitleProps = {
-  active: any;
-  clicked: (event: any) => { payload: any; type: "diary/setTitle" };
+  active: boolean;
+  clicked: (event: { preventDefault: () => void }) => {
+    payload: string;
+    type: "diary/setTitle";
+  };
   name: string;
 };
 

@@ -74,6 +74,7 @@ listenerMiddleware.startListening({
           })
         );
         const calc = expirationDate.getTime() - new Date().getTime();
+        // to do checkAuthTimeout rewrite complitly
         listenerApi.dispatch(checkAuthTimeout(calc as any as void));
         console.log(
           "expirationMin",

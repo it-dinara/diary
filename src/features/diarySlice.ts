@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import axiosInstance from "../axios-diary.js";
+import axiosInstance from "../axios-diary";
 import { ReadStateType } from "./readSlice";
-import { RootState } from "../app/store.js";
+import { RootState } from "../app/store";
 
 const template = [
   "context",
