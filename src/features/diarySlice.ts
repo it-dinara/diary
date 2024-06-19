@@ -19,7 +19,7 @@ const template = [
 const initialState: DiaryStateType = {
   fetchedPostsRes: [],
   diaryId: "",
-  title: "",
+  title: "context",
   template: [
     "context",
     "feelings",

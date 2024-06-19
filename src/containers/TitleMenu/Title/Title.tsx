@@ -1,7 +1,12 @@
-import React from "react";
 import s from "./Title.module.css";
 
-function Title(props) {
+type TitleProps = {
+  active: any;
+  clicked: (event: any) => { payload: any; type: "diary/setTitle" };
+  name: string;
+};
+
+function Title(props: TitleProps) {
   return (
     <li
       className={props.active ? [s.title, s.active].join(" ") : s.title}

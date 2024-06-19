@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import s from "./TitleMenu.module.css";
 import Title from "./Title/Title";
-import { useSelector, useDispatch } from "react-redux";
 import { diaryTemplate, setTitle } from "../../features/diarySlice";
 import { noteId } from "../../features/readSlice";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 
 const TitleMenu = React.memo(() => {
-  const postNote = useSelector((state) => state.read.postData.note);
-  const postId = useSelector(noteId);
-  const template = useSelector(diaryTemplate);
-  const [active, setActive] = useState(false);
-  const dispatch = useDispatch();
+  const postNote = useAppSelector((state) => state.read.postData.note);
+  const postId = useAppSelector(noteId);
+  const template = useAppSelector(diaryTemplate);
+  const [active, setActive] = useState<Record<string, boolean>>({});
+  const dispatch = useAppDispatch();
 
-  const setTitleHandler = (event, title) => {
+  const setTitleHandler = (
+    event: { preventDefault: () => void },
+    title: string
+  ) => {
     event.preventDefault();
     setActive((active) => {
       return { [title]: !active[title] };
@@ -41,7 +44,7 @@ const TitleMenu = React.memo(() => {
         <Title
           key={title}
           name={title}
-          clicked={(event) => setTitleHandler(event, title)}
+          clicked={(event: any) => setTitleHandler(event, title)}
           active={active[title]}
         />
       ))}
