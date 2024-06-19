@@ -116,7 +116,13 @@ const diarySlice = createSlice({
 
 export const saveDiary = createAsyncThunk(
   "diary/saveDiary",
-  async ({ diaryData, token }: { diaryData: any; token: string }) => {
+  async ({
+    diaryData,
+    token,
+  }: {
+    diaryData: unknown;
+    token: string | null;
+  }) => {
     const response = await axiosInstance.post(
       "/journal.json?auth=" + token,
       diaryData
@@ -138,9 +144,18 @@ export const fetchPosts = createAsyncThunk(
 
 export const removePost = createAsyncThunk(
   "diary/removePost",
-  async (_, { getState }) => {
-    const token = (getState() as RootState).auth.token;
-    const postId = (getState() as RootState).read.postId;
+  async (
+    {
+      token,
+      postId,
+    }: {
+      token: string | null;
+      postId: string | null;
+    },
+    { getState }
+  ) => {
+    // const token = (getState() as RootState).auth.token;
+    // const postId = (getState() as RootState).read.postId;
     console.log("removePost", token, postId, getState());
     if (postId?.length === 0) {
       return null;

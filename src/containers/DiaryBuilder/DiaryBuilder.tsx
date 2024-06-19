@@ -1,9 +1,8 @@
-import { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import TitleMenu from "../TitleMenu/TitleMenu";
 import Diary from "../Diary/Diary";
 import s from "./DiaryBuilder.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "../../axios-diary.js";
+import axios from "../../axios-diary";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import { Navigate } from "react-router-dom";
 import Modal from "../../components/UI/Modal/Modal";
@@ -16,34 +15,38 @@ import {
 } from "../../features/diarySlice";
 import { noteId } from "../../features/readSlice";
 import getNoteDate from "../../helpers/getNoteDate";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 
 function DiaryBuilder() {
-  const title = useSelector(diaryTitle);
-  const template = useSelector(diaryTemplate);
-  const stateFeelings = useSelector(diaryObj);
-  const { token, userId } = useSelector((state) => state.auth);
+  const title = useAppSelector(diaryTitle);
+  const template = useAppSelector(diaryTemplate);
+  const stateFeelings = useAppSelector(diaryObj);
+  const { token, userId } = useAppSelector((state) => state.auth);
   //Переменные при редактировании поста
-  const postId = useSelector(noteId);
-  const postMillsec = useSelector((state) => state.read.postData.millsec);
-  const postDate = useSelector((state) => state.read.postData.fullDate);
-  const dispatch = useDispatch();
+  const postId = useAppSelector(noteId);
+  const postMillsec = useAppSelector((state) => state.read.postData.millsec);
+  const postDate = useAppSelector((state) => state.read.postData.fullDate);
+  const dispatch = useAppDispatch();
   const [startRemoving, setStartRemoving] = useState(false);
-  const redirectPath = useSelector((state) => state.auth.redirectPath);
+  const redirectPath = useAppSelector((state) => state.auth.redirectPath);
 
-  const saveDiaryHandler = (event) => {
+  const saveDiaryHandler = (event: MouseEvent) => {
     event.preventDefault();
     //При редактировании, удаляется старый пост и сохраняется новый, со старой датой
     if (postId) {
       dispatch(removePost({ token, postId }));
     }
 
-    //Проверка на пустой пост, такой пост не сохраняется
-    let note = {};
-    for (let key in stateFeelings) {
-      if (stateFeelings[key]) {
-        note[key] = stateFeelings[key];
-      }
-    }
+    //to do may be replace all data info into slices, case here I can reduce useSelectors and
+    //optimize - get rid of extra rendering
+
+    //it was extra cicle
+    // let note = {} as Record<string, string>;
+    // for (let key in stateFeelings) {
+    //   if (stateFeelings[key]) {
+    //     note[key] = stateFeelings[key];
+    //   }
+    // }
 
     let fullDate = getNoteDate.fullDate;
     let millsec = getNoteDate.millsec;
@@ -51,22 +54,25 @@ function DiaryBuilder() {
     console.log("fullDate", fullDate);
 
     const diaryData = {
-      note: note,
+      note: stateFeelings,
       userId: userId,
       fullDate: postId && postDate ? postDate : fullDate,
       millsec: postId && postMillsec ? postMillsec : millsec,
     };
 
-    if (Object.keys(note).length > 0) {
+    //Проверка на пустой пост, такой пост не сохраняется
+    if (Object.keys(stateFeelings).length > 0) {
       dispatch(saveDiary({ diaryData, token }));
     }
   };
 
-  const removeDiaryHandler = (event) => {
+  const removeDiaryHandler = (
+    event: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+  ) => {
     event.preventDefault();
 
     if (postId) {
-      dispatch(removePost(token, postId));
+      dispatch(removePost({ token, postId }));
     }
   };
 
