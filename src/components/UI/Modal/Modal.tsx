@@ -1,10 +1,11 @@
 import React from "react";
 import classes from "./Modal.module.css";
 import Backdrop from "../Backdrop/Backdrop";
+import { AxiosError } from "axios";
 
 type ModalProps = {
   children: React.ReactNode;
-  show: boolean;
+  show: boolean | null | AxiosError;
   modalClosed: () => void;
 };
 

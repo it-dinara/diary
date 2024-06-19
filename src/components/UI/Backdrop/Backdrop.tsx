@@ -1,8 +1,7 @@
-import React from "react";
-
 import classes from "./Backdrop.module.css";
+import { AxiosError } from "axios";
 
-type BackdropProps = { show: boolean; clicked: () => void };
+type BackdropProps = { show: boolean | null | AxiosError; clicked: () => void };
 
 const Backdrop = (props: BackdropProps) =>
   props.show ? (
