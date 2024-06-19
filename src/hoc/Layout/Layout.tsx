@@ -1,5 +1,4 @@
 import React from "react";
-import Aux from "../_Aux/_Aux";
 import classes from "./Layout.module.css";
 import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
@@ -22,7 +21,7 @@ export default function Layout(props: LayoutProps) {
     setShowSideDrawer(!showSideDrawer);
   };
   return (
-    <Aux>
+    <>
       <Toolbar
         drawerToggleClicked={sideDrawerToggleHandler}
         isAuthentication={isAuthentication}
@@ -33,6 +32,6 @@ export default function Layout(props: LayoutProps) {
         closed={sideDrawerClosedHandler}
       />
       <main className={classes.Content}>{props.children}</main>
-    </Aux>
+    </>
   );
 }
