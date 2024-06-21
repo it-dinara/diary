@@ -3,3 +3,4 @@ node_modules
 .firebaserc
 build
 desktop.ini
+diary.code-workspace

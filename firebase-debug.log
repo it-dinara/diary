@@ -1,0 +1,25 @@
+[debug] [2024-06-21T20:15:47.453Z] ----------------------------------------------------------------------
+[debug] [2024-06-21T20:15:47.456Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\divio\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-06-21T20:15:47.457Z] CLI Version:   13.11.3
+[debug] [2024-06-21T20:15:47.457Z] Platform:      win32
+[debug] [2024-06-21T20:15:47.457Z] Node Version:  v18.17.1
+[debug] [2024-06-21T20:15:47.459Z] Time:          Fri Jun 21 2024 23:15:47 GMT+0300 (Москва, стандартное время)
+[debug] [2024-06-21T20:15:47.459Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-06-21T20:15:47.552Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-06-21T20:15:47.553Z] > authorizing via signed-in user (arch.enemy.dinara@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\divio\diary
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
