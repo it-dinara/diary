@@ -81,7 +81,11 @@ const Posts = () => {
   };
 
   const start = (
-    <button className={s.newNote} onClick={() => makeNewNoteHandler()}>
+    <button
+      type="button"
+      className={s.newNote}
+      onClick={() => makeNewNoteHandler()}
+    >
       New note
     </button>
   );
@@ -91,9 +95,13 @@ const Posts = () => {
       <div className={s.panel}>
         {start}
         <div className={s.search}>
-          <button onClick={sortHandler}>{flag ? "↓↑" : "↑↓"}</button>
+          <button type="button" onClick={sortHandler}>
+            {flag ? "↓↑" : "↑↓"}
+          </button>
           <input
             type="text"
+            placeholder="type here"
+            title="to find your post"
             value={value}
             onChange={(event) => {
               console.log("val", event.target.value);

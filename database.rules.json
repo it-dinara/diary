@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "diary": {
+      ".read": "true",
+    	".write": "true"
+    },
+    "journal": {
+      ".read": "auth != null",
+    	".write": "auth != null",
+      ".indexOn": ["userId"]
+    },
+  }
+}
