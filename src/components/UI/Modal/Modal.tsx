@@ -9,7 +9,7 @@ type ModalProps = {
   modalClosed: () => void;
 };
 
-const Modal = React.memo((props: ModalProps) => {
+const Modal = React.memo(function Modal(props: ModalProps) {
   return (
     <>
       <Backdrop show={props.show} clicked={props.modalClosed} />

@@ -5,7 +5,7 @@ import { diaryTemplate, setTitle } from "../../features/diarySlice";
 import { noteId } from "../../features/readSlice";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 
-const TitleMenu = React.memo(() => {
+const TitleMenu = React.memo(function TitleMenu() {
   const postNote = useAppSelector((state) => state.read.postData.note);
   const postId = useAppSelector(noteId);
   const template = useAppSelector(diaryTemplate);
